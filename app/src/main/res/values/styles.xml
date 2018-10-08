@@ -1,0 +1,146 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <!-- Apply default style for dialogs -->
+        <item name="android:dialogTheme">@style/AppDialogTheme</item>
+        <!-- Apply default style for alert dialogs -->
+        <item name="android:alertDialogTheme">@style/AppAlertTheme</item>
+
+        <!-- Customize your theme here. -->
+        <item name="android:windowContentTransitions">true</item>
+
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.Splash">
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <!-- Apply default style for dialogs -->
+        <item name="android:dialogTheme">@style/AppDialogTheme</item>
+        <!-- Apply default style for alert dialogs -->
+        <item name="android:alertDialogTheme">@style/AppAlertTheme</item>
+
+    </style>
+
+    <style name="AppTheme.Light.DarkActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- Apply default style for dialogs -->
+        <item name="android:dialogTheme">@style/AppDialogTheme</item>
+        <!-- Apply default style for alert dialogs -->
+        <item name="android:alertDialogTheme">@style/AppAlertTheme</item>
+
+    </style>
+
+    <style name="AppTheme.Light.DarkActionBar.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Light.NoActionBar">
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <!-- Define your custom dialog theme here extending from base -->
+    <style name="AppDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <!-- Define color properties as desired -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:textColorHighlight">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <!-- Define window properties as desired -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+
+    </style>
+
+    <style name="AppDialogTheme.Translucent.Ad">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+
+    </style>
+
+    <!-- Define your custom alert theme here extending from base -->
+    <style name="AppAlertTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="android:textColorHighlight">@color/colorAccent</item>
+
+    </style>
+
+    <style name="AppDialogTheme.Translucent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+
+    <style name="Widget.AppCompat.Button.Colored.Primary">
+        <item name="android:backgroundTint">@color/colorPrimaryDark</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Widget.AppCompat.Button.Colored.Secondary">
+        <item name="android:backgroundTint">@color/colorAccent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AppTheme.Light.DarkActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.Light.DarkActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="TextAppearance.AppCompat.Small.Content">
+
+    </style>
+
+    <style name="TextAppearance.AppCompat.Small.Content.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.AppCompat.EditText.Field">
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+
+    <style name="CardView.Light.AppCard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardPreventCornerOverlap">true</item>
+        <item name="contentPadding">5dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardCornerRadius">2dp</item>
+    </style>
+
+</resources>
