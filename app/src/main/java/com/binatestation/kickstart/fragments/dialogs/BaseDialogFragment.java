@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.view.Window;
@@ -25,10 +26,6 @@ import static com.binatestation.kickstart.utils.Constants.KEY_MESSAGE_TITLE;
  */
 
 public abstract class BaseDialogFragment extends DialogFragment {
-
-    public static final String TAG_PROGRESS_DIALOG = "progress_dialog";
-    private ProgressDialogFragment mProgressDialogFragment;
-    private boolean showDialog;
 
     /**
      * sets the title
@@ -106,29 +103,13 @@ public abstract class BaseDialogFragment extends DialogFragment {
     }
 
     /**
-     * gets the instance of ProgressDialogFragment
-     *
-     * @return instance of ProgressDialogFragment
-     */
-    public ProgressDialogFragment getProgress() {
-        if (mProgressDialogFragment == null) {
-            mProgressDialogFragment = ProgressDialogFragment.newInstance();
-        }
-        return mProgressDialogFragment;
-    }
-
-    /**
      * show progress wheel
      */
     public void showProgressWheel() {
-        if (isShowDialog()) {
-            if (getProgress().isAdded()) {
-                return;
-            }
-            if (getProgress().isShowing()) {
-                return;
-            }
-            getProgress().show(getChildFragmentManager(), TAG_PROGRESS_DIALOG);
+        FragmentActivity fragmentActivity = getActivity();
+        if (fragmentActivity instanceof BaseActivity) {
+            BaseActivity baseActivity = (BaseActivity) fragmentActivity;
+            baseActivity.showProgressWheel();
         }
     }
 
@@ -136,35 +117,11 @@ public abstract class BaseDialogFragment extends DialogFragment {
      * hide progress wheel
      */
     public void hideProgressWheel() {
-        if (isShowDialog()) {
-            if (!getProgress().isAdded()) {
-                return;
-            }
-            if (!getProgress().isShowing()) {
-                return;
-            }
-            getProgress().dismiss();
+        FragmentActivity fragmentActivity = getActivity();
+        if (fragmentActivity instanceof BaseActivity) {
+            BaseActivity baseActivity = (BaseActivity) fragmentActivity;
+            baseActivity.hideProgressWheel();
         }
-    }
-
-    public boolean isShowDialog() {
-        return showDialog;
-    }
-
-    public void setShowDialog(boolean showDialog) {
-        this.showDialog = showDialog;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        setShowDialog(true);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        setShowDialog(false);
     }
 
     /**
@@ -189,8 +146,10 @@ public abstract class BaseDialogFragment extends DialogFragment {
             return null;
         }
         AlertDialogFragment alertDialogFragment = AlertDialogFragment.newInstance(title, message, getString(android.R.string.yes));
-        if (isShowDialog()) {
+        try {
             alertDialogFragment.show(getChildFragmentManager(), alertDialogFragment.getTag());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return alertDialogFragment;
     }

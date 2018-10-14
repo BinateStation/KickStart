@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 
 import com.binatestation.kickstart.R;
 import com.binatestation.kickstart.activities.BaseActivity;
 import com.binatestation.kickstart.fragments.dialogs.AlertDialogFragment;
-import com.binatestation.kickstart.fragments.dialogs.ProgressDialogFragment;
 import com.binatestation.kickstart.network.models.ErrorModel;
 
 import org.json.JSONObject;
@@ -25,10 +25,6 @@ import static com.binatestation.kickstart.utils.Constants.KEY_MESSAGE_TITLE;
  */
 
 public abstract class BaseFragment extends Fragment {
-
-    public static final String TAG_PROGRESS_DIALOG = "progress_dialog";
-    private ProgressDialogFragment mProgressDialogFragment;
-    private boolean showDialog;
 
     /**
      * sets the title
@@ -88,29 +84,13 @@ public abstract class BaseFragment extends Fragment {
     }
 
     /**
-     * gets the instance of ProgressDialogFragment
-     *
-     * @return instance of ProgressDialogFragment
-     */
-    public ProgressDialogFragment getProgress() {
-        if (mProgressDialogFragment == null) {
-            mProgressDialogFragment = ProgressDialogFragment.newInstance();
-        }
-        return mProgressDialogFragment;
-    }
-
-    /**
      * show progress wheel
      */
     public void showProgressWheel() {
-        if (isShowDialog()) {
-            if (getProgress().isAdded()) {
-                return;
-            }
-            if (getProgress().isShowing()) {
-                return;
-            }
-            getProgress().show(getChildFragmentManager(), TAG_PROGRESS_DIALOG);
+        FragmentActivity fragmentActivity = getActivity();
+        if (fragmentActivity instanceof BaseActivity) {
+            BaseActivity baseActivity = (BaseActivity) fragmentActivity;
+            baseActivity.showProgressWheel();
         }
     }
 
@@ -118,33 +98,13 @@ public abstract class BaseFragment extends Fragment {
      * hide progress wheel
      */
     public void hideProgressWheel() {
-        if (mProgressDialogFragment != null) {
-            if (!mProgressDialogFragment.isAdded()) {
-                return;
-            }
-            mProgressDialogFragment.dismiss();
+        FragmentActivity fragmentActivity = getActivity();
+        if (fragmentActivity instanceof BaseActivity) {
+            BaseActivity baseActivity = (BaseActivity) fragmentActivity;
+            baseActivity.hideProgressWheel();
         }
     }
 
-    public boolean isShowDialog() {
-        return showDialog;
-    }
-
-    public void setShowDialog(boolean showDialog) {
-        this.showDialog = showDialog;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        setShowDialog(true);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        setShowDialog(false);
-    }
 
     /**
      * show alert message
@@ -168,8 +128,10 @@ public abstract class BaseFragment extends Fragment {
             return null;
         }
         AlertDialogFragment alertDialogFragment = AlertDialogFragment.newInstance(title, message, getString(android.R.string.yes));
-        if (isShowDialog()) {
+        try {
             alertDialogFragment.show(getChildFragmentManager(), alertDialogFragment.getTag());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return alertDialogFragment;
     }
@@ -179,6 +141,7 @@ public abstract class BaseFragment extends Fragment {
      *
      * @param errorModel ErrorModel
      */
+    @SuppressWarnings("UnusedReturnValue")
     public AlertDialogFragment showAlert(@NonNull final ErrorModel errorModel) {
         return showAlert(errorModel.getErrorTitle(), errorModel.getErrorMessage());
     }

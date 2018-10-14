@@ -18,30 +18,9 @@ import static com.binatestation.kickstart.utils.Constants.KEY_MESSAGE_TITLE;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
-
-    private ActionBar actionBar = null;
-    private ProgressDialogFragment mProgressDialogFragment;
-    private boolean showDialog;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        showDialog = true;
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        showDialog = false;
-    }
-
-    public boolean isShowDialog() {
-        return showDialog;
     }
 
     /**
@@ -50,33 +29,27 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param title String value
      */
     public void setTitle(String title) {
-        if (getActiveActionBar() != null) {
-            getActiveActionBar().setDisplayShowTitleEnabled(true);
-            getActiveActionBar().setLogo(null);
-            getActiveActionBar().setTitle(title);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+            getSupportActionBar().setLogo(null);
+            getSupportActionBar().setTitle(title);
         }
     }
 
     public void setHomeAsUp() {
-        ActionBar actionBar = getActiveActionBar();
+        ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
 
     public void hideHomeAsUp() {
-        ActionBar actionBar = getActiveActionBar();
+        ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(false);
         }
     }
 
-    protected ActionBar getActiveActionBar() {
-        if (actionBar == null) {
-            actionBar = getSupportActionBar();
-        }
-        return actionBar;
-    }
 
     /**
      * show alert message
@@ -97,8 +70,10 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     public AlertDialogFragment showAlert(String title, String message) {
         AlertDialogFragment alertDialogFragment = AlertDialogFragment.newInstance(title, message, getString(android.R.string.yes));
-        if (isShowDialog()) {
+        try {
             alertDialogFragment.show(getSupportFragmentManager(), alertDialogFragment.getTag());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return alertDialogFragment;
     }
@@ -122,40 +97,20 @@ public abstract class BaseActivity extends AppCompatActivity {
         return showAlert(jsonObject.optString(KEY_MESSAGE_TITLE), jsonObject.optString(KEY_MESSAGE));
     }
 
-    /**
-     * gets the instance of ProgressDialogFragment
-     *
-     * @return instance of ProgressDialogFragment
-     */
-    public ProgressDialogFragment getProgress() {
-        if (mProgressDialogFragment == null) {
-            mProgressDialogFragment = ProgressDialogFragment.newInstance();
-        }
-        return mProgressDialogFragment;
-    }
+
 
     /**
      * show progress wheel
      */
-    @SuppressWarnings("unused")
     public void showProgressWheel() {
-        if (isShowDialog()) {
-            if (getProgress().isAdded()) {
-                return;
-            }
-            if (getProgress().isShowing()) {
-                return;
-            }
-            getProgress().show(getSupportFragmentManager(), ProgressDialogFragment.TAG);
-        }
+        ProgressDialogFragment.getInstance().show(getSupportFragmentManager(), ProgressDialogFragment.TAG);
     }
 
     /**
      * hide progress wheel
      */
-    @SuppressWarnings("unused")
     public void hideProgressWheel() {
-        getProgress().dismiss();
+        ProgressDialogFragment.getInstance().dismiss();
     }
 
     @Override
