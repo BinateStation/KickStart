@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Created By RKR
-  ~ Last Updated at 14/12/19 4:38 PM.
+  ~ Last Updated at 14/12/19 4:42 PM.
   ~
   ~ Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,9 +14,4 @@
   ~ limitations under the License.
   -->
 
-<network-security-config>
-    <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">192.168.1.8</domain>
-        <domain includeSubdomains="true">polyguard.com</domain>
-    </domain-config>
-</network-security-config>
+<manifest package="com.binatestation.android.kickoff" />
