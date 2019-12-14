@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Created By RKR
-  ~ Last Updated at 14/12/19 4:00 PM.
+  ~ Last Updated at 14/12/19 4:49 PM.
   ~
   ~ Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,9 +24,4 @@
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
-
-    <color name="progress_red">#FFC93437</color>
-    <color name="progress_blue">#FF375BF1</color>
-    <color name="progress_yellow">#FFF7D23E</color>
-    <color name="progress_green">#FF34A350</color>
 </resources>

@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 2:53 PM.
+ * Last Updated at 14/12/19 5:32 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +15,13 @@
  */
 
 apply plugin: 'com.android.library'
+
 apply plugin: 'kotlin-android'
+
 apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
 apply plugin: 'maven-publish'
 
 def artifactId = 'kickoff'
@@ -44,6 +49,10 @@ android {
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
+
 
 }
 
@@ -52,9 +61,14 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
+
+    // Specific views
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta3'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
 }
 
 project.afterEvaluate {

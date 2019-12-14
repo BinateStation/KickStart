@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 3:40 PM.
+ * Last Updated at 14/12/19 5:32 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,6 +17,7 @@
 package com.binatestation.kickstart.utils
 
 import androidx.databinding.InverseMethod
+import com.binatestation.android.kickoff.utils.Utils
 import java.util.*
 
 @Suppress("unused")

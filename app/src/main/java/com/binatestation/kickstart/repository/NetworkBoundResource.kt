@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 3:56 PM.
+ * Last Updated at 14/12/19 5:08 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,6 +21,7 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import com.binatestation.android.kickoff.repository.models.Resource
 import com.binatestation.kickstart.repository.models.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

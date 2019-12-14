@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 3:54 PM.
+ * Last Updated at 14/12/19 5:08 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,6 +23,7 @@ import androidx.databinding.ObservableField
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.binatestation.android.kickoff.repository.models.MultiSelectDataModel
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -44,7 +45,8 @@ data class AccountModel(
     var children: ArrayList<AccountModel>? = null,
     @Ignore
     override var isSelected: Boolean = false
-) : Parcelable, MultiSelectDataModel {
+) : Parcelable,
+    MultiSelectDataModel {
 
     @Ignore
     var expanded = ObservableField(false)

@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 4:09 PM.
+ * Last Updated at 14/12/19 5:47 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,10 +21,11 @@ package com.binatestation.kickstart.utils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import com.binatestation.android.kickoff.repository.models.ErrorModel
+import com.binatestation.android.kickoff.utils.Constants
+import com.binatestation.android.kickoff.utils.fragments.dialogs.AlertDialogFragment
+import com.binatestation.android.kickoff.utils.fragments.dialogs.ProgressDialogFragment
 import com.binatestation.kickstart.R
-import com.binatestation.kickstart.repository.models.ErrorModel
-import com.binatestation.kickstart.utils.fragments.dialogs.AlertDialogFragment
-import com.binatestation.kickstart.utils.fragments.dialogs.ProgressDialogFragment
 import org.json.JSONObject
 import java.util.*
 

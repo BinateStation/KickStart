@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 3:31 PM.
+ * Last Updated at 14/12/19 4:59 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -92,4 +92,5 @@ dependencies {
 
     // debug
     debugImplementation 'im.dino:dbinspector:4.0.0@aar'
+    implementation project(path: ':kickoff')
 }

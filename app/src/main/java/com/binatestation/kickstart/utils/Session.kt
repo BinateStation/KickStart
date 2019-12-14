@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 4:09 PM.
+ * Last Updated at 14/12/19 5:47 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,16 +20,17 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.preference.PreferenceManager
+import com.binatestation.android.kickoff.utils.Constants.KEY_ACCESS_TOKEN
+import com.binatestation.android.kickoff.utils.Constants.KEY_CREATED_AT
+import com.binatestation.android.kickoff.utils.Constants.KEY_EXPIRES_IN
+import com.binatestation.android.kickoff.utils.Constants.KEY_PRIMARY_SHOP_ID
+import com.binatestation.android.kickoff.utils.Constants.KEY_REFRESH_TOKEN
+import com.binatestation.android.kickoff.utils.Constants.KEY_SCOPE
+import com.binatestation.android.kickoff.utils.Constants.KEY_TOKEN_EXPIRES_AT
+import com.binatestation.android.kickoff.utils.Constants.KEY_TOKEN_TYPE
+import com.binatestation.android.kickoff.utils.RateLimiter
 import com.binatestation.kickstart.repository.models.AuthTokenModel
 import com.binatestation.kickstart.ui.splash.SplashActivity
-import com.binatestation.kickstart.utils.Constants.KEY_ACCESS_TOKEN
-import com.binatestation.kickstart.utils.Constants.KEY_CREATED_AT
-import com.binatestation.kickstart.utils.Constants.KEY_EXPIRES_IN
-import com.binatestation.kickstart.utils.Constants.KEY_PRIMARY_SHOP_ID
-import com.binatestation.kickstart.utils.Constants.KEY_REFRESH_TOKEN
-import com.binatestation.kickstart.utils.Constants.KEY_SCOPE
-import com.binatestation.kickstart.utils.Constants.KEY_TOKEN_EXPIRES_AT
-import com.binatestation.kickstart.utils.Constants.KEY_TOKEN_TYPE
 
 @Suppress("unused")
 /**

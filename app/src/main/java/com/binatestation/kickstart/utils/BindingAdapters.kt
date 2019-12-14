@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 4:30 PM.
+ * Last Updated at 14/12/19 5:32 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,9 +24,9 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.widget.ContentLoadingProgressBar
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.binatestation.kickstart.utils.adapters.RecyclerViewAdapter
-import com.binatestation.kickstart.utils.listeners.AdapterListener
-import com.binatestation.kickstart.utils.listeners.OnListItemClickListener
+import com.binatestation.android.kickoff.utils.adapters.RecyclerViewAdapter
+import com.binatestation.android.kickoff.utils.listeners.AdapterListener
+import com.binatestation.android.kickoff.utils.listeners.OnListItemClickListener
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.textfield.TextInputLayout

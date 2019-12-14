@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 3:54 PM.
+ * Last Updated at 14/12/19 5:47 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,9 +17,9 @@
 package com.binatestation.kickstart.repository.network
 
 import android.content.Context
+import com.binatestation.android.kickoff.utils.Constants.END_URL_OAUTH_TOKEN
 import com.binatestation.kickstart.BuildConfig
 import com.binatestation.kickstart.repository.models.AuthTokenModel
-import com.binatestation.kickstart.utils.Constants.END_URL_OAUTH_TOKEN
 import com.binatestation.kickstart.utils.Session
 import com.google.gson.Gson
 import okhttp3.Authenticator

@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 3:54 PM.
+ * Last Updated at 14/12/19 5:32 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,12 +16,12 @@
 
 package com.binatestation.kickstart.repository.models
 
-import com.binatestation.kickstart.utils.Constants.KEY_ACCESS_TOKEN
-import com.binatestation.kickstart.utils.Constants.KEY_CREATED_AT
-import com.binatestation.kickstart.utils.Constants.KEY_EXPIRES_IN
-import com.binatestation.kickstart.utils.Constants.KEY_REFRESH_TOKEN
-import com.binatestation.kickstart.utils.Constants.KEY_SCOPE
-import com.binatestation.kickstart.utils.Constants.KEY_TOKEN_TYPE
+import com.binatestation.android.kickoff.utils.Constants.KEY_ACCESS_TOKEN
+import com.binatestation.android.kickoff.utils.Constants.KEY_CREATED_AT
+import com.binatestation.android.kickoff.utils.Constants.KEY_EXPIRES_IN
+import com.binatestation.android.kickoff.utils.Constants.KEY_REFRESH_TOKEN
+import com.binatestation.android.kickoff.utils.Constants.KEY_SCOPE
+import com.binatestation.android.kickoff.utils.Constants.KEY_TOKEN_TYPE
 import com.google.gson.annotations.SerializedName
 
 data class AuthTokenModel(

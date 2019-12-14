@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 3:54 PM.
+ * Last Updated at 14/12/19 5:32 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,9 +16,9 @@
 
 package com.binatestation.kickstart.repository.models
 
-import com.binatestation.kickstart.utils.Constants
-import com.binatestation.kickstart.utils.Constants.KEY_GRANT_TYPE
-import com.binatestation.kickstart.utils.Constants.KEY_REFRESH_TOKEN
+import com.binatestation.android.kickoff.utils.Constants
+import com.binatestation.android.kickoff.utils.Constants.KEY_GRANT_TYPE
+import com.binatestation.android.kickoff.utils.Constants.KEY_REFRESH_TOKEN
 import com.google.gson.annotations.SerializedName
 
 data class Login(
