@@ -1,0 +1,66 @@
+<!--
+  ~ Created By RKR
+  ~ Last Updated at 13/12/19 12:51 PM.
+  ~
+  ~ Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="512dp"
+            android:height="512dp"
+            android:viewportWidth="512"
+            android:viewportHeight="512">
+            <path
+                android:name="path"
+                android:fillColor="#876FCF"
+                android:pathData="M 426.692 170.667 C 425.711 96.436 365.312 34.134 290.849 34.134 C 243.413 34.134 198.869 59.777 174.276 96.735 C 163.473 89.541 150.493 85.335 136.533 85.335 C 98.833 85.335 68.266 115.901 68.266 153.602 C 68.266 154.908 68.386 156.179 68.462 157.476 C 68.377 159.029 68.266 160.599 68.266 162.135 C 34.235 178.451 8.533 217.235 8.533 257.324 C 8.533 312.92 54.016 358.402 109.611 358.402 L 318.737 358.402 C 319.915 358.402 321.058 358.265 322.218 358.222 C 323.387 358.265 324.531 358.402 325.708 358.402 L 409.36 358.402 C 461.115 358.402 503.465 316.05 503.465 264.297 C 503.467 218.462 470.238 178.867 426.692 170.667 Z"
+                android:strokeWidth="2"
+                android:strokeColor="#7383BF"
+                android:strokeLineCap="round" />
+            <group
+                android:name="rotation_group"
+                android:pivotX="300"
+                android:pivotY="300"
+                android:rotation="45">
+                <path
+                    android:name="path_1"
+                    android:fillColor="#BCB1DE"
+                    android:pathData="M 264.533 349.867 M 128 349.867 C 128 313.67 142.395 278.919 167.99 253.324 C 193.585 227.729 228.336 213.334 264.533 213.334 C 300.73 213.334 335.481 227.729 361.076 253.324 C 386.671 278.919 401.066 313.67 401.066 349.867 C 401.066 386.064 386.671 420.815 361.076 446.41 C 335.481 472.005 300.73 486.4 264.533 486.4 C 228.336 486.4 193.585 472.005 167.99 446.41 C 142.395 420.815 128 386.064 128 349.867" />
+                <path
+                    android:name="path_2"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 231.15 319.897 C 231.272 318.788 230.717 317.727 229.743 317.185 L 214.604 308.831 C 227.797 293.469 247.184 284.202 267.752 284.202 C 306.391 284.202 337.823 315.636 337.823 354.274 C 337.823 359.444 342.011 363.638 347.187 363.638 C 352.357 363.638 356.551 359.444 356.551 354.274 C 356.551 305.307 316.711 265.474 267.751 265.474 C 242.434 265.474 218.419 276.447 201.745 294.912 L 194.691 282.141 C 194.163 281.165 193.094 280.61 191.984 280.733 C 190.881 280.854 189.962 281.623 189.644 282.69 L 174.616 333.856 C 174.33 334.812 174.598 335.856 175.311 336.575 C 176.012 337.276 177.061 337.55 178.024 337.258 L 229.186 322.224 C 230.261 321.923 231.027 320.989 231.15 319.897 Z" />
+                <path
+                    android:name="path_3"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 360.193 375.43 C 359.491 374.722 358.442 374.453 357.479 374.742 L 306.318 389.775 C 305.245 390.091 304.478 391.012 304.356 392.11 C 304.233 393.214 304.788 394.281 305.763 394.817 L 320.901 403.174 C 307.708 418.531 288.321 427.798 267.753 427.798 C 229.114 427.798 197.682 396.365 197.682 357.726 C 197.682 352.557 193.494 348.362 188.318 348.362 C 183.148 348.362 178.954 352.556 178.954 357.726 C 178.954 406.693 218.796 446.525 267.754 446.525 C 293.071 446.525 317.079 435.551 333.76 417.086 L 340.814 429.858 C 341.342 430.835 342.411 431.388 343.52 431.273 C 344.624 431.144 345.544 430.382 345.86 429.31 L 360.889 378.149 C 361.174 377.186 360.904 376.148 360.193 375.43 Z" />
+            </group>
+        </vector>
+    </aapt:attr>
+    <target android:name="rotation_group">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="600"
+                android:interpolator="@android:anim/linear_interpolator"
+                android:propertyName="rotation"
+                android:repeatCount="infinite"
+                android:repeatMode="restart"
+                android:valueFrom="0"
+                android:valueTo="360"
+                android:valueType="floatType" />
+        </aapt:attr>
+    </target>
+</animated-vector>
