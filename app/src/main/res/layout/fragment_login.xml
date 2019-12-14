@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~ Created By RKR
-  ~ Last Updated at 14/12/19 4:33 PM.
+  ~ Last Updated at 14/12/19 7:09 PM.
   ~
   ~ Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -70,6 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/username"
+                android:text="@={viewModel.loginModel.username}"
                 android:inputType="textEmailAddress"
                 android:selectAllOnFocus="true"
                 android:singleLine="true" />
@@ -94,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
+                android:text="@={viewModel.loginModel.password}"
                 android:inputType="textPassword"
                 android:maxLength="50"
                 android:selectAllOnFocus="true"

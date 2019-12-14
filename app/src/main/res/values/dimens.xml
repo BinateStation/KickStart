@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Created By RKR
-  ~ Last Updated at 14/12/19 6:56 PM.
+  ~ Last Updated at 14/12/19 6:59 PM.
   ~
   ~ Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,12 +15,10 @@
   -->
 
 <resources>
-    <color name="color_accent">#4CAF50</color>
-    <color name="primary">#673AB7</color>
-    <color name="primary_dark">#512DA8</color>
-    <color name="primary_light">#D1C4E9</color>
-    <color name="primary_text">#212121</color>
-    <color name="secondary_text">#757575</color>
-    <color name="icons">#FFFFFF</color>
-    <color name="divider">#BDBDBD</color>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

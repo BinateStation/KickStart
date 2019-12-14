@@ -1,6 +1,6 @@
 <!--
   ~ Created By RKR
-  ~ Last Updated at 14/12/19 4:00 PM.
+  ~ Last Updated at 14/12/19 6:59 PM.
   ~
   ~ Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -128,53 +128,8 @@
 
     </style>
 
-    <style name="AppDialogTheme.Translucent">
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-    </style>
+    <style name="AppTheme.Light.DarkActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-
-    <style name="Widget.AppCompat.Button.Colored.Primary">
-        <item name="android:backgroundTint">@color/primary_dark</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="Widget.AppCompat.Button.Colored.Secondary">
-        <item name="android:backgroundTint">@color/color_accent</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="AppTheme.Light.DarkActionBar.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
-
-    <style name="AppTheme.Light.DarkActionBar.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
-
-
-    <style name="TextAppearance.AppCompat.Small.Content">
-
-    </style>
-
-    <style name="TextAppearance.AppCompat.Small.Content.Bold">
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="Widget.AppCompat.EditText.Field">
-        <item name="android:textSize">14sp</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:focusable">true</item>
-        <item name="android:focusableInTouchMode">true</item>
-    </style>
-
-    <style name="CardView.Light.AppCard">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="cardUseCompatPadding">true</item>
-        <item name="cardPreventCornerOverlap">true</item>
-        <item name="contentPadding">5dp</item>
-        <item name="cardElevation">2dp</item>
-        <item name="cardCornerRadius">2dp</item>
-    </style>
+    <style name="AppTheme.Light.DarkActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

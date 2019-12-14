@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 4:34 PM.
+ * Last Updated at 14/12/19 7:12 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +16,6 @@
 
 package com.binatestation.kickstart.ui.splash.login
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -29,9 +28,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.binatestation.kickstart.R
 import com.binatestation.kickstart.databinding.FragmentLoginBinding
 import com.binatestation.kickstart.ui.main.MainActivity
-import com.binatestation.kickstart.utils.Session
 import kotlinx.android.synthetic.main.fragment_login.*
-import java.util.*
 
 class LoginFragment : Fragment() {
 
@@ -40,12 +37,12 @@ class LoginFragment : Fragment() {
 
     private val isValidInput: Boolean
         get() {
-            if (TextUtils.isEmpty(field_username_layout?.editText?.text)) {
+            if (TextUtils.isEmpty(viewModel.loginModel.get()?.username)) {
                 field_username_layout?.error = getString(R.string.error_invalid_username)
                 field_username_layout?.editText?.requestFocus()
                 return false
             }
-            if (TextUtils.isEmpty(field_password_layout?.editText?.text)) {
+            if (TextUtils.isEmpty(viewModel.loginModel.get()?.password)) {
                 field_password_layout?.error = getString(R.string.error_invalid_password)
                 field_password_layout?.editText?.requestFocus()
                 return false
@@ -75,12 +72,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.visibility = View.GONE
         action_login.setOnClickListener { actionLogin() }
-        context?.let {
-            val accessToken = Session.getToken(it)
-            checkLogin(accessToken.accessToken, it)
-        }
     }
 
     private fun actionLogin() {
@@ -88,36 +80,9 @@ class LoginFragment : Fragment() {
     }
 
     private fun login() {
-//        viewModel.login(
-//            field_username_layout?.editText?.text.toString().trim(),
-//            field_password_layout?.editText?.text.toString().trim()
-//        ).observe(viewLifecycleOwner, androidx.lifecycle.Observer { res ->
-//            when {
-//                res?.status == Status.ERROR -> {
-//                    progress_bar.hide()
-//                    showAlert(res.message ?: "")
-//                }
-//                res?.status == Status.LOADING -> progress_bar.show()
-//                res?.data != null -> checkLogin(res.data.accessToken, requireContext())
-//            }
-//        })
+        navigateToHome()
     }
 
-
-    private fun checkLogin(accessToken: String?, context: Context) {
-        if (!TextUtils.isEmpty(accessToken)) {
-            val expiresAt = Calendar.getInstance()
-            expiresAt.timeInMillis = Session.getTokenExpiresAt(context)
-            val rightNow = Calendar.getInstance()
-            if (rightNow.before(expiresAt)) {
-                navigateToHome()
-            } else {
-                refreshToken()
-            }
-        } else {
-            view?.visibility = View.VISIBLE
-        }
-    }
 
     /**
      * navigate to home
@@ -127,21 +92,6 @@ class LoginFragment : Fragment() {
         val intent = Intent(context, MainActivity::class.java)
         startActivity(intent)
         activity?.finishAffinity()
-    }
-
-    private fun refreshToken() {
-        context?.let {
-            val tokenToRefresh = Session.getToken(it)
-//            viewModel.authTokenModel(tokenToRefresh)
-//                .observe(viewLifecycleOwner, androidx.lifecycle.Observer { res ->
-//                    when {
-//                        res?.status == Status.ERROR -> view?.visibility = View.VISIBLE
-//                        res?.status == Status.SUCCESS && res.data != null -> res.data.accessToken.takeIf { accessToken -> tokenToRefresh.accessToken != accessToken }?.apply {
-//                            checkLogin(this, it)
-//                        }
-//                    }
-//                })
-        }
     }
 
 }

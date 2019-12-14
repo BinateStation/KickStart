@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 3:54 PM.
+ * Last Updated at 14/12/19 7:09 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,19 +14,16 @@
  * limitations under the License.
  */
 
-package com.binatestation.kickstart.repository.db
+package com.binatestation.kickstart.ui.main.send
 
-import androidx.room.TypeConverter
-import java.util.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-class Converters {
-    @TypeConverter
-    fun fromTimestamp(value: Long?): Date? {
-        return value?.let { Date(it) }
+class SendViewModel : ViewModel() {
+
+    private val _text = MutableLiveData<String>().apply {
+        value = "This is send Fragment"
     }
-
-    @TypeConverter
-    fun dateToTimestamp(date: Date?): Long? {
-        return date?.time
-    }
+    val text: LiveData<String> = _text
 }

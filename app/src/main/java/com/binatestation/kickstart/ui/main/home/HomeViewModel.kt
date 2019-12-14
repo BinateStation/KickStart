@@ -14,18 +14,16 @@
  * limitations under the License.
  */
 
-package com.binatestation.kickstart.ui.splash.login
+package com.binatestation.kickstart.ui.main.home
 
-import android.app.Application
-import androidx.databinding.ObservableField
-import androidx.lifecycle.AndroidViewModel
-import com.binatestation.kickstart.BuildConfig
-import com.binatestation.kickstart.R
-import com.binatestation.kickstart.repository.models.LoginModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-class LoginViewModel(application: Application) : AndroidViewModel(application) {
-    val showProgress = ObservableField(false)
-    val versionName =
-        "${getApplication<Application>().getString(R.string.version)} :${BuildConfig.VERSION_NAME}"
-    val loginModel = ObservableField(LoginModel())
+class HomeViewModel : ViewModel() {
+
+    private val _text = MutableLiveData<String>().apply {
+        value = "This is home Fragment"
+    }
+    val text: LiveData<String> = _text
 }

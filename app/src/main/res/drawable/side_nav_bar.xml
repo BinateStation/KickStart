@@ -1,6 +1,6 @@
 <!--
   ~ Created By RKR
-  ~ Last Updated at 13/12/19 12:51 PM.
+  ~ Last Updated at 14/12/19 7:00 PM.
   ~
   ~ Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,8 +18,8 @@
     android:shape="rectangle">
     <gradient
         android:angle="135"
-        android:centerColor="@color/primary_dark"
-        android:endColor="@color/color_accent"
-        android:startColor="@color/primary"
+        android:centerColor="#009688"
+        android:endColor="#00695C"
+        android:startColor="#4DB6AC"
         android:type="linear" />
 </shape>

@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 3:54 PM.
+ * Last Updated at 14/12/19 6:56 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,5 +23,5 @@ package com.binatestation.kickstart.repository.models
  */
 
 data class ApiRequest(
-    var account: AccountModel? = null
+    var loginModel: LoginModel? = null
 )
