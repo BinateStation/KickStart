@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 5:32 PM.
+ * Last Updated at 14/12/19 8:05 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +27,7 @@ object Constants {
      */
     const val KEY_ID = "id"
     const val KEY_NAME = "name"
-    const val KEY_INVOICE_NB = "invoice_nb"
+    const val KEY_IS_LOGGED_IN = "is_logged_in"
     const val KEY_ORDER_NB = "order_nb"
     const val KEY_INVOICE_WISHES = "invoice_wishes"
     const val KEY_DESCRIPTION = "description"

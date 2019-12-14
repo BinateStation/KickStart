@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~ Created By RKR
-  ~ Last Updated at 14/12/19 7:30 PM.
+  ~ Last Updated at 15/12/19 12:12 AM.
   ~
   ~ Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,13 +18,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_posts">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.binatestation.kickstart.ui.main.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_posts"
+        android:name="com.binatestation.kickstart.ui.main.post.PostFragment"
+        android:label="@string/posts"
+        tools:layout="@layout/fragment_list" />
 
     <fragment
         android:id="@+id/nav_gallery"

@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 7:09 PM.
+ * Last Updated at 14/12/19 11:18 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,16 +14,17 @@
  * limitations under the License.
  */
 
-package com.binatestation.kickstart.ui.main.home
+package com.binatestation.kickstart.ui.main.post
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import com.binatestation.kickstart.repository.PostRepository
+import com.binatestation.kickstart.repository.network.RetrofitClientInstance
+import com.binatestation.kickstart.repository.network.api.PostApi
 
-class HomeViewModel : ViewModel() {
+class PostViewModel(application: Application) : AndroidViewModel(application) {
+    private val postRepository =
+        PostRepository(RetrofitClientInstance.getRetrofitInstance(getApplication()).create(PostApi::class.java))
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
+    val posts = postRepository.getAll()
 }

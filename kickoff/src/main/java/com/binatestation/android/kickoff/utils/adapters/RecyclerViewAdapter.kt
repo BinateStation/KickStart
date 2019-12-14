@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 5:40 PM.
+ * Last Updated at 15/12/19 12:08 AM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,14 +16,16 @@
 
 package com.binatestation.android.kickoff.utils.adapters
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.binatestation.android.kickoff.repository.models.EmptyStateModel
+import com.binatestation.android.kickoff.repository.models.ItemViewTypeModel
 import com.binatestation.android.kickoff.utils.adapters.holders.EmptyStateViewHolder
 import com.binatestation.android.kickoff.utils.listeners.AdapterListener
 import com.binatestation.android.kickoff.utils.listeners.OnListItemClickListener
 import com.binatestation.android.kickoff.utils.listeners.ViewBinder
-import java.util.*
 
 
 /**
@@ -39,6 +41,7 @@ open class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
     var type: Int? = 0
     var showEmptyState: Boolean = true
     internal var data: ArrayList<Any>? = null
+    val itemViewTypeModels = ArrayList<ItemViewTypeModel<*, *, *>>()
 
 
     /**
@@ -125,15 +128,33 @@ open class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 
     override fun getItemViewType(position: Int): Int {
         with(getItem(position)) {
-            when (this) {
-                is EmptyStateModel -> return EmptyStateViewHolder.LAYOUT
-                else -> return EmptyStateViewHolder.LAYOUT
+            val itemViewTypeModel = itemViewTypeModels.find {
+                this.javaClass.classLoader == it.clsType?.classLoader
             }
+            return if (itemViewTypeModel is ItemViewTypeModel) {
+                itemViewTypeModel.layoutId
+            } else
+                EmptyStateViewHolder.LAYOUT
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
+        val itemViewType =
+            itemViewTypeModels.find { itemViewTypeModel -> itemViewTypeModel.layoutId == viewType }
+        val constructor = itemViewType?.viewHolder?.getConstructor(
+            AdapterListener::class.java,
+            itemViewType.viewDataBindingType
+        )
+        try {
+            return constructor?.newInstance(
+                this, DataBindingUtil.inflate(
+                    LayoutInflater.from(parent.context),
+                    itemViewType.layoutId, parent, false
+                )
+            ) as RecyclerView.ViewHolder
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         return EmptyStateViewHolder(parent, this)
     }
 

@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 3:40 PM.
+ * Last Updated at 14/12/19 8:15 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -147,7 +147,7 @@ object Constants {
     /**
      * API End URL
      */
-    const val END_URL_OAUTH_TOKEN = "oauth/token"
+    const val END_URL_POSTS = "posts"
     const val END_URL_OAUTH_REVOKE = "oauth/revoke"
     const val END_URL_SHOPS = "/shops"
     const val END_URL_SHOP_CUSTOMERS = "/shop_customers"

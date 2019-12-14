@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 5:40 PM.
+ * Last Updated at 14/12/19 11:18 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +29,7 @@ import com.binatestation.android.kickoff.utils.listeners.ViewBinder
 
 abstract class BaseViewHolder constructor(
     itemView: View,
-    val adapterListener: AdapterListener?
+    private val adapterListener: AdapterListener?
 ) :
     RecyclerView.ViewHolder(itemView), ViewBinder {
 
@@ -39,7 +39,7 @@ abstract class BaseViewHolder constructor(
         }
     }
 
-    fun onClick(view: View) {
+    private fun onClick(view: View) {
         val position = adapterPosition
         if (position != RecyclerView.NO_POSITION && adapterListener != null) {
             adapterListener.clickListener?.onClickItem(

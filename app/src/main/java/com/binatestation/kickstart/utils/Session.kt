@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 5:47 PM.
+ * Last Updated at 14/12/19 8:05 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +23,7 @@ import androidx.preference.PreferenceManager
 import com.binatestation.android.kickoff.utils.Constants.KEY_ACCESS_TOKEN
 import com.binatestation.android.kickoff.utils.Constants.KEY_CREATED_AT
 import com.binatestation.android.kickoff.utils.Constants.KEY_EXPIRES_IN
-import com.binatestation.android.kickoff.utils.Constants.KEY_PRIMARY_SHOP_ID
+import com.binatestation.android.kickoff.utils.Constants.KEY_IS_LOGGED_IN
 import com.binatestation.android.kickoff.utils.Constants.KEY_REFRESH_TOKEN
 import com.binatestation.android.kickoff.utils.Constants.KEY_SCOPE
 import com.binatestation.android.kickoff.utils.Constants.KEY_TOKEN_EXPIRES_AT
@@ -41,14 +41,14 @@ object Session {
     private const val KEY_SESSION = "SESSION"
     val repoListRateLimit = RateLimiter()
 
-    fun setPrimaryShopId(context: Context, primaryShopId: Long) {
+    fun setLogin(context: Context) {
         context.getSharedPreferences(KEY_SESSION, Context.MODE_PRIVATE).edit()
-            .putLong(KEY_PRIMARY_SHOP_ID, primaryShopId).apply()
+            .putBoolean(KEY_IS_LOGGED_IN, true).apply()
     }
 
-    fun getPrimaryShopId(context: Context): Long {
+    fun isLoggedIn(context: Context): Boolean {
         return context.getSharedPreferences(KEY_SESSION, Context.MODE_PRIVATE)
-            .getLong(KEY_PRIMARY_SHOP_ID, 0)
+            .getBoolean(KEY_IS_LOGGED_IN, false)
     }
 
     fun setTokenExpiresAt(context: Context, time: Long) {

@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 7:12 PM.
+ * Last Updated at 14/12/19 8:05 PM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,6 +28,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.binatestation.kickstart.R
 import com.binatestation.kickstart.databinding.FragmentLoginBinding
 import com.binatestation.kickstart.ui.main.MainActivity
+import com.binatestation.kickstart.utils.Session
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment() {
@@ -73,6 +74,9 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         action_login.setOnClickListener { actionLogin() }
+        if (Session.isLoggedIn(requireContext())) {
+            navigateToHome()
+        }
     }
 
     private fun actionLogin() {
@@ -80,6 +84,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun login() {
+        Session.setLogin(requireContext())
         navigateToHome()
     }
 
