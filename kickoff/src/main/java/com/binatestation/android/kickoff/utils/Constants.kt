@@ -1,0 +1,168 @@
+/*
+ * Created By RKR
+ * Last Updated at 14/12/19 8:05 PM.
+ *
+ * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.binatestation.android.kickoff.utils
+
+/**
+ * Created by RKR on 17/10/2016.
+ * Constants.
+ */
+
+object Constants {
+    /**
+     * General Constants Keys
+     */
+    const val KEY_ID = "id"
+    const val KEY_NAME = "name"
+    const val KEY_IS_LOGGED_IN = "is_logged_in"
+    const val KEY_ORDER_NB = "order_nb"
+    const val KEY_INVOICE_WISHES = "invoice_wishes"
+    const val KEY_DESCRIPTION = "description"
+    const val KEY_FEATURES = "features"
+    const val KEY_INVOICE_NB_ID = "invoice_nb_id"
+    const val KEY_ORDER_NB_ID = "order_nb_id"
+    const val KEY_KEY = "key"
+    const val KEY_VALUE = "value"
+    const val KEY_PARTICULAR = "particular"
+    const val KEY_INVOICE_WISHES_ID = "invoice_wishes_id"
+    const val KEY_TRANSACTION_DATE = "transaction_date"
+    const val KEY_PRICE = "price"
+    const val KEY_STATUS = "status"
+    const val KEY_PRODUCT_TYPE = "product_type"
+    const val KEY_PRINT_TEMPLATE = "print_template"
+    const val KEY_MESSAGE = "message"
+    const val KEY_SELECTED = "selected"
+    const val KEY_IS_INCLUSIVE = "is_inclusive"
+    const val KEY_PURCHASE_ID = "purchase_id"
+    const val KEY_TAX_VALUE = "tax_value"
+    const val KEY_TAX_TYPE = "tax_type"
+    const val KEY_UNIT_PRICE = "unit_price"
+    const val KEY_HSN_CODE = "hsn_code"
+    const val KEY_CATEGORIES = "categories"
+    const val KEY_TRANSACTIONS_ATTRIBUTES = "transactions_attributes"
+    const val KEY_PURCHASE_TRANSACTIONS = "purchase_transactions"
+    const val KEY_MESSAGE_TITLE = "message_title"
+    const val KEY_SALE_ID = "sale_id"
+    const val KEY_PASSWORD = "password"
+    const val KEY_GRANT_TYPE = "grant_type"
+    const val KEY_CLIENT_ID = "client_id"
+    const val KEY_CLIENT_SECRET = "client_secret"
+    const val KEY_ACCESS_TOKEN = "access_token"
+    const val KEY_TOKEN_TYPE = "token_type"
+    const val KEY_EXPIRES_IN = "expires_in"
+    const val KEY_REFRESH_TOKEN = "refresh_token"
+    const val KEY_SCOPE = "scope"
+    const val KEY_CREATED_AT = "created_at"
+    const val KEY_QUANTITY = "quantity"
+    const val KEY_STOCK = "stock"
+    const val KEY_TAXES = "taxes"
+    const val KEY_TAX_IDS = "tax_ids"
+    const val KEY_FIRST_NAME = "first_name"
+    const val KEY_LAST_NAME = "last_name"
+    const val KEY_PRIMARY_SHOP_ID = "primaryShopId"
+    const val KEY_ROLE = "role"
+    const val KEY_MOBILE = "mobile"
+    const val KEY_SHOP_ID = "shop_id"
+    const val KEY_ADDRESS = "address"
+    const val KEY_GST_NUMBER = "gst_number"
+    const val KEY_PAN_NUMBER = "pan_number"
+    const val KEY_TAN_NUMBER = "tan_number"
+    const val KEY_PLAN_ID = "plan_id"
+    const val KEY_USERS = "users"
+    const val KEY_MASTER_TYPE = "master_type"
+    const val KEY_PLAN = "plan"
+    const val KEY_PRODUCT_ID = "product_id"
+    const val KEY_QUANTITY_SOLD = "quantity_sold"
+    const val KEY_PRICE_PER_UNIT = "price_per_unit"
+    const val KEY_DELIVERY_COMMITTED_DATE = "delivery_committed_date"
+    const val KEY_DELIVERY_DATE = "delivery_date"
+    const val KEY_BMI = "bmi"
+    const val KEY_STITCHING_TEMPLATE_ID = "stiching_template_id"
+    const val KEY_INVOICE_NUMBER = "invoice_number"
+    const val KEY_ORDER_NUMBER = "order_number"
+    const val KEY_CUSTOMER_ID = "customer_id"
+    const val KEY_SALE_AMOUNT = "sale_amount"
+    const val KEY_SALE_AMOUNT_PAID = "sale_amount_paid"
+    const val KEY_PAID_AT = "paid_at"
+    const val KEY_DISCOUNT = "discount"
+    const val KEY_CUSTOMER = "customer"
+    const val KEY_PRODUCT_SALE_ITEMS = "product_sale_items"
+    const val KEY_SERVICES = "services"
+    const val KEY_TOKEN = "token"
+    const val KEY_TOKEN_EXPIRES_AT = "token_expires_at"
+    const val KEY_TAX = "tax"
+    const val KEY_STITCHING_TEMPLATE = "stiching_template"
+    const val KEY_REPORT = "report"
+    const val KEY_EXPENSE = "expense"
+    const val KEY_PURCHASE = "purchase"
+    const val KEY_CUSTOMER_ATTRIBUTES = "customer_attributes"
+    const val KEY_PRODUCT = "product"
+    const val KEY_SALE = "sale"
+    const val KEY_CATEGORY_IDS = "category_ids"
+    const val KEY_CATEGORY = "category"
+    const val KEY_PRODUCT_SALE_ITEMS_ATTRIBUTES = "product_sale_items_attributes"
+    const val KEY_SERVICES_ATTRIBUTES = "services_attributes"
+    const val KEY_NOTE = "note"
+    const val KEY_PURCHASE_PRICE = "purchase_price"
+    const val KEY_PURCHASE_DATE = "purchase_date"
+    const val KEY_PURCHASES_ITEMS = "purchases_items"
+    const val KEY_PURCHASES_ITEMS_ATTRIBUTES = "purchases_items_attributes"
+    const val KEY_USER_PROFILE = "user_profile"
+    const val KEY_MOBILE_NUMBER = "mobile_number"
+    const val KEY_USER = "user"
+    const val KEY_USER_PROFILE_ATTRIBUTES = "user_profile_attributes"
+    const val KEY_USERS_ATTRIBUTES = "users_attributes"
+    const val KEY_ACCOUNT_ID = "account_id"
+    const val KEY_COUNT = "count"
+    const val KEY_SERVICE = "service"
+    const val KEY_SHOP_MASTERS = "shop_masters"
+    const val KEY_SHOP_MASTER = "shop_master"
+    const val KEY_SUB_TITLE = "sub_title"
+    const val KEY_SHOP = "shop"
+    const val KEY_CHILDREN = "children"
+    const val KEY_PARENT_ID = "parent_id"
+    const val KEY_SHOP_MASTERS_ATTRIBUTES = "shop_masters_attributes"
+    const val KEY_COLOR = "color"
+    const val KEY_SIZE = "size"
+    const val KEY_PATTERN = "pattern"
+    const val KEY_UNIT = "unit"
+    const val KEY_PASSWORD_CONFIRMATION = "password_confirmation"
+    const val QUERY_PARAM_CUSTOMER = "q[first_name_or_last_name_or_mobile_matches]"
+    const val QUERY_PARAM_PRODUCT = "q[name_or_code_or_color_or_size_or_pattern_matches]"
+    const val QUERY_PARAM_SERVICES = "q[services_created_at_not_null]"
+    const val QUERY_PARAM_SALES = "q[product_sale_items_created_at_not_null]"
+    /**
+     * API End URL
+     */
+    const val END_URL_OAUTH_TOKEN = "oauth/token"
+    const val END_URL_OAUTH_REVOKE = "oauth/revoke"
+    const val END_URL_SHOPS = "/shops"
+    const val END_URL_SHOP_CUSTOMERS = "/shop_customers"
+    const val END_URL_SERVICES = "/services"
+    const val END_URL_PRODUCTS = "/products"
+    const val END_URL_SALES = "/sales"
+    const val END_URL_EXPENSES = "/expenses"
+    const val END_URL_PURCHASES = "/purchases"
+    const val END_URL_STITCHING_TEMPLATES = "/stiching_templates"
+    const val END_URL_TAXES = "/taxes"
+    const val END_URL_CATEGORIES = "/categories"
+    const val END_URL_ME = "/me"
+    const val END_URL_USERS = "/users"
+    const val END_URL_REPORTS = "/reports"
+    const val END_URL_ACCOUNTS = "/accounts"
+    const val END_URL_SHOP_MASTERS = "/shop_masters"
+
+}

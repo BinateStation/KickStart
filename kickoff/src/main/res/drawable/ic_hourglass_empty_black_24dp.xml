@@ -1,0 +1,35 @@
+<!--
+  ~ Created By RKR
+  ~ Last Updated at 14/12/19 5:48 PM.
+  ~
+  ~ Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:autoMirrored="true"
+    android:viewportWidth="640"
+    android:viewportHeight="640">
+    <path
+        android:fillColor="#BCB1DE"
+        android:pathData="M421.332,199.578V80h-220v119.578c0.309,57.094 44.004,104.578 100.871,109.621l9.129,0.801l9.133,-0.773C377.344,304.184 421.039,256.684 421.332,199.578zM318.805,289.266l-6.633,0.563h-0.848c-5.523,0.23 -10.188,-4.063 -10.414,-9.586c-0.23,-5.52 4.063,-10.184 9.582,-10.414l6.641,-0.563c36.168,-3.195 63.973,-33.375 64.199,-69.688c0,-5.52 4.48,-10 10,-10c5.523,0 10,4.48 10,10C401.09,246.293 365.336,285.148 318.805,289.266z" />
+    <path
+        android:fillColor="#BCB1DE"
+        android:pathData="M421.332,440.422c-0.305,-57.094 -44.004,-104.578 -100.867,-109.621L311.332,330l-9.129,0.773c-56.879,5.043 -100.578,52.543 -100.871,109.648V560h220V440.422zM312.172,370.098l-6.641,0.563c-36.191,3.203 -64.004,33.426 -64.199,69.762c0,5.52 -4.477,10 -10,10c-5.52,0 -10,-4.48 -10,-10c0.246,-46.715 35.996,-85.57 82.531,-89.688l6.629,-0.563c5.504,-0.465 10.344,3.617 10.809,9.125C321.762,364.801 317.676,369.633 312.172,370.098z" />
+    <path
+        android:fillColor="#876FCF"
+        android:pathData="M471.332,20h-320c-5.52,0 -10,4.477 -10,10s4.48,10 10,10h30v20h260V40h30c5.523,0 10,-4.477 10,-10S476.855,20 471.332,20z" />
+    <path
+        android:fillColor="#876FCF"
+        android:pathData="M471.332,600h-30v-20h-260v20h-30c-5.52,0 -10,4.477 -10,10s4.48,10 10,10h320c5.523,0 10,-4.477 10,-10S476.855,600 471.332,600z" />
+</vector>
