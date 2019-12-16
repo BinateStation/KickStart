@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 16/12/19 3:05 PM.
+ * Last Updated at 17/12/19 1:37 AM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,31 +29,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 def artifactId = 'kickoff'
-def groupId = 'com.binatestaiton.android'
-
-ext {
-    bintrayRepo = 'BinateStation'
-    bintrayName = 'KickOff'
-
-    publishedGroupId = 'com.binatestaiton.android'
-    libraryName = 'KickOff'
-    artifact = 'kickoff'
-
-    libraryDescription = 'This is a container that helps to kick start an Android Application'
-
-    siteUrl = 'https://github.com/BinateStation/KickStart'
-    gitUrl = 'https://github.com/BinateStation/KickStart.git'
-
-    libraryVersion = '1.0.0'
-
-    developerId = 'rkrsbintrey'
-    developerName = 'Raghu Krishnan R'
-    developerEmail = 'rkrsmail@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}
+def groupId = 'com.binatestation.android'
 
 android {
     compileSdkVersion 29

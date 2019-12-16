@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 16/12/19 3:12 PM.
+ * Last Updated at 17/12/19 1:37 AM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@ ext {
     bintrayRepo = 'BinateStation'
     bintrayName = 'KickOff'
 
-    publishedGroupId = 'com.binatestaiton.android'
+    publishedGroupId = 'com.binatestation.android'
     libraryName = 'KickOff'
     artifact = 'kickoff'
 
@@ -81,6 +81,7 @@ task sourcesJar(type: Jar) {
 }
 
 task javadoc(type: Javadoc) {
+    excludes = ['**/*.kt']
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
