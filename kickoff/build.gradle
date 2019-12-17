@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 5:32 PM.
+ * Last Updated at 17/12/19 1:50 AM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,8 +24,12 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'maven-publish'
 
+apply plugin: 'com.github.dcendents.android-maven'
+
+apply plugin: 'com.jfrog.bintray'
+
 def artifactId = 'kickoff'
-def groupId = 'com.binatestaiton.android'
+def groupId = 'com.binatestation.android'
 
 android {
     compileSdkVersion 29
@@ -36,7 +40,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -84,3 +88,6 @@ project.afterEvaluate {
         }
     }
 }
+
+
+apply from : './kickoffMaven.gradle'
