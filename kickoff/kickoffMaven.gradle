@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 17/12/19 1:37 AM.
+ * Last Updated at 17/12/19 1:50 AM.
  *
  * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +27,7 @@ ext {
     siteUrl = 'https://github.com/BinateStation/KickStart'
     gitUrl = 'https://github.com/BinateStation/KickStart.git'
 
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.0.1'
 
     developerId = 'rkrsbintrey'
     developerName = 'Raghu Krishnan R'
