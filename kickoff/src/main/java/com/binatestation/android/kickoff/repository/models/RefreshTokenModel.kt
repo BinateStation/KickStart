@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 2/1/20 1:13 PM.
+ * Last Updated at 2/1/20 1:32 PM.
  *
  * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,5 +23,10 @@ data class RefreshTokenModel(
     @SerializedName(Constants.KEY_REFRESH_TOKEN)
     var refreshToken: String,
     @SerializedName(Constants.KEY_GRANT_TYPE)
-    var grantType: String = Constants.KEY_REFRESH_TOKEN
+    var grantType: String = Constants.KEY_REFRESH_TOKEN,
+    @SerializedName(Constants.KEY_CLIENT_ID)
+    var clientId: String,
+    @SerializedName(Constants.KEY_CLIENT_SECRET)
+    var clientSecret: String
+
 )
