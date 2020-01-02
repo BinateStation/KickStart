@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 2/1/20 1:11 PM.
+ * Last Updated at 2/1/20 1:17 PM.
  *
  * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,7 +40,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0.1"
+        versionName "1.0.1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'

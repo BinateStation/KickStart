@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 2/1/20 1:14 PM.
+ * Last Updated at 2/1/20 1:21 PM.
  *
  * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +16,14 @@
 
 package com.binatestation.android.kickoff.repository.models
 
+import com.binatestation.android.kickoff.utils.Constants
+import com.google.gson.annotations.SerializedName
+
 data class LogoutModel(
-    var token: String
+    var token: String,
+    @SerializedName(Constants.KEY_CLIENT_ID)
+    var clientId: String,
+    @SerializedName(Constants.KEY_CLIENT_SECRET)
+    var clientSecret: String
+
 )
