@@ -14,18 +14,8 @@
  * limitations under the License.
  */
 
-package com.binatestation.kickstart.ui.splash.login
+package com.binatestation.android.kickoff.repository.models
 
-import android.app.Application
-import androidx.databinding.ObservableField
-import androidx.lifecycle.AndroidViewModel
-import com.binatestation.android.kickoff.repository.models.LoginModel
-import com.binatestation.kickstart.BuildConfig
-import com.binatestation.kickstart.R
-
-class LoginViewModel(application: Application) : AndroidViewModel(application) {
-    val showProgress = ObservableField(false)
-    val versionName =
-        "${getApplication<Application>().getString(R.string.version)} :${BuildConfig.VERSION_NAME}"
-    val loginModel = ObservableField(LoginModel())
-}
+data class LogoutModel(
+    var token: String
+)

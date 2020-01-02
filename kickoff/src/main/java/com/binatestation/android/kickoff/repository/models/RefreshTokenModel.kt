@@ -1,8 +1,8 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 7:09 PM.
+ * Last Updated at 2/1/20 1:13 PM.
  *
- * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+ * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,24 +14,14 @@
  * limitations under the License.
  */
 
-package com.binatestation.kickstart.repository.models
+package com.binatestation.android.kickoff.repository.models
 
-import com.binatestation.android.kickoff.utils.Constants.KEY_GRANT_TYPE
-import com.binatestation.android.kickoff.utils.Constants.KEY_REFRESH_TOKEN
+import com.binatestation.android.kickoff.utils.Constants
 import com.google.gson.annotations.SerializedName
 
-data class LoginModel(
-    var username: String? = null,
-    var password: String? = null
-)
-
-data class RefreshToken(
-    @SerializedName(KEY_REFRESH_TOKEN)
+data class RefreshTokenModel(
+    @SerializedName(Constants.KEY_REFRESH_TOKEN)
     var refreshToken: String,
-    @SerializedName(KEY_GRANT_TYPE)
-    var grantType: String = KEY_REFRESH_TOKEN
-)
-
-data class Logout(
-    var token: String
+    @SerializedName(Constants.KEY_GRANT_TYPE)
+    var grantType: String = Constants.KEY_REFRESH_TOKEN
 )
