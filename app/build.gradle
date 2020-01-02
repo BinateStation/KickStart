@@ -1,8 +1,8 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 7:22 PM.
+ * Last Updated at 2/1/20 1:47 PM.
  *
- * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+ * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,8 +28,8 @@ ext {
     appcompat = '1.2.0-alpha01'
     retrofit = '2.7.0'
     lifecycle_version = '2.2.0-rc03'
-    room_version = '2.2.2'
-    paging_version = "2.1.0"
+    room_version = '2.2.3'
+    paging_version = '2.1.1'
 }
 
 android {
@@ -40,7 +40,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BASE_URL", '"https://jsonplaceholder.typicode.com/"'
     }
@@ -64,13 +64,13 @@ android {
 
 dependencies {
     // Core components
-    implementation 'com.google.android.material:material:1.2.0-alpha02'
+    implementation 'com.google.android.material:material:1.2.0-alpha03'
     implementation "androidx.appcompat:appcompat:${appcompat}"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // Specific views
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
     implementation 'androidx.preference:preference:1.1.0'
 
     // Architectural components
@@ -97,7 +97,7 @@ dependencies {
     // Network
     implementation "com.squareup.retrofit2:retrofit:${retrofit}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit}"
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.3.0'
 
     // debug
     debugImplementation 'im.dino:dbinspector:4.0.0@aar'
