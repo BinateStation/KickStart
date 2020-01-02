@@ -1,8 +1,8 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 7:09 PM.
+ * Last Updated at 2/1/20 1:14 PM.
  *
- * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+ * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,9 +19,9 @@ package com.binatestation.kickstart.ui.splash.login
 import android.app.Application
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
+import com.binatestation.android.kickoff.repository.models.LoginModel
 import com.binatestation.kickstart.BuildConfig
 import com.binatestation.kickstart.R
-import com.binatestation.kickstart.repository.models.LoginModel
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
     val showProgress = ObservableField(false)

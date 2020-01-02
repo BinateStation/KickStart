@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 2/1/20 1:12 PM.
+ * Last Updated at 2/1/20 1:37 PM.
  *
  * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.binatestation.kickstart.repository
+package com.binatestation.android.kickoff.repository
 
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread

@@ -1,8 +1,8 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 5:48 PM.
+ * Last Updated at 2/1/20 1:07 PM.
  *
- * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+ * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.binatestation.kickstart.repository.models.enums
+package com.binatestation.android.kickoff.repository.models.enums
 
 /**
  * Created by RKR on 29-09-2017.

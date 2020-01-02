@@ -1,8 +1,8 @@
 /*
  * Created By RKR
- * Last Updated at 14/12/19 5:10 PM.
+ * Last Updated at 2/1/20 1:07 PM.
  *
- * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+ * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,7 +16,7 @@
 
 package com.binatestation.android.kickoff.repository.models
 
-import com.binatestation.kickstart.repository.models.enums.Status
+import com.binatestation.android.kickoff.repository.models.enums.Status
 
 
 /**
