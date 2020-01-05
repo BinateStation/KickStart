@@ -13,22 +13,23 @@
  * Last Updated at 5/1/20 2:42 PM.
  */
 
-package com.binatestation.kickstart.utils
+package com.binatestation.kickstart.repository.network.api
 
-/**
- * Created by RKR on 17/10/2016.
- * Constants.
- */
+import com.binatestation.kickstart.repository.models.UserModel
+import com.binatestation.kickstart.utils.Constants
+import retrofit2.Call
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 
-object Constants {
-    /**
-     * API End URL
-     */
-    const val END_URL_POSTS = "posts"
-    const val END_URL_COMMENTS = "comments"
-    const val END_URL_ALBUMS = "albums"
-    const val END_URL_PHOTOS = "photos"
-    const val END_URL_TODOS = "todos"
-    const val END_URL_USERS = "users"
+interface UserApi {
+    @POST(Constants.END_URL_USERS)
+    fun create(@Body userModel: UserModel)
 
+    @GET(Constants.END_URL_USERS)
+    fun getAll(): Call<List<UserModel>>
+
+    @GET("${Constants.END_URL_USERS}/{id}")
+    fun get(@Path("id") id: Long): Call<UserModel>
 }
