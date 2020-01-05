@@ -1,6 +1,6 @@
 /*
  * Created By RKR
- * Last Updated at 2/1/20 1:21 PM.
+ * Last Updated at 5/1/20 10:43 AM.
  *
  * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,8 +25,8 @@ data class LoginModel(
     @SerializedName(Constants.KEY_GRANT_TYPE)
     var grantType: String = Constants.KEY_PASSWORD,
     @SerializedName(Constants.KEY_CLIENT_ID)
-    var clientId: String,
+    var clientId: String = "",
     @SerializedName(Constants.KEY_CLIENT_SECRET)
-    var clientSecret: String
+    var clientSecret: String = ""
 )
 

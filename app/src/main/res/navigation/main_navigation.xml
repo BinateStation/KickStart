@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~ Created By RKR
-  ~ Last Updated at 15/12/19 12:12 AM.
+  ~ Last Updated at 5/1/20 11:03 AM.
   ~
-  ~ Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+  ~ Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
   ~ You may obtain a copy of the License at
@@ -27,32 +27,32 @@
         tools:layout="@layout/fragment_list" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_comments"
         android:name="com.binatestation.kickstart.ui.main.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/comments"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_albums"
         android:name="com.binatestation.kickstart.ui.main.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/albums"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
-        android:id="@+id/nav_tools"
+        android:id="@+id/nav_photos"
         android:name="com.binatestation.kickstart.ui.main.tools.ToolsFragment"
-        android:label="@string/menu_tools"
+        android:label="@string/photos"
         tools:layout="@layout/fragment_tools" />
 
     <fragment
-        android:id="@+id/nav_share"
+        android:id="@+id/nav_todo"
         android:name="com.binatestation.kickstart.ui.main.share.ShareFragment"
-        android:label="@string/menu_share"
+        android:label="@string/todo"
         tools:layout="@layout/fragment_share" />
 
     <fragment
-        android:id="@+id/nav_send"
+        android:id="@+id/nav_users"
         android:name="com.binatestation.kickstart.ui.main.send.SendFragment"
-        android:label="@string/menu_send"
+        android:label="@string/users"
         tools:layout="@layout/fragment_send" />
 </navigation>
