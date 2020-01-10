@@ -1,8 +1,5 @@
 /*
- * Created By RKR
- * Last Updated at 14/12/19 5:32 PM.
- *
- * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+ * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,6 +9,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Last Updated at 10/1/20 1:58 PM.
  */
 
 package com.binatestation.android.kickoff.utils.fragments
@@ -23,6 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.binatestation.android.kickoff.R
 import com.binatestation.android.kickoff.utils.adapters.RecyclerViewAdapter
 import com.binatestation.android.kickoff.utils.listeners.OnListItemClickListener
@@ -71,6 +71,10 @@ open class ListFragment : Fragment(), OnListItemClickListener {
             recycler_view?.layoutManager = LinearLayoutManager(context)
             recycler_view?.adapter = adapter
         }
+    }
+
+    fun setLayoutManager(layoutManager: RecyclerView.LayoutManager) {
+        recycler_view?.layoutManager = layoutManager
     }
 
     override fun onClickItem(`object`: Any, position: Int, actionView: View) {

@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 5/1/20 2:50 PM.
+ * Last Updated at 10/1/20 1:58 PM.
  */
 
 package com.binatestation.kickstart.ui.main.user
@@ -19,6 +19,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.binatestation.android.kickoff.repository.models.ItemViewTypeModel
 import com.binatestation.android.kickoff.utils.fragments.ListFragment
 import com.binatestation.kickstart.databinding.AdapterUserBinding
@@ -35,6 +36,7 @@ class UserFragment : ListFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setLayoutManager(GridLayoutManager(requireContext(), 2))
         adapter.itemViewTypeModels.add(
             ItemViewTypeModel(
                 UserModel::class.java,
