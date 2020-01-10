@@ -10,25 +10,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 5/1/20 2:42 PM.
+ * Last Updated at 5/1/20 2:48 PM.
  */
 
-package com.binatestation.kickstart.utils
+package com.binatestation.kickstart.ui.main.user
 
-/**
- * Created by RKR on 17/10/2016.
- * Constants.
- */
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import com.binatestation.kickstart.repository.UserRepository
+import com.binatestation.kickstart.repository.network.RetrofitClientInstance
+import com.binatestation.kickstart.repository.network.api.UserApi
 
-object Constants {
-    /**
-     * API End URL
-     */
-    const val END_URL_POSTS = "posts"
-    const val END_URL_COMMENTS = "comments"
-    const val END_URL_ALBUMS = "albums"
-    const val END_URL_PHOTOS = "photos"
-    const val END_URL_TODOS = "todos"
-    const val END_URL_USERS = "users"
+class UserViewModel(application: Application) : AndroidViewModel(application) {
 
+
+    private val userRepository =
+        UserRepository(RetrofitClientInstance.getRetrofitInstance(getApplication()).create(UserApi::class.java))
+
+    val users = userRepository.getAll()
 }

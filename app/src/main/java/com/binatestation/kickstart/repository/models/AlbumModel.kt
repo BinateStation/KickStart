@@ -10,25 +10,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 5/1/20 2:42 PM.
+ * Last Updated at 5/1/20 2:52 PM.
  */
 
-package com.binatestation.kickstart.utils
+package com.binatestation.kickstart.repository.models
 
-/**
- * Created by RKR on 17/10/2016.
- * Constants.
- */
 
-object Constants {
-    /**
-     * API End URL
-     */
-    const val END_URL_POSTS = "posts"
-    const val END_URL_COMMENTS = "comments"
-    const val END_URL_ALBUMS = "albums"
-    const val END_URL_PHOTOS = "photos"
-    const val END_URL_TODOS = "todos"
-    const val END_URL_USERS = "users"
-
-}
+data class AlbumModel(
+    var userId: Int? = null,
+    var id: Int? = null,
+    var title: String? = null
+)

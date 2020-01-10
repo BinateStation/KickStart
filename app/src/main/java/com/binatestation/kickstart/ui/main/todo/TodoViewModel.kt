@@ -10,25 +10,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 5/1/20 2:42 PM.
+ * Last Updated at 5/1/20 2:37 PM.
  */
 
-package com.binatestation.kickstart.utils
+package com.binatestation.kickstart.ui.main.todo
 
-/**
- * Created by RKR on 17/10/2016.
- * Constants.
- */
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import com.binatestation.kickstart.repository.TodoRepository
+import com.binatestation.kickstart.repository.network.RetrofitClientInstance
+import com.binatestation.kickstart.repository.network.api.TodoApi
 
-object Constants {
-    /**
-     * API End URL
-     */
-    const val END_URL_POSTS = "posts"
-    const val END_URL_COMMENTS = "comments"
-    const val END_URL_ALBUMS = "albums"
-    const val END_URL_PHOTOS = "photos"
-    const val END_URL_TODOS = "todos"
-    const val END_URL_USERS = "users"
+class TodoViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val todoRepository =
+        TodoRepository(RetrofitClientInstance.getRetrofitInstance(getApplication()).create(TodoApi::class.java))
+
+    val todos = todoRepository.getAll()
 }

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created By RKR
-  ~ Last Updated at 15/12/19 12:12 AM.
-  ~
-  ~ Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+  ~ Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
   ~ You may obtain a copy of the License at
@@ -12,6 +9,8 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Last Updated at 5/1/20 2:44 PM.
   -->
 
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,32 +26,32 @@
         tools:layout="@layout/fragment_list" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.binatestation.kickstart.ui.main.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_comments"
+        android:name="com.binatestation.kickstart.ui.main.comment.CommentFragment"
+        android:label="@string/comments"
+        tools:layout="@layout/fragment_comment" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.binatestation.kickstart.ui.main.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_albums"
+        android:name="com.binatestation.kickstart.ui.main.album.AlbumFragment"
+        android:label="@string/albums"
+        tools:layout="@layout/fragment_album" />
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.binatestation.kickstart.ui.main.tools.ToolsFragment"
-        android:label="@string/menu_tools"
+        android:id="@+id/nav_photos"
+        android:name="com.binatestation.kickstart.ui.main.photo.PhotoFragment"
+        android:label="@string/photos"
         tools:layout="@layout/fragment_tools" />
 
     <fragment
-        android:id="@+id/nav_share"
-        android:name="com.binatestation.kickstart.ui.main.share.ShareFragment"
-        android:label="@string/menu_share"
+        android:id="@+id/nav_todo"
+        android:name="com.binatestation.kickstart.ui.main.todo.TodoFragment"
+        android:label="@string/todo"
         tools:layout="@layout/fragment_share" />
 
     <fragment
-        android:id="@+id/nav_send"
-        android:name="com.binatestation.kickstart.ui.main.send.SendFragment"
-        android:label="@string/menu_send"
+        android:id="@+id/nav_users"
+        android:name="com.binatestation.kickstart.ui.main.user.UserFragment"
+        android:label="@string/users"
         tools:layout="@layout/fragment_send" />
 </navigation>

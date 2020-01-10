@@ -1,8 +1,8 @@
 /*
  * Created By RKR
- * Last Updated at 15/12/19 12:11 AM.
+ * Last Updated at 5/1/20 11:05 AM.
  *
- * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+ * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -47,11 +47,11 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_posts,
-                R.id.nav_gallery,
-                R.id.nav_slideshow,
-                R.id.nav_tools,
-                R.id.nav_share,
-                R.id.nav_send
+                R.id.nav_comments,
+                R.id.nav_albums,
+                R.id.nav_photos,
+                R.id.nav_todo,
+                R.id.nav_users
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
