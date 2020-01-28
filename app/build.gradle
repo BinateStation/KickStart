@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 28/1/20 11:54 AM.
+ * Last Updated at 28/1/20 11:58 AM.
  */
 
 apply plugin: 'com.android.application'
@@ -39,7 +39,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0.2.1"
+        versionName "1.0.2.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BASE_URL", '"https://jsonplaceholder.typicode.com/"'
     }
