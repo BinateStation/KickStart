@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 28/1/20 11:58 AM.
+ * Last Updated at 17/2/20 12:08 PM.
  */
 
 apply plugin: 'com.android.application'
@@ -24,9 +24,9 @@ apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 ext {
-    appcompat = '1.2.0-alpha01'
+    appcompat = '1.2.0-alpha02'
     retrofit = '2.7.1'
-    lifecycle_version = '2.2.0-rc03'
+    lifecycle_version = '2.2.0'
     room_version = '2.2.3'
     paging_version = '2.1.1'
 }
@@ -39,7 +39,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0.2.2"
+        versionName "${kick_off_library_version}"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BASE_URL", '"https://jsonplaceholder.typicode.com/"'
     }
@@ -76,16 +76,15 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     implementation "androidx.room:room-runtime:$room_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.navigation:navigation-fragment:2.1.0'
-    implementation 'androidx.navigation:navigation-ui:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
+    implementation 'androidx.navigation:navigation-fragment:2.2.1'
+    implementation 'androidx.navigation:navigation-ui:2.2.1'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.2.1'
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.2.1"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     //Addons
