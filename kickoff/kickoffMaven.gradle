@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 28/1/20 11:58 AM.
+ * Last Updated at 17/2/20 12:09 PM.
  */
 
 ext {
@@ -26,7 +26,7 @@ ext {
     siteUrl = 'https://github.com/BinateStation/KickStart'
     gitUrl = 'https://github.com/BinateStation/KickStart.git'
 
-    libraryVersion = '1.0.2.2'
+    libraryVersion = "${kick_off_library_version}"
 
     developerId = 'rkrsbintrey'
     developerName = 'Raghu Krishnan R'

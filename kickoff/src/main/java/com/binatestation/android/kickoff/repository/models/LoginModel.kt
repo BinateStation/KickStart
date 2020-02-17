@@ -1,7 +1,4 @@
 /*
- * Created By RKR
- * Last Updated at 5/1/20 10:43 AM.
- *
  * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,6 +9,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Last Updated at 17/2/20 12:02 PM.
  */
 
 package com.binatestation.android.kickoff.repository.models
@@ -27,6 +26,8 @@ data class LoginModel(
     @SerializedName(Constants.KEY_CLIENT_ID)
     var clientId: String = "",
     @SerializedName(Constants.KEY_CLIENT_SECRET)
-    var clientSecret: String = ""
+    var clientSecret: String = "",
+    @SerializedName(Constants.KEY_SCOPE)
+    var scope: String = ""
 )
 
