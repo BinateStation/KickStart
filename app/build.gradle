@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 17/2/20 12:08 PM.
+ * Last Updated at 27/2/20 9:29 PM.
  */
 
 apply plugin: 'com.android.application'
@@ -27,7 +27,7 @@ ext {
     appcompat = '1.2.0-alpha02'
     retrofit = '2.7.1'
     lifecycle_version = '2.2.0'
-    room_version = '2.2.3'
+    room_version = '2.2.4'
     paging_version = '2.1.1'
 }
 
@@ -63,7 +63,7 @@ android {
 
 dependencies {
     // Core components
-    implementation 'com.google.android.material:material:1.2.0-alpha04'
+    implementation 'com.google.android.material:material:1.2.0-alpha05'
     implementation "androidx.appcompat:appcompat:${appcompat}"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
@@ -95,7 +95,7 @@ dependencies {
     // Network
     implementation "com.squareup.retrofit2:retrofit:${retrofit}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit}"
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.3.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
 
     // debug
     debugImplementation 'im.dino:dbinspector:4.0.0@aar'
