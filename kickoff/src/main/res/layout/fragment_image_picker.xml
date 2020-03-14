@@ -1,8 +1,5 @@
 <!--
-  ~ Created By RKR
-  ~ Last Updated at 14/12/19 5:48 PM.
-  ~
-  ~ Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+  ~ Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
   ~ You may obtain a copy of the License at
@@ -12,6 +9,8 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Last Updated at 14/3/20 1:44 PM.
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -49,7 +48,7 @@
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:contentDescription="@string/camera"
             android:src="@drawable/ic_camera_alt_black_24dp"
-            android:tint="@color/color_accent" />
+            android:tint="?attr/colorAccent" />
 
         <TextView
             style="@style/TextAppearance.AppCompat.Subhead"
@@ -80,7 +79,7 @@
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:contentDescription="@string/add_image"
             android:src="@drawable/ic_image_black_24dp"
-            android:tint="@color/color_accent" />
+            android:tint="?attr/colorAccent" />
 
         <TextView
             style="@style/TextAppearance.AppCompat.Subhead"
