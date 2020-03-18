@@ -38,6 +38,7 @@ open class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
     }
 
     var type: Int? = 0
+    @Suppress("MemberVisibilityCanBePrivate")
     var showEmptyState: Boolean = true
     internal var data: ArrayList<Any>? = null
     val itemViewTypeModels = ArrayList<ItemViewTypeModel<*, *, *>>()
@@ -57,12 +58,12 @@ open class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
         return data
     }
 
+    /**
+     * sets the data to the adapter class
+     *
+     * @param data ArrayList of any Model class
+     */
     @Suppress("unused")
-            /**
-             * sets the data to the adapter class
-             *
-             * @param data ArrayList of any Model class
-             */
     fun setData(data: ArrayList<Any>) {
         if (data.size > 0) {
             this.data = data
@@ -89,6 +90,10 @@ open class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
         }
     }
 
+    /**
+     * add the object in to the item list
+     * @param `object` Any item to add
+     */
     fun add(`object`: Any) {
         if (this.data?.remove(EmptyStateModel.unKnownEmptyModel) == true) {
             notifyDataSetChanged()
@@ -97,6 +102,27 @@ open class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
         notifyItemInserted(data?.size ?: 1 - 1)
     }
 
+    /**
+     * adds all elements to the item list
+     *
+     * @param data list of items
+     */
+    @Suppress("unused")
+    fun addAll(data: List<*>?) {
+        data?.let {
+            if (this.data?.remove(EmptyStateModel.unKnownEmptyModel) == true) {
+                notifyDataSetChanged()
+            }
+            this.data?.addAll(arrayListOf(it))
+            notifyDataSetChanged()
+        }
+    }
+
+    /**
+     * adds the item in to the given position
+     * @param `object` Any item to add
+     * @param position Int the position to add
+     */
     fun add(`object`: Any, position: Int) {
         if (this.data?.remove(EmptyStateModel.unKnownEmptyModel) == true) {
             notifyDataSetChanged()
@@ -107,12 +133,11 @@ open class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
         }
     }
 
+    /**
+     * removes item from specified position
+     * @param position Int position of the item to remove
+     */
     @Suppress("unused")
-            /**
-             * removes item from specified position
-             *
-             * @param position position of the item to remove
-             */
     fun removeItem(position: Int) {
         if (position < data?.size ?: 0 && position >= 0) {
             this.data?.removeAt(position)
@@ -120,6 +145,11 @@ open class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
         }
     }
 
+    /**
+     * get item from position
+     * @param position Int the item position
+     * @return Any the selected item
+     */
     override fun getItem(position: Int): Any {
         return data?.takeIf { it.size > position && position >= 0 }?.let { it[position] }
             ?: Any()
