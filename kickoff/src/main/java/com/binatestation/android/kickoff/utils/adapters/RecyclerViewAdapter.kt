@@ -113,7 +113,7 @@ open class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
             if (this.data?.remove(EmptyStateModel.unKnownEmptyModel) == true) {
                 notifyDataSetChanged()
             }
-            this.data?.addAll(arrayListOf(it))
+            this.data?.addAll(ArrayList<Any>(it))
             notifyDataSetChanged()
         }
     }
