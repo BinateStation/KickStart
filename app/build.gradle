@@ -24,7 +24,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 ext {
-    appcompat = '1.2.0-alpha02'
+    appcompat = '1.2.0-alpha03'
     retrofit = '2.7.1'
     lifecycle_version = '2.2.0'
     room_version = '2.2.4'
@@ -33,7 +33,7 @@ ext {
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.binatestation.kickstart"
         minSdkVersion 21
