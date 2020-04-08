@@ -10,22 +10,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 7/4/20 7:33 PM.
+ * Last Updated at 7/4/20 2:29 PM.
  */
 
 package com.binatestation.android.kickoff.repository.models
 
-import com.binatestation.android.kickoff.utils.Constants
-import com.google.gson.annotations.SerializedName
+import com.binatestation.android.kickoff.repository.models.enums.Status
 
-data class RefreshTokenModel(
-    @SerializedName(Constants.GeneralConstants.KEY_REFRESH_TOKEN)
-    var refreshToken: String,
-    @SerializedName(Constants.GeneralConstants.KEY_GRANT_TYPE)
-    var grantType: String = Constants.GeneralConstants.KEY_REFRESH_TOKEN,
-    @SerializedName(Constants.GeneralConstants.KEY_CLIENT_ID)
-    var clientId: String,
-    @SerializedName(Constants.GeneralConstants.KEY_CLIENT_SECRET)
-    var clientSecret: String
-
-)
+@Suppress("DataClassPrivateConstructor")
+data class NetworkState private constructor(
+    val status: Status,
+    val msg: String? = null
+) {
+    companion object {
+        val LOADED = NetworkState(Status.SUCCESS)
+        val LOADING = NetworkState(Status.RUNNING)
+        fun error(msg: String?) = NetworkState(Status.FAILED, msg)
+    }
+}

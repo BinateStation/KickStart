@@ -10,22 +10,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 7/4/20 7:33 PM.
+ * Last Updated at 8/4/20 8:13 PM.
  */
 
-package com.binatestation.android.kickoff.repository.models
+package com.binatestation.kickstart.repository.network.api
 
 import com.binatestation.android.kickoff.utils.Constants
-import com.google.gson.annotations.SerializedName
+import com.binatestation.kickstart.repository.models.UOMModel
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Query
 
-data class RefreshTokenModel(
-    @SerializedName(Constants.GeneralConstants.KEY_REFRESH_TOKEN)
-    var refreshToken: String,
-    @SerializedName(Constants.GeneralConstants.KEY_GRANT_TYPE)
-    var grantType: String = Constants.GeneralConstants.KEY_REFRESH_TOKEN,
-    @SerializedName(Constants.GeneralConstants.KEY_CLIENT_ID)
-    var clientId: String,
-    @SerializedName(Constants.GeneralConstants.KEY_CLIENT_SECRET)
-    var clientSecret: String
+interface UOMApi {
 
-)
+    @GET("https://alphaapi.mytyre.com/api/v1/admin/uoms")
+    fun getAll(
+        @Header("Authorization") token: String = "Bearer byoTJ5zvYHXlPanslEjKQXRRdaELNK0JAdo48gaw2PQ",
+        @Query(Constants.GeneralConstants.KEY_PAGE) pageIndex: Int?,
+        @Query(Constants.GeneralConstants.KEY_ITEMS) pageSize: Int?
+    ): Call<List<UOMModel>>
+}

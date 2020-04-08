@@ -1,8 +1,5 @@
 /*
- * Created By RKR
- * Last Updated at 14/12/19 5:32 PM.
- *
- * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+ * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,10 +9,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Last Updated at 7/4/20 8:21 PM.
  */
 
 package com.binatestation.kickstart.utils
 
+import android.graphics.Bitmap
 import android.text.TextUtils
 import android.view.View
 import android.widget.ImageButton
@@ -23,18 +23,7 @@ import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.widget.ContentLoadingProgressBar
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
-import com.binatestation.android.kickoff.utils.adapters.RecyclerViewAdapter
-import com.binatestation.android.kickoff.utils.listeners.AdapterListener
-import com.binatestation.android.kickoff.utils.listeners.OnListItemClickListener
-import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 import com.google.android.material.textfield.TextInputLayout
-
-@BindingAdapter("goneUnless")
-fun goneUnless(view: View, visible: Boolean) {
-    view.visibility = if (visible) View.VISIBLE else View.GONE
-}
 
 @BindingAdapter("android:src")
 fun setImageButtonResource(view: View, resource: Int) {
@@ -51,32 +40,6 @@ fun setBackgroundResource(imageButton: AppCompatImageButton, resource: Int) {
 }
 
 
-@BindingAdapter(value = ["addChips", "itemClick", "closeIconVisible"], requireAll = false)
-fun addChips(
-    chipGroup: ChipGroup,
-    models: List<Any>?,
-    clickListener: OnListItemClickListener?,
-    closeIconVisible: Boolean = false
-) {
-    chipGroup.removeAllViews()
-    models?.forEach { model -> actionAddChip(chipGroup, model, clickListener, closeIconVisible) }
-}
-
-private fun actionAddChip(
-    chipGroup: ChipGroup,
-    model: Any,
-    clickListener: OnListItemClickListener?,
-    closeIconVisible: Boolean
-) {
-    val chip = Chip(chipGroup.context)
-    chip.text = model.toString()
-    chip.isCloseIconVisible = closeIconVisible
-    chip.tag = model
-    chip.setOnClickListener { clickListener?.onClickItem(model, 1, chip) }
-    chip.setOnCloseIconClickListener { clickListener?.onClickItem(model, 2, chip) }
-    chipGroup.addView(chip)
-}
-
 @BindingAdapter("error")
 fun setError(textInputLayout: TextInputLayout, error: String?) {
     if (TextUtils.isEmpty(error)) {
@@ -84,28 +47,6 @@ fun setError(textInputLayout: TextInputLayout, error: String?) {
     } else {
         textInputLayout.error = error
         textInputLayout.editText?.requestFocus()
-    }
-}
-
-@BindingAdapter(value = ["adapter", "emptyState", "adapterListener"], requireAll = false)
-fun setAdapter(
-    recyclerView: RecyclerView,
-    data: List<Any>?,
-    emptyStateData: List<Any>?,
-    adapterListener: AdapterListener?
-) {
-    var adapter = recyclerView.adapter
-    if (adapter == null) {
-        adapter = RecyclerViewAdapter()
-        adapter.showEmptyState = false
-        adapter.clickListener = adapterListener?.clickListener
-    }
-    if (adapter is RecyclerViewAdapter) {
-        adapter.setTypedData(data)
-        if (emptyStateData != null && data.isNullOrEmpty()) {
-            adapter.setTypedData(emptyStateData)
-        }
-        recyclerView.adapter = adapter
     }
 }
 
@@ -118,5 +59,37 @@ fun showProgress(
         contentLoadingProgressBar.show()
     } else {
         contentLoadingProgressBar.hide()
+    }
+}
+
+@BindingAdapter("android:src", "path", "bitmap", "circular", requireAll = false)
+fun setImageResource(
+    view: View,
+    resource: Int?,
+    path: String?,
+    bitmap: Bitmap?,
+    circular: Boolean?
+) {
+    resource?.let {
+        if (view is ImageButton)
+            view.setImageResource(resource)
+        if (view is ImageView)
+            view.setImageResource(resource)
+    }
+    path?.let {
+        if (view is ImageView)
+            if (circular == true) {
+                com.binatestation.android.kickoff.utils.Utils.setCircleProfileImage(view, it)
+            } else {
+                com.binatestation.android.kickoff.utils.Utils.setImage(view, it)
+            }
+    }
+    bitmap?.let {
+        if (view is ImageView)
+            if (circular == true) {
+                com.binatestation.android.kickoff.utils.Utils.setCircleProfileImage(view, it)
+            } else {
+                com.binatestation.android.kickoff.utils.Utils.setImage(view, it)
+            }
     }
 }

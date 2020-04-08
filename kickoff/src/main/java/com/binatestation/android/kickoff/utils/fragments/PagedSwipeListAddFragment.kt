@@ -10,26 +10,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 8/4/20 8:43 PM.
+ * Last Updated at 8/4/20 8:10 PM.
  */
 
 package com.binatestation.android.kickoff.utils.fragments
-
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.recyclerview.widget.DiffUtil
 import com.binatestation.android.kickoff.R
-import com.binatestation.android.kickoff.utils.setColorSchemeResources
-import kotlinx.android.synthetic.main.fragment_swipe_list.*
-
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.fragment_swipe_list_add.*
 
 /**
- * A simple [ListFragment] subclass. Which can be use for [SwipeRefreshLayout] with [ListFragment]
+ * A simple [PagedSwipeListFragment] subclass. which can be used for swipe refresh layout with Add [FloatingActionButton]
  */
-open class SwipeListFragment : ListFragment() {
+@Suppress("unused")
+open class PagedSwipeListAddFragment<DataModelType>(comparator: DiffUtil.ItemCallback<DataModelType>) :
+    PagedSwipeListFragment<DataModelType>(comparator) {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,27 +37,14 @@ open class SwipeListFragment : ListFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_swipe_list, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        swipe_refresh_layout?.let { setColorSchemeResources(it) }
+        return inflater.inflate(R.layout.fragment_swipe_list_add, container, false)
     }
 
     /**
-     * function to set on refresh callback
-     * @param onRefresh callback<Unit>
+     * Method to get on click callback for [FloatingActionButton] add
+     * @param onClick callback<view View?, Unit>
      */
-    fun setOnRefreshListener(onRefresh: () -> Unit) {
-        swipe_refresh_layout?.let { it.setOnRefreshListener { onRefresh() } }
+    fun setOnClickListener(onClick: (view: View?) -> Unit) {
+        action_add?.let { it.setOnClickListener { v -> onClick(v) } }
     }
-
-    /**
-     * gets the [SwipeRefreshLayout] instance used in this [SwipeListFragment]
-     * @return SwipeRefreshLayout?
-     */
-    fun getSwipeRefreshLayout(): SwipeRefreshLayout? = swipe_refresh_layout
-
-
 }
