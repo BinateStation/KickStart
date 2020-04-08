@@ -1,8 +1,5 @@
 /*
- * Created By RKR
- * Last Updated at 15/12/19 12:08 AM.
- *
- * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+ * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,6 +9,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Last Updated at 8/4/20 9:07 PM.
  */
 
 package com.binatestation.kickstart.ui.main.post
@@ -36,6 +35,7 @@ class PostFragment : ListFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setDividerItemDecoration()
         adapter.itemViewTypeModels.add(
             ItemViewTypeModel(
                 PostModel::class.java,
