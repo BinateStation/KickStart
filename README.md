@@ -2,4 +2,4 @@
 
 Add dependency by
 
-```implementation 'com.binatestation.android:kickoff:1.0.2.6'```
+```implementation 'com.binatestation.android:kickoff:1.1.0.0'```
