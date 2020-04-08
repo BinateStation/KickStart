@@ -1,7 +1,4 @@
 <!--
-  ~ Created By RKR
-  ~ Last Updated at 5/1/20 10:56 AM.
-  ~
   ~ Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -12,6 +9,8 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Last Updated at 7/4/20 7:30 PM.
   -->
 
 <resources>
@@ -31,4 +30,9 @@
     <string name="todo">Todo</string>
     <string name="users">Users</string>
     <string name="communicate">Communicate</string>
+
+    <string name="post_subtitle">Submitted by %s</string>
+    <string name="retry">Retry</string>
+    <string name="uoms">UOMs</string>
+
 </resources>

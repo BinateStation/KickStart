@@ -10,28 +10,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 8/4/20 8:26 PM.
+ * Last Updated at 8/4/20 8:27 PM.
  */
 
-package com.binatestation.kickstart.ui.main.album
+package com.binatestation.kickstart.ui.main.uom
 
 import com.binatestation.android.kickoff.utils.adapters.holders.BaseViewHolder
 import com.binatestation.kickstart.R
-import com.binatestation.kickstart.databinding.AdapterAlbumBinding
-import com.binatestation.kickstart.repository.models.AlbumModel
+import com.binatestation.kickstart.databinding.AdapterUomBinding
+import com.binatestation.kickstart.repository.models.UOMModel
 
-class AlbumViewHolder(
-    private val adapterAlbumBinding: AdapterAlbumBinding
-) : BaseViewHolder(adapterAlbumBinding.root) {
+class UOMViewHolder(
+    private val adapterUomBinding: AdapterUomBinding
+) : BaseViewHolder(adapterUomBinding.root) {
+    companion object {
+        var LAYOUT = R.layout.adapter_uom
+    }
 
     override fun bindView(`object`: Any?) {
-        if (`object` is AlbumModel) {
-            adapterAlbumBinding.model = `object`
-            adapterAlbumBinding.executePendingBindings()
+        if (`object` is UOMModel) {
+            adapterUomBinding.model = `object`
+            adapterUomBinding.executePendingBindings()
         }
     }
 
-    companion object {
-        var LAYOUT = R.layout.adapter_album
-    }
 }

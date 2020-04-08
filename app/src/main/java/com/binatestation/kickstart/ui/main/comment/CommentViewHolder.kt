@@ -10,23 +10,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 5/1/20 11:35 AM.
+ * Last Updated at 8/4/20 8:28 PM.
  */
 
 package com.binatestation.kickstart.ui.main.comment
 
 import com.binatestation.android.kickoff.utils.adapters.holders.BaseViewHolder
-import com.binatestation.android.kickoff.utils.listeners.AdapterListener
 import com.binatestation.kickstart.R
 import com.binatestation.kickstart.databinding.AdapterCommentBinding
 import com.binatestation.kickstart.repository.models.CommentModel
 
 class CommentViewHolder(
-    adapterListener: AdapterListener,
     private val adapterCommentBinding: AdapterCommentBinding
-) : BaseViewHolder(adapterCommentBinding.root, adapterListener) {
+) : BaseViewHolder(adapterCommentBinding.root) {
 
-    override fun bindView(`object`: Any) {
+    override fun bindView(`object`: Any?) {
         if (`object` is CommentModel) {
             adapterCommentBinding.model = `object`
             adapterCommentBinding.executePendingBindings()

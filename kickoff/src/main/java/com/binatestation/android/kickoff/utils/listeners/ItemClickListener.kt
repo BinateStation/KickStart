@@ -10,19 +10,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 7/4/20 7:33 PM.
+ * Last Updated at 7/4/20 2:19 PM.
  */
 
-package com.binatestation.android.kickoff.repository.models
+package com.binatestation.android.kickoff.utils.listeners
 
-import com.binatestation.android.kickoff.utils.Constants
-import com.google.gson.annotations.SerializedName
+import android.view.View
 
-data class LogoutModel(
-    var token: String,
-    @SerializedName(Constants.GeneralConstants.KEY_CLIENT_ID)
-    var clientId: String,
-    @SerializedName(Constants.GeneralConstants.KEY_CLIENT_SECRET)
-    var clientSecret: String
-
-)
+interface ItemClickListener {
+    fun setOnItemClickListener(onClickItem: (`object`: Any?, position: Int, actionView: View) -> Unit)
+}

@@ -10,7 +10,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   ~
-  ~ Last Updated at 5/1/20 2:44 PM.
+  ~ Last Updated at 8/4/20 6:41 PM.
   -->
 
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
@@ -54,4 +54,8 @@
         android:name="com.binatestation.kickstart.ui.main.user.UserFragment"
         android:label="@string/users"
         tools:layout="@layout/fragment_send" />
+    <fragment
+        android:id="@+id/nav_uoms"
+        android:name="com.binatestation.kickstart.ui.main.uom.UOMListFragment"
+        android:label="@string/uoms" />
 </navigation>

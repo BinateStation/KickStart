@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 5/3/20 12:34 PM.
+ * Last Updated at 7/4/20 12:31 PM.
  */
 
 package com.binatestation.android.kickoff.utils
@@ -21,12 +21,6 @@ import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.widget.ContentLoadingProgressBar
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
-import com.binatestation.android.kickoff.utils.adapters.RecyclerViewAdapter
-import com.binatestation.android.kickoff.utils.listeners.AdapterListener
-import com.binatestation.android.kickoff.utils.listeners.OnListItemClickListener
-import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 
 /**
  * @author RKR #rkrsmail@gmail.com
@@ -67,78 +61,6 @@ fun setImageButtonResource(view: View, resource: Int) {
 @BindingAdapter("android:background")
 fun setBackgroundResource(imageButton: AppCompatImageButton, resource: Int) {
     imageButton.setBackgroundResource(resource)
-}
-
-/**
- * Binding adapter to add list of chips to the chip group
- *
- * @param chipGroup
- * @param models
- * @param clickListener
- * @param closeIconVisible
- */
-@BindingAdapter(value = ["addChips", "itemClick", "closeIconVisible"], requireAll = false)
-fun addChips(
-    chipGroup: ChipGroup,
-    models: List<Any>?,
-    clickListener: OnListItemClickListener?,
-    closeIconVisible: Boolean = false
-) {
-    chipGroup.removeAllViews()
-    models?.forEach { model -> actionAddChip(chipGroup, model, clickListener, closeIconVisible) }
-}
-
-/**
- * Action add chip to the chip group
- *
- * @param chipGroup
- * @param model
- * @param clickListener
- * @param closeIconVisible
- */
-private fun actionAddChip(
-    chipGroup: ChipGroup,
-    model: Any,
-    clickListener: OnListItemClickListener?,
-    closeIconVisible: Boolean
-) {
-    val chip = Chip(chipGroup.context)
-    chip.text = model.toString()
-    chip.isCloseIconVisible = closeIconVisible
-    chip.tag = model
-    chip.setOnClickListener { clickListener?.onClickItem(model, 1, chip) }
-    chip.setOnCloseIconClickListener { clickListener?.onClickItem(model, 2, chip) }
-    chipGroup.addView(chip)
-}
-
-/**
- * Binding adapter to set a recycler view
- *
- * @param recyclerView
- * @param data
- * @param emptyStateData
- * @param adapterListener
- */
-@BindingAdapter(value = ["adapter", "emptyState", "adapterListener"], requireAll = false)
-fun setAdapter(
-    recyclerView: RecyclerView,
-    data: List<Any>?,
-    emptyStateData: List<Any>?,
-    adapterListener: AdapterListener?
-) {
-    var adapter = recyclerView.adapter
-    if (adapter == null) {
-        adapter = RecyclerViewAdapter()
-        adapter.showEmptyState = false
-        adapter.clickListener = adapterListener?.clickListener
-    }
-    if (adapter is RecyclerViewAdapter) {
-        adapter.setTypedData(data)
-        if (emptyStateData != null && data.isNullOrEmpty()) {
-            adapter.setTypedData(emptyStateData)
-        }
-        recyclerView.adapter = adapter
-    }
 }
 
 /**

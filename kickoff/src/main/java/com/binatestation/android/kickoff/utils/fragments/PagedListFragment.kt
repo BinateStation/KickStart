@@ -15,23 +15,26 @@
 
 package com.binatestation.android.kickoff.utils.fragments
 
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.binatestation.android.kickoff.utils.adapters.RecyclerViewAdapter
+import com.binatestation.android.kickoff.utils.adapters.PagedRecyclerViewAdapter
 
 /**
- * A simple [BaseListFragment] subclass. which specifies the [RecyclerViewAdapter] for the [RecyclerView] used in [BaseListFragment]
+ * A simple [BaseListFragment] subclass. which can be used for recycler view with paging
+ * Here we sets [PagedRecyclerViewAdapter] for the [RecyclerView] used in [BaseListFragment]
  */
-open class ListFragment : BaseListFragment() {
 
-    private var mAdapter: RecyclerViewAdapter? = null
+open class PagedListFragment<DataModelType>(private val comparator: DiffUtil.ItemCallback<DataModelType>) :
+    BaseListFragment() {
+    private var mAdapter: PagedRecyclerViewAdapter<DataModelType>? = null
 
     /**
-     * get [RecyclerViewAdapter] object used in the [RecyclerView] of [BaseListFragment]
+     * get [PagedRecyclerViewAdapter] object used in the [RecyclerView] of [BaseListFragment]
      */
-    override val adapter: RecyclerViewAdapter
+    override val adapter: PagedRecyclerViewAdapter<DataModelType>
         get() {
             if (mAdapter == null) {
-                mAdapter = RecyclerViewAdapter()
+                mAdapter = PagedRecyclerViewAdapter(comparator = comparator)
             }
             return mAdapter!!
         }

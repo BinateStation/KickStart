@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.binatestation.android.kickoff.R
 import com.binatestation.android.kickoff.utils.setColorSchemeResources
@@ -27,9 +28,10 @@ import kotlinx.android.synthetic.main.fragment_swipe_list.*
 
 
 /**
- * A simple [ListFragment] subclass. Which can be use for [SwipeRefreshLayout] with [ListFragment]
+ * A simple [PagedListFragment] subclass. Which can be use for [SwipeRefreshLayout] with [PagedListFragment]
  */
-open class SwipeListFragment : ListFragment() {
+open class PagedSwipeListFragment<DataModelType>(comparator: DiffUtil.ItemCallback<DataModelType>) :
+    PagedListFragment<DataModelType>(comparator) {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,10 +56,9 @@ open class SwipeListFragment : ListFragment() {
     }
 
     /**
-     * gets the [SwipeRefreshLayout] instance used in this [SwipeListFragment]
+     * gets the [SwipeRefreshLayout] instance used in this [PagedSwipeListFragment]
      * @return SwipeRefreshLayout?
      */
     fun getSwipeRefreshLayout(): SwipeRefreshLayout? = swipe_refresh_layout
-
 
 }

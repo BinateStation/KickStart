@@ -1,7 +1,4 @@
 /*
- * Created By RKR
- * Last Updated at 2/1/20 1:12 PM.
- *
  * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,16 +9,18 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Last Updated at 7/4/20 7:33 PM.
  */
 
 package com.binatestation.android.kickoff.repository.models
 
-import com.binatestation.android.kickoff.utils.Constants.KEY_ACCESS_TOKEN
-import com.binatestation.android.kickoff.utils.Constants.KEY_CREATED_AT
-import com.binatestation.android.kickoff.utils.Constants.KEY_EXPIRES_IN
-import com.binatestation.android.kickoff.utils.Constants.KEY_REFRESH_TOKEN
-import com.binatestation.android.kickoff.utils.Constants.KEY_SCOPE
-import com.binatestation.android.kickoff.utils.Constants.KEY_TOKEN_TYPE
+import com.binatestation.android.kickoff.utils.Constants.GeneralConstants.KEY_ACCESS_TOKEN
+import com.binatestation.android.kickoff.utils.Constants.GeneralConstants.KEY_CREATED_AT
+import com.binatestation.android.kickoff.utils.Constants.GeneralConstants.KEY_EXPIRES_IN
+import com.binatestation.android.kickoff.utils.Constants.GeneralConstants.KEY_REFRESH_TOKEN
+import com.binatestation.android.kickoff.utils.Constants.GeneralConstants.KEY_SCOPE
+import com.binatestation.android.kickoff.utils.Constants.GeneralConstants.KEY_TOKEN_TYPE
 import com.google.gson.annotations.SerializedName
 
 data class AuthTokenModel(

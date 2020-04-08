@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 27/2/20 9:29 PM.
+ * Last Updated at 6/4/20 7:55 PM.
  */
 
 apply plugin: 'com.android.application'
@@ -24,11 +24,11 @@ apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 ext {
-    appcompat = '1.2.0-alpha03'
-    retrofit = '2.7.1'
+    appcompat = '1.2.0-beta01'
+    retrofit = '2.8.1'
     lifecycle_version = '2.2.0'
-    room_version = '2.2.4'
-    paging_version = '2.1.1'
+    room_version = '2.2.5'
+    paging_version = '2.1.2'
 }
 
 android {
@@ -76,11 +76,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     implementation "androidx.room:room-runtime:$room_version"
-    implementation 'androidx.navigation:navigation-fragment:2.2.1'
-    implementation 'androidx.navigation:navigation-ui:2.2.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.2.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
@@ -95,7 +92,7 @@ dependencies {
     // Network
     implementation "com.squareup.retrofit2:retrofit:${retrofit}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit}"
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.1'
 
     // debug
     debugImplementation 'im.dino:dbinspector:4.0.0@aar'
