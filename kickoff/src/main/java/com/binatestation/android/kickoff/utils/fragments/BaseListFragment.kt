@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 8/4/20 8:42 PM.
+ * Last Updated at 8/4/20 9:07 PM.
  */
 
 package com.binatestation.android.kickoff.utils.fragments
@@ -21,10 +21,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.*
 import com.binatestation.android.kickoff.R
 import com.binatestation.android.kickoff.utils.listeners.ItemClickListener
 import kotlinx.android.synthetic.main.fragment_list.*
@@ -79,6 +76,19 @@ abstract class BaseListFragment : Fragment() {
         if (adapter is ItemClickListener) {
             val itemClickLister = adapter as ItemClickListener
             itemClickLister.setOnItemClickListener(onItemClick)
+        }
+    }
+
+    /**
+     * This will sets [DividerItemDecoration] for the [RecyclerView] used in [BaseListFragment],
+     * when [LinearLayoutManager] is used as [RecyclerView.LayoutManager]
+     */
+    fun setDividerItemDecoration() {
+        recycler_view?.let {
+            val layoutManager = getLayoutManager()
+            if (layoutManager is LinearLayoutManager) {
+                it.addItemDecoration(DividerItemDecoration(it.context, layoutManager.orientation))
+            }
         }
     }
 
