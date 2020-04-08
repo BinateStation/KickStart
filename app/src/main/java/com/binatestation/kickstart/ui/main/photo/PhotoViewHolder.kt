@@ -10,23 +10,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 5/1/20 2:52 PM.
+ * Last Updated at 8/4/20 8:27 PM.
  */
 
 package com.binatestation.kickstart.ui.main.photo
 
 import com.binatestation.android.kickoff.utils.adapters.holders.BaseViewHolder
-import com.binatestation.android.kickoff.utils.listeners.AdapterListener
 import com.binatestation.kickstart.R
 import com.binatestation.kickstart.databinding.AdapterPhotoBinding
 import com.binatestation.kickstart.repository.models.PhotoModel
 
 class PhotoViewHolder(
-    adapterListener: AdapterListener,
     private val adapterPhotoBinding: AdapterPhotoBinding
-) : BaseViewHolder(adapterPhotoBinding.root, adapterListener) {
+) : BaseViewHolder(adapterPhotoBinding.root) {
 
-    override fun bindView(`object`: Any) {
+    override fun bindView(`object`: Any?) {
         if (`object` is PhotoModel) {
             adapterPhotoBinding.model = `object`
             adapterPhotoBinding.executePendingBindings()

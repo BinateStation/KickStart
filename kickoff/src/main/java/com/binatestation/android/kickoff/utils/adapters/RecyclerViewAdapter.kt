@@ -10,20 +10,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 12/1/20 3:40 PM.
+ * Last Updated at 8/4/20 6:48 PM.
  */
 
 package com.binatestation.android.kickoff.utils.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.binatestation.android.kickoff.repository.models.EmptyStateModel
 import com.binatestation.android.kickoff.repository.models.ItemViewTypeModel
+import com.binatestation.android.kickoff.utils.adapters.holders.BaseViewHolder
 import com.binatestation.android.kickoff.utils.adapters.holders.EmptyStateViewHolder
-import com.binatestation.android.kickoff.utils.listeners.AdapterListener
-import com.binatestation.android.kickoff.utils.listeners.OnListItemClickListener
+import com.binatestation.android.kickoff.utils.listeners.ItemClickListener
 import com.binatestation.android.kickoff.utils.listeners.ViewBinder
 
 
@@ -32,22 +33,19 @@ import com.binatestation.android.kickoff.utils.listeners.ViewBinder
  * RecyclerViewAdapter
  */
 
-open class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(), AdapterListener {
-    override fun getType(): Int {
-        return type ?: 0
+open class RecyclerViewAdapter :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>(), ItemClickListener {
+
+    private var onClickItem: ((`object`: Any?, position: Int, actionView: View) -> Unit)? = null
+
+    override fun setOnItemClickListener(onClickItem: (`object`: Any?, position: Int, actionView: View) -> Unit) {
+        this.onClickItem = onClickItem
     }
 
-    var type: Int? = 0
     @Suppress("MemberVisibilityCanBePrivate")
     var showEmptyState: Boolean = true
     internal var data: ArrayList<Any>? = null
     val itemViewTypeModels = ArrayList<ItemViewTypeModel<*, *, *>>()
-
-
-    /**
-     * the listener object to have list item click
-     */
-    override var clickListener: OnListItemClickListener? = null
 
     init {
         data = EmptyStateModel.loadingDataModels
@@ -80,8 +78,8 @@ open class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
      */
     fun setTypedData(data: List<*>?) {
         data?.let {
-            val objects = ArrayList<Any>(it)
-            if (it.isNotEmpty()) {
+            val objects = ArrayList(it.filterIsInstance(Any::class.java))
+            if (objects.isNotEmpty()) {
                 this.data = objects
             } else {
                 this.data = if (showEmptyState) EmptyStateModel.emptyDataModels else objects
@@ -113,7 +111,8 @@ open class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
             if (this.data?.remove(EmptyStateModel.unKnownEmptyModel) == true) {
                 notifyDataSetChanged()
             }
-            this.data?.addAll(ArrayList<Any>(it))
+            val collection = ArrayList(it).filterIsInstance(Any::class.java)
+            this.data?.addAll(collection)
             notifyDataSetChanged()
         }
     }
@@ -150,7 +149,7 @@ open class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
      * @param position Int the item position
      * @return Any the selected item
      */
-    override fun getItem(position: Int): Any {
+    private fun getItem(position: Int): Any? {
         return data?.takeIf { it.size > position && position >= 0 }?.let { it[position] }
             ?: Any()
     }
@@ -158,7 +157,7 @@ open class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
     override fun getItemViewType(position: Int): Int {
         val item = getItem(position)
         val itemViewTypeModel = itemViewTypeModels.find {
-            item.javaClass.name == it.clsType?.name
+            item?.javaClass?.name == it.clsType?.name
         }
         return if (itemViewTypeModel is ItemViewTypeModel) {
             itemViewTypeModel.layoutId
@@ -167,23 +166,31 @@ open class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        var viewHolder: BaseViewHolder?
         val itemViewType =
             itemViewTypeModels.find { itemViewTypeModel -> itemViewTypeModel.layoutId == viewType }
         val constructor = itemViewType?.viewHolder?.getConstructor(
-            AdapterListener::class.java,
             itemViewType.viewDataBindingType
         )
         try {
-            return constructor?.newInstance(
-                this, DataBindingUtil.inflate(
+            viewHolder = constructor?.newInstance(
+                DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
                     itemViewType.layoutId, parent, false
                 )
-            ) as RecyclerView.ViewHolder
+            ) as BaseViewHolder?
+            viewHolder?.setOnItemClickListener { position, actionView ->
+                onClickItem?.let { onClick -> onClick(getItem(position), position, actionView) }
+            }
+            viewHolder?.let { return it }
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        return EmptyStateViewHolder(parent, this)
+        viewHolder = EmptyStateViewHolder(parent)
+        viewHolder.setOnItemClickListener { position, actionView ->
+            onClickItem?.let { onClick -> onClick(getItem(position), position, actionView) }
+        }
+        return viewHolder
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

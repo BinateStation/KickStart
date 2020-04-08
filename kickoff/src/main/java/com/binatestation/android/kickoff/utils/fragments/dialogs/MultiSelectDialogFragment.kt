@@ -1,7 +1,4 @@
 /*
- * Created By RKR
- * Last Updated at 2/1/20 1:14 PM.
- *
  * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,6 +9,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Last Updated at 7/4/20 1:19 PM.
  */
 
 package com.binatestation.android.kickoff.utils.fragments.dialogs
@@ -22,17 +21,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.binatestation.android.kickoff.R
 import com.binatestation.android.kickoff.repository.models.MultiSelectDataModel
-import com.binatestation.android.kickoff.repository.models.enums.Type
 import com.binatestation.android.kickoff.utils.adapters.RecyclerViewAdapter
-import com.binatestation.android.kickoff.utils.listeners.OnListItemClickListener
 import kotlinx.android.synthetic.main.fragment_multi_select.*
 
 /**
  * Created by RKR on 11-09-2018.
  * MultiSelectDialogFragment.
  */
-class MultiSelectDialogFragment<T : MultiSelectDataModel> : BaseDialogFragment(),
-    OnListItemClickListener {
+class MultiSelectDialogFragment<T : MultiSelectDataModel> : BaseDialogFragment() {
     private var mRequestCode: Int = 0
     private var mMultiSelectable = true
     private var mSelectedItem: T? = null
@@ -50,8 +46,9 @@ class MultiSelectDialogFragment<T : MultiSelectDataModel> : BaseDialogFragment()
         get() {
             if (mAdapter == null) {
                 mAdapter = RecyclerViewAdapter()
-                mAdapter?.clickListener = this
-                mAdapter?.type = Type.SELECT.value
+                mAdapter?.setOnItemClickListener { `object`: Any?, position: Int, actionView: View ->
+                    onClickItem(`object`, position, actionView)
+                }
             }
             return mAdapter as RecyclerViewAdapter
         }
@@ -111,7 +108,7 @@ class MultiSelectDialogFragment<T : MultiSelectDataModel> : BaseDialogFragment()
         adapter.setTypedData(data)
     }
 
-    override fun onClickItem(`object`: Any, position: Int, actionView: View) {
+    private fun onClickItem(`object`: Any?, position: Int, actionView: View) {
         @Suppress("UNCHECKED_CAST")
         if (!mMultiSelectable) {
             adapter.data?.forEach { if (it is MultiSelectDataModel) it.isSelected = false }

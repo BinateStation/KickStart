@@ -10,26 +10,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 8/4/20 8:43 PM.
+ * Last Updated at 8/4/20 8:13 PM.
  */
 
-package com.binatestation.android.kickoff.utils.fragments
+@file:Suppress("unused")
 
+package com.binatestation.android.kickoff.utils.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.binatestation.android.kickoff.R
-import com.binatestation.android.kickoff.utils.setColorSchemeResources
-import kotlinx.android.synthetic.main.fragment_swipe_list.*
-
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.fragment_swipe_list_add_search.*
 
 /**
- * A simple [ListFragment] subclass. Which can be use for [SwipeRefreshLayout] with [ListFragment]
+ * A simple [PagedSwipeListAddFragment] subclass. which can be used for [SearchView], [SwipeRefreshLayout] with Add [FloatingActionButton]
  */
-open class SwipeListFragment : ListFragment() {
+open class PagedSwipeListAddSearchFragment<DataModelType>(comparator: DiffUtil.ItemCallback<DataModelType>) :
+    PagedSwipeListAddFragment<DataModelType>(comparator) {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,27 +40,14 @@ open class SwipeListFragment : ListFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_swipe_list, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        swipe_refresh_layout?.let { setColorSchemeResources(it) }
+        return inflater.inflate(R.layout.fragment_swipe_list_add_search, container, false)
     }
 
     /**
-     * function to set on refresh callback
-     * @param onRefresh callback<Unit>
+     * method to sets on Query text change listener
+     * @param onQueryTextListener OnQueryTextListener
      */
-    fun setOnRefreshListener(onRefresh: () -> Unit) {
-        swipe_refresh_layout?.let { it.setOnRefreshListener { onRefresh() } }
+    fun setOnQueryTextListener(onQueryTextListener: SearchView.OnQueryTextListener) {
+        search_view?.setOnQueryTextListener(onQueryTextListener)
     }
-
-    /**
-     * gets the [SwipeRefreshLayout] instance used in this [SwipeListFragment]
-     * @return SwipeRefreshLayout?
-     */
-    fun getSwipeRefreshLayout(): SwipeRefreshLayout? = swipe_refresh_layout
-
-
 }

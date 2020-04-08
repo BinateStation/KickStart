@@ -1,8 +1,5 @@
 /*
- * Created By RKR
- * Last Updated at 14/12/19 5:35 PM.
- *
- * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+ * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,6 +9,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Last Updated at 8/4/20 8:27 PM.
  */
 
 package com.binatestation.android.kickoff.utils.adapters.holders
@@ -19,13 +18,11 @@ package com.binatestation.android.kickoff.utils.adapters.holders
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.binatestation.android.kickoff.R
 import com.binatestation.android.kickoff.databinding.AdapterEmptyStateBinding
 import com.binatestation.android.kickoff.repository.models.EmptyStateModel
-import com.binatestation.android.kickoff.utils.listeners.AdapterListener
 
 
 /**
@@ -34,20 +31,18 @@ import com.binatestation.android.kickoff.utils.listeners.AdapterListener
  */
 
 class EmptyStateViewHolder(
-    viewGroup: ViewGroup, adapterListener: AdapterListener,
+    viewGroup: ViewGroup,
     private val adapterEmptyStateBinding: AdapterEmptyStateBinding = DataBindingUtil.inflate(
         LayoutInflater.from(viewGroup.context),
         LAYOUT, viewGroup, false
     )
-) : BaseViewHolder(adapterEmptyStateBinding.root, adapterListener) {
+) : BaseViewHolder(adapterEmptyStateBinding.root) {
 
-    private val iconImageView: ImageView = itemView.findViewById(R.id.icon)
-
-    override fun bindView(`object`: Any) {
+    override fun bindView(`object`: Any?) {
         if (`object` is EmptyStateModel) {
             adapterEmptyStateBinding.model = `object`
             adapterEmptyStateBinding.executePendingBindings()
-            val drawable = iconImageView.drawable
+            val drawable = adapterEmptyStateBinding.icon.drawable
             if (drawable is AnimatedVectorDrawableCompat) {
                 drawable.start()
             } else if (drawable is AnimatedVectorDrawable) {

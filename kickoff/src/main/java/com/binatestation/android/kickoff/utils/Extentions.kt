@@ -1,8 +1,5 @@
 /*
- * Created By RKR
- * Last Updated at 14/12/19 5:32 PM.
- *
- * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+ * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,6 +9,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Last Updated at 7/4/20 7:34 PM.
  */
 
 @file:Suppress("unused")
@@ -108,8 +107,8 @@ fun FragmentActivity.showAlert(errorModel: ErrorModel): AlertDialogFragment {
          */
 fun FragmentActivity.showAlert(jsonObject: JSONObject): AlertDialogFragment {
     return showAlert(
-        jsonObject.optString(Constants.KEY_MESSAGE_TITLE), jsonObject.optString(
-            Constants.KEY_MESSAGE
+        jsonObject.optString(Constants.GeneralConstants.KEY_MESSAGE_TITLE), jsonObject.optString(
+            Constants.GeneralConstants.KEY_MESSAGE
         )
     )
 }
@@ -220,8 +219,8 @@ fun Fragment.showAlert(errorModel: ErrorModel): AlertDialogFragment? {
          */
 fun Fragment.showAlert(jsonObject: JSONObject): AlertDialogFragment? {
     return showAlert(
-        jsonObject.optString(Constants.KEY_MESSAGE_TITLE), jsonObject.optString(
-            Constants.KEY_MESSAGE
+        jsonObject.optString(Constants.GeneralConstants.KEY_MESSAGE_TITLE), jsonObject.optString(
+            Constants.GeneralConstants.KEY_MESSAGE
         )
     )
 }

@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 17/2/20 12:02 PM.
+ * Last Updated at 7/4/20 7:33 PM.
  */
 
 package com.binatestation.android.kickoff.repository.models
@@ -21,13 +21,13 @@ import com.google.gson.annotations.SerializedName
 data class LoginModel(
     var username: String? = null,
     var password: String? = null,
-    @SerializedName(Constants.KEY_GRANT_TYPE)
-    var grantType: String = Constants.KEY_PASSWORD,
-    @SerializedName(Constants.KEY_CLIENT_ID)
+    @SerializedName(Constants.GeneralConstants.KEY_GRANT_TYPE)
+    var grantType: String = Constants.GeneralConstants.KEY_PASSWORD,
+    @SerializedName(Constants.GeneralConstants.KEY_CLIENT_ID)
     var clientId: String = "",
-    @SerializedName(Constants.KEY_CLIENT_SECRET)
+    @SerializedName(Constants.GeneralConstants.KEY_CLIENT_SECRET)
     var clientSecret: String = "",
-    @SerializedName(Constants.KEY_SCOPE)
+    @SerializedName(Constants.GeneralConstants.KEY_SCOPE)
     var scope: String = ""
 )
 

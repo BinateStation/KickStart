@@ -10,14 +10,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 28/1/20 11:53 AM.
+ * Last Updated at 8/4/20 8:25 PM.
  */
 
 package com.binatestation.android.kickoff.utils.adapters.holders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.binatestation.android.kickoff.utils.listeners.AdapterListener
 import com.binatestation.android.kickoff.utils.listeners.ViewBinder
 
 
@@ -27,28 +26,19 @@ import com.binatestation.android.kickoff.utils.listeners.ViewBinder
  */
 
 abstract class BaseViewHolder constructor(
-    itemView: View,
-    private val adapterListener: AdapterListener?
-) :
-    RecyclerView.ViewHolder(itemView), ViewBinder {
+    itemView: View
+) : RecyclerView.ViewHolder(itemView), ViewBinder {
+
+    private var onClickItem: ((position: Int, actionView: View) -> Unit)? = null
+
+    fun setOnItemClickListener(onClickItem: (position: Int, actionView: View) -> Unit) {
+        this.onClickItem = onClickItem
+    }
 
     init {
-        adapterListener?.let {
-            itemView.setOnClickListener { onClick(it) }
-        }
+        itemView.setOnClickListener { onClickItem?.let { onClick -> onClick(adapterPosition, it) } }
     }
 
-    @Suppress("MemberVisibilityCanBePrivate")
-    fun onClick(view: View) {
-        val position = adapterPosition
-        if (position != RecyclerView.NO_POSITION && adapterListener != null) {
-            adapterListener.clickListener?.onClickItem(
-                adapterListener.getItem(position),
-                position,
-                view
-            )
-        }
-    }
+    abstract override fun bindView(`object`: Any?)
 
-    abstract override fun bindView(`object`: Any)
 }

@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created By RKR
-  ~ Last Updated at 5/1/20 11:01 AM.
-  ~
   ~ Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -12,6 +9,8 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Last Updated at 7/4/20 7:30 PM.
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
@@ -35,6 +34,10 @@
             android:id="@+id/nav_photos"
             android:icon="@drawable/ic_photo_library_black_24dp"
             android:title="@string/photos" />
+        <item
+            android:id="@+id/nav_uoms"
+            android:icon="@drawable/ic_photo_library_black_24dp"
+            android:title="@string/uoms" />
     </group>
 
     <item android:title="@string/communicate">

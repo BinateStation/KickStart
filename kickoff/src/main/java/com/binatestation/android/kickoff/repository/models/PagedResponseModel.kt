@@ -10,22 +10,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 7/4/20 7:33 PM.
+ * Last Updated at 7/4/20 4:07 PM.
  */
 
 package com.binatestation.android.kickoff.repository.models
 
-import com.binatestation.android.kickoff.utils.Constants
-import com.google.gson.annotations.SerializedName
+import androidx.lifecycle.LiveData
+import androidx.paging.PagedList
 
-data class RefreshTokenModel(
-    @SerializedName(Constants.GeneralConstants.KEY_REFRESH_TOKEN)
-    var refreshToken: String,
-    @SerializedName(Constants.GeneralConstants.KEY_GRANT_TYPE)
-    var grantType: String = Constants.GeneralConstants.KEY_REFRESH_TOKEN,
-    @SerializedName(Constants.GeneralConstants.KEY_CLIENT_ID)
-    var clientId: String,
-    @SerializedName(Constants.GeneralConstants.KEY_CLIENT_SECRET)
-    var clientSecret: String
-
+data class PagedResponseModel<DataModelType>(
+    // the LiveData of paged lists for the UI to observe
+    val pagedList: LiveData<PagedList<DataModelType>>,
+    // represents the network request status to show to the user
+    val networkState: LiveData<NetworkState>,
+    // represents the refresh status to show to the user. Separate from networkState, this
+    // value is importantly only when refresh is requested.
+    val refreshState: LiveData<NetworkState>,
+    // refreshes the whole data and fetches it from scratch.
+    val refresh: () -> Unit
 )

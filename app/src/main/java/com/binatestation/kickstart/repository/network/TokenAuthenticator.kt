@@ -1,7 +1,4 @@
 /*
- * Created By RKR
- * Last Updated at 2/1/20 1:14 PM.
- *
  * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,13 +9,15 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Last Updated at 7/4/20 7:35 PM.
  */
 
 package com.binatestation.kickstart.repository.network
 
 import android.content.Context
 import com.binatestation.android.kickoff.repository.models.AuthTokenModel
-import com.binatestation.android.kickoff.utils.Constants.END_URL_OAUTH_TOKEN
+import com.binatestation.android.kickoff.utils.Constants.EndUrls.END_URL_OAUTH_TOKEN
 import com.binatestation.kickstart.BuildConfig
 import com.binatestation.kickstart.utils.Session
 import com.google.gson.Gson

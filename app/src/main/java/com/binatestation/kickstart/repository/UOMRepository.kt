@@ -10,19 +10,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 7/4/20 7:33 PM.
+ * Last Updated at 8/4/20 8:13 PM.
  */
 
-package com.binatestation.android.kickoff.repository.models
+package com.binatestation.kickstart.repository
 
-import com.binatestation.android.kickoff.utils.Constants
-import com.google.gson.annotations.SerializedName
+import com.binatestation.android.kickoff.repository.paging.BasePagedRepository
+import com.binatestation.kickstart.repository.models.UOMModel
+import com.binatestation.kickstart.repository.network.api.UOMApi
 
-data class LogoutModel(
-    var token: String,
-    @SerializedName(Constants.GeneralConstants.KEY_CLIENT_ID)
-    var clientId: String,
-    @SerializedName(Constants.GeneralConstants.KEY_CLIENT_SECRET)
-    var clientSecret: String
+class UOMRepository(private val uomApi: UOMApi) : BasePagedRepository<UOMModel>() {
 
-)
+    fun getAll(pageIndex: Int, pageSize: Int) = super.getAll(pageIndex, pageSize) { index, size ->
+        uomApi.getAll(
+            pageIndex = index,
+            pageSize = size
+        )
+    }
+
+}
