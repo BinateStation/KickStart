@@ -1,7 +1,4 @@
 /*
- * Created By RKR
- * Last Updated at 2/1/20 1:12 PM.
- *
  * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,11 +9,16 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Last Updated at 9/4/20 11:59 AM.
  */
 
 package com.binatestation.android.kickoff.repository.models
 
 import android.util.Log
+import com.binatestation.android.kickoff.utils.Constants
+import com.binatestation.android.kickoff.utils.Constants.GeneralConstants.KEY_LINK
+import com.binatestation.android.kickoff.utils.Constants.GeneralConstants.KEY_REQUEST_ID
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
@@ -50,8 +52,12 @@ sealed class ApiResponse<T> {
                 } else {
                     ApiSuccessResponse(
                         body = body,
-                        linkHeader = response.headers()["link"],
-                        requestId = call.request().header("request_id")
+                        requestId = call.request().header(KEY_REQUEST_ID),
+                        linkHeader = response.headers()[KEY_LINK],
+                        currentPage = response.headers()[Constants.GeneralConstants.KEY_CURRENT_PAGE],
+                        totalPages = response.headers()[Constants.GeneralConstants.KEY_TOTAL_PAGES],
+                        pageItems = response.headers()[Constants.GeneralConstants.KEY_PAGE_ITEMS],
+                        totalCount = response.headers()[Constants.GeneralConstants.KEY_TOTAL_COUNT]
                     )
                 }
             } else {
@@ -87,13 +93,30 @@ class ApiNoNetworkResponse<T>(val errorMessage: String) : ApiResponse<T>()
 
 data class ApiSuccessResponse<T>(
     val body: T,
+    val requestId: String,
     val links: Map<String, String>,
-    val requestId: String
+    val currentPage: String,
+    val totalPages: String,
+    val pageItems: String,
+    val totalCount: String
+
 ) : ApiResponse<T>() {
-    constructor(body: T, linkHeader: String?, requestId: String?) : this(
+    constructor(
+        body: T,
+        requestId: String?,
+        linkHeader: String?,
+        currentPage: String?,
+        totalPages: String?,
+        pageItems: String?,
+        totalCount: String?
+    ) : this(
         body = body,
+        requestId = requestId ?: "0",
         links = linkHeader?.extractLinks() ?: emptyMap(),
-        requestId = requestId ?: "0"
+        currentPage = currentPage ?: "0",
+        totalPages = totalPages ?: "0",
+        pageItems = pageItems ?: "0",
+        totalCount = totalCount ?: "0"
     )
 
     @Suppress("unused")

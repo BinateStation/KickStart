@@ -10,24 +10,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 8/4/20 7:00 PM.
+ * Last Updated at 9/4/20 11:43 AM.
  */
 
 package com.binatestation.android.kickoff.repository.paging
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
+import com.binatestation.android.kickoff.repository.models.ApiErrorResponse
+import com.binatestation.android.kickoff.repository.models.ApiResponse
+import com.binatestation.android.kickoff.repository.models.ApiSuccessResponse
 import com.binatestation.android.kickoff.repository.models.NetworkState
-import com.binatestation.android.kickoff.utils.Constants.GeneralConstants.KEY_CURRENT_PAGE
-import com.binatestation.android.kickoff.utils.Constants.GeneralConstants.KEY_TOTAL_PAGES
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class BasePageKeyedDataSource<DataModelType>(
     private val pageIndex: Int,
     private val pageSize: Int,
-    private val getAllCallBack: (pageIndex: Int, pageSize: Int) -> Call<List<DataModelType>>
+    private val getAllCallBack: (pageIndex: Int, pageSize: Int, apiCallBack: (ApiResponse<List<DataModelType>>) -> Unit) -> Unit
 ) : PageKeyedDataSource<String, DataModelType>() {
 
     // keep a function reference for the retry event
@@ -153,34 +151,16 @@ class BasePageKeyedDataSource<DataModelType>(
         callback: (data: List<DataModelType>, currentPage: String?, totalPages: String?) -> Unit,
         retry: (Boolean) -> Unit
     ) {
-        getAllCallBack(pageIndex, pageSize).enqueue(object : Callback<List<DataModelType>> {
-            override fun onFailure(
-                call: Call<List<DataModelType>>,
-                t: Throwable
-            ) {
+        getAllCallBack(pageIndex, pageSize) {
+            if (it is ApiSuccessResponse) {
+                val items = it.body
+                retry(true)
+                callback(items, it.currentPage, it.totalPages)
+                networkState.postValue(NetworkState.LOADED)
+            } else if (it is ApiErrorResponse) {
                 retry(false)
-                networkState.postValue(NetworkState.error(t.message ?: "unknown err"))
-            }
-
-            override fun onResponse(
-                call: Call<List<DataModelType>>,
-                response: Response<List<DataModelType>>
-            ) {
-                if (response.isSuccessful) {
-                    val currentPage = response.headers()[KEY_CURRENT_PAGE]
-                    val totalPages = response.headers()[KEY_TOTAL_PAGES]
-                    val items = response.body() ?: emptyList()
-                    retry(true)
-                    callback(items, currentPage, totalPages)
-                    networkState.postValue(NetworkState.LOADED)
-                } else {
-                    retry(false)
-                    networkState.postValue(
-                        NetworkState.error("error code: ${response.code()}")
-                    )
-                }
+                networkState.postValue(NetworkState.error(it.errorMessage))
             }
         }
-        )
     }
 }

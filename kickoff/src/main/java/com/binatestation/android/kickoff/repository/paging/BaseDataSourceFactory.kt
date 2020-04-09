@@ -10,19 +10,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 8/4/20 6:19 PM.
+ * Last Updated at 9/4/20 11:44 AM.
  */
 
 package com.binatestation.android.kickoff.repository.paging
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
-import retrofit2.Call
+import com.binatestation.android.kickoff.repository.models.ApiResponse
 
 class BaseDataSourceFactory<DataModelType>(
     private val pageIndex: Int,
     private val pageSize: Int,
-    private val getAllCallBack: (pageIndex: Int, pageSize: Int) -> Call<List<DataModelType>>
+    private val getAllCallBack: (pageIndex: Int, pageSize: Int, apiCallBack: (ApiResponse<List<DataModelType>>) -> Unit) -> Unit
 ) : DataSource.Factory<String, DataModelType>() {
     val sourceLiveData = MutableLiveData<BasePageKeyedDataSource<DataModelType>>()
 
