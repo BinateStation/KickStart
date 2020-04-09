@@ -10,22 +10,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 8/4/20 8:13 PM.
+ * Last Updated at 9/4/20 11:50 AM.
  */
 
 package com.binatestation.kickstart.repository
 
+import com.binatestation.android.kickoff.repository.models.ApiResponse
 import com.binatestation.android.kickoff.repository.paging.BasePagedRepository
 import com.binatestation.kickstart.repository.models.UOMModel
 import com.binatestation.kickstart.repository.network.api.UOMApi
+import retrofit2.Call
+import retrofit2.Response
 
 class UOMRepository(private val uomApi: UOMApi) : BasePagedRepository<UOMModel>() {
 
-    fun getAll(pageIndex: Int, pageSize: Int) = super.getAll(pageIndex, pageSize) { index, size ->
-        uomApi.getAll(
-            pageIndex = index,
-            pageSize = size
-        )
-    }
+    fun getAll(pageIndex: Int, pageSize: Int) =
+        super.getAll(pageIndex, pageSize) { index, size, apiCallBack ->
+            uomApi.getAll(pageIndex = index, pageSize = size)
+                .enqueue(object : retrofit2.Callback<List<UOMModel>> {
+                    override fun onFailure(call: Call<List<UOMModel>>, throwable: Throwable) {
+                        apiCallBack(ApiResponse.create(throwable))
+                    }
 
+                    override fun onResponse(
+                        call: Call<List<UOMModel>>,
+                        response: Response<List<UOMModel>>
+                    ) {
+                        apiCallBack(ApiResponse.create(call, response))
+                    }
+                })
+        }
 }

@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 7/4/20 5:37 PM.
+ * Last Updated at 9/4/20 11:54 AM.
  */
 
 package com.binatestation.android.kickoff.utils
@@ -46,6 +46,10 @@ object Constants {
         const val KEY_ITEMS = "items"
         const val KEY_CURRENT_PAGE = "Current-Page"
         const val KEY_TOTAL_PAGES = "Total-Pages"
+        const val KEY_REQUEST_ID = "request_id"
+        const val KEY_LINK = "link"
+        const val KEY_PAGE_ITEMS = "Page-Items"
+        const val KEY_TOTAL_COUNT = "Total-Count"
     }
 
     /**
