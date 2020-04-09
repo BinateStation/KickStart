@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 8/4/20 8:25 PM.
+ * Last Updated at 9/4/20 3:56 PM.
  */
 
 package com.binatestation.android.kickoff.utils.adapters.holders
@@ -37,6 +37,10 @@ abstract class BaseViewHolder constructor(
 
     init {
         itemView.setOnClickListener { onClickItem?.let { onClick -> onClick(adapterPosition, it) } }
+    }
+
+    fun setOnClick(view: View) {
+        onClickItem?.let { onClick -> onClick(adapterPosition, view) }
     }
 
     abstract override fun bindView(`object`: Any?)
