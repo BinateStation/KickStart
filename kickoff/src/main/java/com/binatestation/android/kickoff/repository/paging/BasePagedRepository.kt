@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 8/4/20 6:19 PM.
+ * Last Updated at 9/4/20 11:57 AM.
  */
 
 package com.binatestation.android.kickoff.repository.paging
@@ -19,15 +19,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.paging.toLiveData
+import com.binatestation.android.kickoff.repository.models.ApiResponse
 import com.binatestation.android.kickoff.repository.models.PagedResponseModel
-import retrofit2.Call
 
 abstract class BasePagedRepository<DataModelType> {
 
     fun getAll(
         pageIndex: Int,
         pageSize: Int,
-        getAllCallBack: (pageIndex: Int, pageSize: Int) -> Call<List<DataModelType>>
+        getAllCallBack: (pageIndex: Int, pageSize: Int, apiCallBack: (ApiResponse<List<DataModelType>>) -> Unit) -> Unit
     ): LiveData<PagedResponseModel<DataModelType>> {
         val data = MutableLiveData<PagedResponseModel<DataModelType>>()
         val sourceFactory =
