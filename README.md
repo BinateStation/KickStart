@@ -4,7 +4,7 @@ Add dependency by
 
 ```implementation 'com.binatestation.android:kickoff:1.1.0.1'```
 
-This is a library can be use for avoid boiler plate code for RecyclerView
+This is a library which can be used for avoiding boiler plate code in the RecyclerView
 
 ## Prerequisite
 
