@@ -7,3 +7,5 @@
 .externalNativeBuild
 .idea/
 kickoff/libs/
+.settings/
+app/src/main/java/com/binatestation/kickstart/utils/Test.kt

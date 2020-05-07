@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 9/4/20 11:59 AM.
+ * Last Updated at 7/5/20 7:57 PM.
  */
 
 package com.binatestation.android.kickoff.repository.models
@@ -19,6 +19,8 @@ import android.util.Log
 import com.binatestation.android.kickoff.utils.Constants
 import com.binatestation.android.kickoff.utils.Constants.GeneralConstants.KEY_LINK
 import com.binatestation.android.kickoff.utils.Constants.GeneralConstants.KEY_REQUEST_ID
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
@@ -44,7 +46,11 @@ sealed class ApiResponse<T> {
             )
         }
 
-        fun <T> create(call: Call<T>, response: Response<T>): ApiResponse<T> {
+        fun <T> create(
+            call: Call<T>,
+            response: Response<T>,
+            errorObjectKey: String? = null
+        ): ApiResponse<T> {
             return if (response.isSuccessful) {
                 val body = response.body()
                 if (body == null || response.code() == 204) {
@@ -61,13 +67,28 @@ sealed class ApiResponse<T> {
                     )
                 }
             } else {
-
                 val msg = response.errorBody()?.string()
                 val errorMsg = if (msg.isNullOrEmpty()) {
                     response.message()
                 } else {
                     try {
-                        JSONObject(msg).optString("error")
+                        var jsonObject = JSONObject(msg)
+                        errorObjectKey?.let {
+                            jsonObject = jsonObject.optJSONObject(errorObjectKey) ?: JSONObject()
+                        }
+                        val keys = jsonObject.keys()
+                        var message = ""
+                        while (keys.hasNext()) {
+                            val key = keys.next()
+                            val listType =
+                                object : TypeToken<List<String>>() {}.type
+                            val errorList = Gson().fromJson<List<String>>(
+                                jsonObject.optJSONArray(key)?.toString(),
+                                listType
+                            )
+                            message = message.plus("$key ${errorList.joinToString()}")
+                        }
+                        message
                     } catch (e: Exception) {
                         e.printStackTrace()
                         msg
@@ -82,12 +103,12 @@ sealed class ApiResponse<T> {
 }
 
 /**
- * separate class for HTTP 204 resposes so that we can make ApiSuccessResponse's body non-null.
+ * separate class for HTTP 204 responses so that we can make ApiSuccessResponse's body non-null.
  */
 class ApiEmptyResponse<T> : ApiResponse<T>()
 
 /**
- * separate class for HTTP 204 resposes so that we can make ApiSuccessResponse's body non-null.
+ * separate class for Network Error
  */
 class ApiNoNetworkResponse<T>(val errorMessage: String) : ApiResponse<T>()
 
