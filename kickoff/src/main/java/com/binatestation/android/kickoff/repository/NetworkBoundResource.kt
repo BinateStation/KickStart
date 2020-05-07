@@ -1,7 +1,4 @@
 /*
- * Created By RKR
- * Last Updated at 2/1/20 1:37 PM.
- *
  * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,6 +9,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Last Updated at 7/5/20 7:57 PM.
  */
 
 package com.binatestation.android.kickoff.repository
@@ -22,6 +21,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.binatestation.android.kickoff.repository.models.*
+import com.binatestation.android.kickoff.repository.models.ApiResponse.Companion.create
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -75,11 +75,11 @@ abstract class NetworkBoundResource<ResultType, RequestType>
 
         apiResponse.enqueue(object : Callback<ResultType> {
             override fun onFailure(call: Call<ResultType>, throwable: Throwable) {
-                postValue(ApiResponse.create(throwable))
+                postValue(create(throwable))
             }
 
             override fun onResponse(call: Call<ResultType>, response: Response<ResultType>) {
-                postValue(ApiResponse.create(call, response))
+                postValue(create(call, response))
             }
         })
     }

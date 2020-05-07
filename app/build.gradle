@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 6/4/20 7:55 PM.
+ * Last Updated at 7/5/20 7:57 PM.
  */
 
 apply plugin: 'com.android.application'
@@ -63,14 +63,14 @@ android {
 
 dependencies {
     // Core components
-    implementation 'com.google.android.material:material:1.2.0-alpha05'
+    implementation 'com.google.android.material:material:1.2.0-alpha06'
     implementation "androidx.appcompat:appcompat:${appcompat}"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // Specific views
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
-    implementation 'androidx.preference:preference:1.1.0'
+    implementation 'androidx.preference:preference:1.1.1'
 
     // Architectural components
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
@@ -81,7 +81,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
-    implementation "androidx.navigation:navigation-fragment-ktx:2.2.1"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.2.2"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     //Addons
@@ -92,7 +92,7 @@ dependencies {
     // Network
     implementation "com.squareup.retrofit2:retrofit:${retrofit}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit}"
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.5.0'
 
     // debug
     debugImplementation 'im.dino:dbinspector:4.0.0@aar'
