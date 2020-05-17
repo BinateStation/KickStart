@@ -10,12 +10,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 7/5/20 7:57 PM.
+ * Last Updated at 17/5/20 10:42 AM.
  */
 
 package com.binatestation.android.kickoff.repository.models
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.binatestation.android.kickoff.utils.Constants
 import com.binatestation.android.kickoff.utils.Constants.GeneralConstants.KEY_LINK
 import com.binatestation.android.kickoff.utils.Constants.GeneralConstants.KEY_REQUEST_ID
@@ -23,6 +24,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import java.net.ConnectException
 import java.net.UnknownHostException
@@ -35,6 +37,28 @@ import java.util.regex.Pattern
 @Suppress("unused") // T is used in extending classes
 sealed class ApiResponse<T> {
     companion object {
+        fun <DataType> getCallback(
+            data: MutableLiveData<ApiResponse<DataType>>? = null,
+            callBack: ((ApiResponse<DataType>) -> Unit)? = null
+        ): Callback<DataType> {
+            return object : Callback<DataType> {
+                override fun onFailure(call: Call<DataType>, t: Throwable) {
+                    val res = create<DataType>(t)
+                    callBack?.let { it(res) }
+                    data?.postValue(res)
+                }
+
+                override fun onResponse(
+                    call: Call<DataType>,
+                    response: Response<DataType>
+                ) {
+                    val res = create(call, response)
+                    callBack?.let { it(res) }
+                    data?.postValue(res)
+                }
+            }
+        }
+
         fun <T> create(error: Throwable): ApiResponse<T> {
             if (error is ConnectException || error is UnknownHostException) {
                 return ApiNoNetworkResponse(
