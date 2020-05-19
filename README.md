@@ -2,13 +2,14 @@
 
 Add dependency by
 
-```implementation 'com.binatestation.android:kickoff:1.1.0.5'```
+```implementation 'com.binatestation.android:kickoff:1.1.0.6'```
 
 This is a library which can be used for avoiding boiler plate code in the RecyclerView
 
 ## What's New
 1. com.binatestation.android.kickoff.utils.fragments.SwipeListSearchFragment
 1. com.binatestation.android.kickoff.utils.fragments.PagedSwipeListSearchFragment
+1. Now you can customize EmptyStateModel in PagedRecyclerViewAdapter 
 
 ## Prerequisite
 
