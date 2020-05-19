@@ -10,17 +10,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 9/4/20 11:43 AM.
+ * Last Updated at 19/5/20 6:07 PM.
  */
 
 package com.binatestation.android.kickoff.repository.paging
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.binatestation.android.kickoff.repository.models.ApiErrorResponse
-import com.binatestation.android.kickoff.repository.models.ApiResponse
-import com.binatestation.android.kickoff.repository.models.ApiSuccessResponse
-import com.binatestation.android.kickoff.repository.models.NetworkState
+import com.binatestation.android.kickoff.repository.models.*
 
 class BasePageKeyedDataSource<DataModelType>(
     private val pageIndex: Int,
@@ -160,6 +157,12 @@ class BasePageKeyedDataSource<DataModelType>(
             } else if (it is ApiErrorResponse) {
                 retry(false)
                 networkState.postValue(NetworkState.error(it.errorMessage))
+            } else if (it is ApiEmptyResponse) {
+                retry(false)
+                networkState.postValue(NetworkState.NO_DATA)
+            } else if (it is ApiNoNetworkResponse) {
+                retry(false)
+                networkState.postValue(NetworkState.NO_INTERNET)
             }
         }
     }

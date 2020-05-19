@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 7/4/20 2:29 PM.
+ * Last Updated at 19/5/20 6:07 PM.
  */
 
 package com.binatestation.android.kickoff.repository.models.enums
@@ -41,7 +41,9 @@ enum class Status(val value: Int) {
     ERROR(17),
     LOADING(18),
     DELETED(19),
-    RUNNING(20);
+    RUNNING(20),
+    NO_DATA(21),
+    NO_INTERNET(22);
 
 
     companion object {

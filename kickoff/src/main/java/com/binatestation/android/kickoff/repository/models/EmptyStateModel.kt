@@ -1,8 +1,5 @@
 /*
- * Created By RKR
- * Last Updated at 14/12/19 5:07 PM.
- *
- * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
+ * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,7 +9,11 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Last Updated at 19/5/20 6:14 PM.
  */
+
+@file:Suppress("MemberVisibilityCanBePrivate")
 
 package com.binatestation.android.kickoff.repository.models
 
@@ -94,7 +95,7 @@ data class EmptyStateModel(
         fun getEmptyModel(errorModel: ErrorModel): EmptyStateModel {
             return EmptyStateModel(
                 -1,
-                errorModel.errorTitle!!,
+                errorModel.errorTitle ?: "",
                 errorModel.errorMessage,
                 R.drawable.ic_hourglass_empty_black_24dp
             )
@@ -110,7 +111,7 @@ data class EmptyStateModel(
                 -1,
                 "No Data",
                 "No data available for you yet, Please tune after some times..!",
-                R.drawable.ic_cloud_computing
+                R.drawable.ic_no_data
             )
 
         /**
@@ -135,6 +136,7 @@ data class EmptyStateModel(
             get() = getEmptyDataModels(
                 emptyDataModel
             )
+
         /**
 
          * gets the list of EmptyStateModels
@@ -153,9 +155,7 @@ data class EmptyStateModel(
          * @return list of EmptyStateModels
          */
         fun getEmptyDataModels(emptyStateModel: EmptyStateModel): ArrayList<Any> {
-            val emptyStateModels = ArrayList<Any>()
-            emptyStateModels.add(emptyStateModel)
-            return emptyStateModels
+            return arrayListOf(emptyStateModel)
         }
 
         @Suppress("unused")
@@ -173,41 +173,12 @@ data class EmptyStateModel(
             )
 
 
-        val categoryAddEmptyModel: EmptyStateModel
-            get() = EmptyStateModel(
-                -1,
-                "Add Sub Category",
-                "Tap here to add sub category!",
-                R.drawable.ic_add_black_24dp
-            )
-        val accountAddEmptyModel: EmptyStateModel
-            get() = EmptyStateModel(
-                -1,
-                "Add Account",
-                "Tap here to add sub account!",
-                R.drawable.ic_add_black_24dp
-            )
-
         /**
          * gets EmptyStateModel
          *
          * @return EmptyStateModel
          */
         val unKnownEmptyModel: EmptyStateModel
-            get() = EmptyStateModel(
-                -1,
-                "Alert",
-                "Something went wrong, Please try again later !",
-                R.drawable.ic_hourglass_empty_black_24dp
-            )
-
-        @Suppress("unused")
-                /**
-                 * gets EmptyStateModel
-                 *
-                 * @return EmptyStateModel
-                 */
-        val testCartEmptyStateModel: EmptyStateModel
             get() = EmptyStateModel(
                 -1,
                 "Alert",

@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 7/4/20 2:29 PM.
+ * Last Updated at 19/5/20 6:07 PM.
  */
 
 package com.binatestation.android.kickoff.repository.models
@@ -25,6 +25,8 @@ data class NetworkState private constructor(
     companion object {
         val LOADED = NetworkState(Status.SUCCESS)
         val LOADING = NetworkState(Status.RUNNING)
+        val NO_DATA = NetworkState(Status.NO_DATA)
+        val NO_INTERNET = NetworkState(Status.NO_INTERNET)
         fun error(msg: String?) = NetworkState(Status.FAILED, msg)
     }
 }
