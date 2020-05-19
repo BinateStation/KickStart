@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 19/5/20 6:07 PM.
+ * Last Updated at 19/5/20 6:17 PM.
  */
 
 package com.binatestation.android.kickoff.repository.models
