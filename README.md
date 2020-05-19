@@ -2,9 +2,13 @@
 
 Add dependency by
 
-```implementation 'com.binatestation.android:kickoff:1.1.0.4'```
+```implementation 'com.binatestation.android:kickoff:1.1.0.5'```
 
 This is a library which can be used for avoiding boiler plate code in the RecyclerView
+
+## What's New
+1. com.binatestation.android.kickoff.utils.fragments.SwipeListSearchFragment
+1. com.binatestation.android.kickoff.utils.fragments.PagedSwipeListSearchFragment
 
 ## Prerequisite
 
@@ -20,10 +24,12 @@ you can use this by just Extending the Fragments listed bellow
 * com.binatestation.android.kickoff.utils.fragments.SwipeListFragment
 * com.binatestation.android.kickoff.utils.fragments.SwipeListAddFragment
 * com.binatestation.android.kickoff.utils.fragments.SwipeListAddSearchFragment
+* com.binatestation.android.kickoff.utils.fragments.SwipeListSearchFragment
 * com.binatestation.android.kickoff.utils.fragments.PagedListFragment
 * com.binatestation.android.kickoff.utils.fragments.PagedSwipeListFragment
 * com.binatestation.android.kickoff.utils.fragments.PagedSwipeListAddFragment
 * com.binatestation.android.kickoff.utils.fragments.PagedSwipeListAddSearchFragment
+* com.binatestation.android.kickoff.utils.fragments.PagedSwipeListSearchFragment
 
 ## Example Snippets
 
