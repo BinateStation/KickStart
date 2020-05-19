@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 8/4/20 6:48 PM.
+ * Last Updated at 19/5/20 6:17 PM.
  */
 
 package com.binatestation.android.kickoff.utils.adapters
@@ -47,6 +47,7 @@ class PagedRecyclerViewAdapter<DataModelType>(
 
     @Suppress("MemberVisibilityCanBePrivate", "unused")
     var showEmptyState: Boolean = true
+    var emptyStateModel: EmptyStateModel? = null
     val itemViewTypeModels = ArrayList<ItemViewTypeModel<*, *, *>>()
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -88,7 +89,8 @@ class PagedRecyclerViewAdapter<DataModelType>(
 
     private fun getItemData(position: Int): Any? {
         if (hasExtraRow() && position == itemCount - 1) {
-            return EmptyStateModel.loadingDataModels[0]
+            return emptyStateModel ?: EmptyStateModel.loadingDataModels.firstOrNull()
+            ?: EmptyStateModel.unKnownEmptyModel
         }
         return getItem(position)
     }
