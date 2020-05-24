@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 19/5/20 6:17 PM.
+ * Last Updated at 24/5/20 11:23 AM.
  */
 
 package com.binatestation.android.kickoff.utils.adapters
@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.binatestation.android.kickoff.repository.models.EmptyStateModel
 import com.binatestation.android.kickoff.repository.models.ItemViewTypeModel
 import com.binatestation.android.kickoff.repository.models.NetworkState
+import com.binatestation.android.kickoff.repository.models.enums.Status
 import com.binatestation.android.kickoff.utils.adapters.holders.BaseViewHolder
 import com.binatestation.android.kickoff.utils.adapters.holders.EmptyStateViewHolder
 import com.binatestation.android.kickoff.utils.listeners.ItemClickListener
@@ -89,10 +90,25 @@ class PagedRecyclerViewAdapter<DataModelType>(
 
     private fun getItemData(position: Int): Any? {
         if (hasExtraRow() && position == itemCount - 1) {
-            return emptyStateModel ?: EmptyStateModel.loadingDataModels.firstOrNull()
-            ?: EmptyStateModel.unKnownEmptyModel
+            return getEmptyStateModel()
         }
         return getItem(position)
+    }
+
+    private fun getEmptyStateModel(): Any {
+        return emptyStateModel ?: getEmptyStateModelFromNetworkState()
+    }
+
+    private fun getEmptyStateModelFromNetworkState(): EmptyStateModel {
+        return networkState?.takeIf { it.status == Status.RUNNING }
+            ?.let { EmptyStateModel.loadingDataModels.firstOrNull() as? EmptyStateModel }
+            ?: networkState?.takeIf { it.status == Status.NO_DATA }
+                ?.let { EmptyStateModel.noInternetEmptyModel }
+            ?: networkState?.takeIf { it.status == Status.NO_INTERNET }
+                ?.let { EmptyStateModel.noInternetEmptyModel }
+            ?: networkState?.takeIf { it.status == Status.FAILED }
+                ?.let { EmptyStateModel(message = it.msg) }
+            ?: EmptyStateModel.unKnownEmptyModel
     }
 
     override fun getItemViewType(position: Int): Int {
