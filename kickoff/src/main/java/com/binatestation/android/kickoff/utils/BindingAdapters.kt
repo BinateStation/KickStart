@@ -10,14 +10,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 7/4/20 12:31 PM.
+ * Last Updated at 24/5/20 1:00 PM.
  */
+
+@file:Suppress("unused")
 
 package com.binatestation.android.kickoff.utils
 
+import android.os.Build
+import android.text.Html
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.widget.ContentLoadingProgressBar
 import androidx.databinding.BindingAdapter
@@ -78,5 +83,17 @@ fun showProgress(
         contentLoadingProgressBar.show()
     } else {
         contentLoadingProgressBar.hide()
+    }
+}
+
+@Suppress("DEPRECATION")
+@BindingAdapter("android:text")
+fun setText(textView: TextView, text: String?) {
+    text?.let {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            textView.text = Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT)
+        } else {
+            textView.text = Html.fromHtml(text)
+        }
     }
 }
