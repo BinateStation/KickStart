@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 19/5/20 6:17 PM.
+ * Last Updated at 25/5/20 6:38 PM.
  */
 
 package com.binatestation.android.kickoff.repository.paging
@@ -149,20 +149,25 @@ class BasePageKeyedDataSource<DataModelType>(
         retry: (Boolean) -> Unit
     ) {
         getAllCallBack(pageIndex, pageSize) {
-            if (it is ApiSuccessResponse) {
-                val items = it.body
-                retry(true)
-                callback(items, it.currentPage, it.totalPages)
-                networkState.postValue(NetworkState.LOADED)
-            } else if (it is ApiErrorResponse) {
-                retry(false)
-                networkState.postValue(NetworkState.error(it.errorMessage))
-            } else if (it is ApiEmptyResponse) {
-                retry(false)
-                networkState.postValue(NetworkState.NO_DATA)
-            } else if (it is ApiNoNetworkResponse) {
-                retry(false)
-                networkState.postValue(NetworkState.NO_INTERNET)
+            when (it) {
+                is ApiSuccessResponse -> {
+                    val items = it.body
+                    retry(true)
+                    callback(items, it.currentPage, it.totalPages)
+                    networkState.postValue(NetworkState.LOADED)
+                }
+                is ApiErrorResponse -> {
+                    retry(false)
+                    networkState.postValue(NetworkState.error(it.errorMessage))
+                }
+                is ApiEmptyResponse -> {
+                    retry(false)
+                    networkState.postValue(NetworkState.NO_DATA)
+                }
+                is ApiNoNetworkResponse -> {
+                    retry(false)
+                    networkState.postValue(NetworkState.NO_INTERNET)
+                }
             }
         }
     }

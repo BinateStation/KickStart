@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 19/5/20 6:17 PM.
+ * Last Updated at 25/5/20 6:38 PM.
  */
 
 @file:Suppress("MemberVisibilityCanBePrivate")
@@ -106,7 +106,7 @@ data class EmptyStateModel(
          *
          * @return EmptyStateModel
          */
-        private val emptyDataModel: EmptyStateModel
+        val emptyDataModel: EmptyStateModel
             get() = EmptyStateModel(
                 -1,
                 "No Data",
@@ -119,7 +119,7 @@ data class EmptyStateModel(
          *
          * @return EmptyStateModel
          */
-        private val loadingDataModel: EmptyStateModel
+        val loadingDataModel: EmptyStateModel
             get() = EmptyStateModel(
                 -1,
                 "",
