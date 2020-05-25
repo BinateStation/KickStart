@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 24/5/20 11:23 AM.
+ * Last Updated at 25/5/20 6:38 PM.
  */
 
 package com.binatestation.android.kickoff.utils.adapters
@@ -101,9 +101,9 @@ class PagedRecyclerViewAdapter<DataModelType>(
 
     private fun getEmptyStateModelFromNetworkState(): EmptyStateModel {
         return networkState?.takeIf { it.status == Status.RUNNING }
-            ?.let { EmptyStateModel.loadingDataModels.firstOrNull() as? EmptyStateModel }
+            ?.let { EmptyStateModel.loadingDataModel }
             ?: networkState?.takeIf { it.status == Status.NO_DATA }
-                ?.let { EmptyStateModel.noInternetEmptyModel }
+                ?.let { EmptyStateModel.emptyDataModel }
             ?: networkState?.takeIf { it.status == Status.NO_INTERNET }
                 ?.let { EmptyStateModel.noInternetEmptyModel }
             ?: networkState?.takeIf { it.status == Status.FAILED }
