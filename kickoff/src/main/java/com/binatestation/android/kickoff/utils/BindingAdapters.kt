@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 24/5/20 1:00 PM.
+ * Last Updated at 26/5/20 10:54 PM.
  */
 
 @file:Suppress("unused")
@@ -87,7 +87,7 @@ fun showProgress(
 }
 
 @Suppress("DEPRECATION")
-@BindingAdapter("android:text")
+@BindingAdapter("htmlText")
 fun setText(textView: TextView, text: String?) {
     text?.let {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
