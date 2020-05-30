@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 17/5/20 10:42 AM.
+ * Last Updated at 30/5/20 11:08 PM.
  */
 
 package com.binatestation.android.kickoff.repository.models
@@ -39,6 +39,7 @@ sealed class ApiResponse<T> {
     companion object {
         fun <DataType> getCallback(
             data: MutableLiveData<ApiResponse<DataType>>? = null,
+            errorObjectKey: String? = null,
             callBack: ((ApiResponse<DataType>) -> Unit)? = null
         ): Callback<DataType> {
             return object : Callback<DataType> {
@@ -52,7 +53,7 @@ sealed class ApiResponse<T> {
                     call: Call<DataType>,
                     response: Response<DataType>
                 ) {
-                    val res = create(call, response)
+                    val res = create(call, response, errorObjectKey)
                     callBack?.let { it(res) }
                     data?.postValue(res)
                 }
