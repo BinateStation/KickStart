@@ -1,7 +1,7 @@
 image: openjdk:8-jdk
 stages:
-  - lint
   - prepare
+  - lint
   - build
   - test
   - publish
