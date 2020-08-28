@@ -1,7 +1,7 @@
 image: openjdk:8-jdk
 stages:
   - prepare
-#  - lint
+  - lint
   - build
   - test
   - publish
@@ -58,9 +58,6 @@ before_script:
 
 createPropertyFiles:
   stage: prepare
-  only:
-    - tags
-    - develop
   script:
     - echo "bintray.user=$user" >> local.properties
     - echo "bintray.apikey=$apikey" >> local.properties
@@ -71,11 +68,11 @@ createPropertyFiles:
 
 # Basic android and gradle stuff
 # Check linting
-#lintDebug:
-#  interruptible: true
-#  stage: lint
-#  script:
-#    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+lintDebug:
+  interruptible: true
+  stage: lint
+  script:
+    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
 
 # Make Project
 # Debug Build
