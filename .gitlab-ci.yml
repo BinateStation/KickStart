@@ -60,6 +60,7 @@ createPropertyFiles:
   stage: prepare
   only:
     - tags
+    - develop
   script:
     - echo "bintray.user=$user" >> local.properties
     - echo "bintray.apikey=$apikey" >> local.properties
