@@ -64,7 +64,7 @@ createPropertyFiles:
   artifacts:
     paths:
       - local.properties
-    expire_in: 20 mins
+    expire_in: 2h
 
 # Basic android and gradle stuff
 # Check linting
