@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 28/8/20 3:49 PM.
+ * Last Updated at 28/8/20 5:40 PM.
  */
 
 apply plugin: 'com.android.library'
@@ -95,7 +95,7 @@ dependencies {
 project.afterEvaluate {
     publishing {
         publications {
-            library(MavenPublication) {
+            aar(MavenPublication) {
                 setGroupId groupId
                 setArtifactId artifactId
                 version android.defaultConfig.versionName
