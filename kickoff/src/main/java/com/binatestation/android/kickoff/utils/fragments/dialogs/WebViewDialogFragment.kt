@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 28/8/20 3:47 PM.
+ * Last Updated at 28/8/20 3:57 PM.
  */
 
 package com.binatestation.android.kickoff.utils.fragments.dialogs
@@ -95,7 +95,9 @@ open class WebViewDialogFragment : BaseDialogFragment() {
      */
     private fun loadUrl() {
         if (!TextUtils.isEmpty(url) && web_view != null) {
-            web_view?.loadUrl(url)
+            url?.let {
+                web_view?.loadUrl(it)
+            }
         }
     }
 
