@@ -66,7 +66,7 @@ createPropertyFiles:
     - echo "bintray.apikey=$apikey" >> local.properties
   artifacts:
     paths:
-      - signing.properties
+      - local.properties
     expire_in: 20 mins
 
 # Basic android and gradle stuff
