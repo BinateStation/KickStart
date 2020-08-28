@@ -71,6 +71,7 @@ createPropertyFiles:
 lintDebug:
   interruptible: true
   stage: lint
+  needs: ["createPropertyFiles"]
   script:
     - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
 
@@ -79,6 +80,7 @@ lintDebug:
 assembleDebug:
   interruptible: true
   stage: build
+  needs: ["createPropertyFiles"]
   except:
     - tags
     - master
@@ -92,6 +94,7 @@ assembleDebug:
 assembleRelease:
   interruptible: true
   stage: build
+  needs: ["createPropertyFiles"]
   only:
     - master
   script:
@@ -105,14 +108,15 @@ assembleRelease:
 debugTests:
   interruptible: true
   stage: test
+  needs: ["createPropertyFiles"]
   script:
     - ./gradlew -Pci --console=plain :app:testDebug
 
 publish:
   interruptible: true
   stage: publish
+  needs: ["createPropertyFiles"]
   only:
     - tags
-    - develop
   script:
     - ./gradlew bintrayUpload
