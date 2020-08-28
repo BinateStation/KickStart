@@ -1,7 +1,7 @@
 image: openjdk:8-jdk
 stages:
   - prepare
-  - lint
+#  - lint
   - build
   - test
   - publish
@@ -70,11 +70,11 @@ createPropertyFiles:
 
 # Basic android and gradle stuff
 # Check linting
-lintDebug:
-  interruptible: true
-  stage: lint
-  script:
-    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+#lintDebug:
+#  interruptible: true
+#  stage: lint
+#  script:
+#    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
 
 # Make Project
 # Debug Build
