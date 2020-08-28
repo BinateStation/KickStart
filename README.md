@@ -2,7 +2,7 @@
 
 Add dependency by
 
-```implementation 'com.binatestation.android:kickoff:1.1.4'```
+```implementation 'com.binatestation.android:kickoff:1.1.5'```
 
 This is a library which can be used for avoiding boiler plate code in the RecyclerView
 
@@ -13,6 +13,7 @@ This is a library which can be used for avoiding boiler plate code in the Recycl
 1. Network State EmptyStateModel in PagedRecyclerViewAdapter 
 1. Html Support in Empty State Text View
 1. Error Object key in get callback
+1. WebviewDialogFragment is now open. you can extend it
 
 ## Prerequisite
 

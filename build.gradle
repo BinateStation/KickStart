@@ -10,13 +10,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 28/8/20 3:47 PM.
+ * Last Updated at 28/8/20 3:53 PM.
  */
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kick_off_library_version = '1.1.4'
+    ext.kick_off_library_version = '1.1.5'
     ext.kotlin_version = '1.4.0'
     ext.nav_version = '2.3.0'
     repositories {
