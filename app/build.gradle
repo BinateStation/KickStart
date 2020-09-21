@@ -96,7 +96,7 @@ dependencies {
     // Network
     implementation "com.squareup.retrofit2:retrofit:${retrofit}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit}"
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.8.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
 
     // debug
     debugImplementation 'im.dino:dbinspector:4.0.0@aar'

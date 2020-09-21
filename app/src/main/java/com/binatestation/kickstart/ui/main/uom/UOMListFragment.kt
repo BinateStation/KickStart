@@ -17,10 +17,7 @@ package com.binatestation.kickstart.ui.main.uom
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.binatestation.android.kickoff.repository.models.ItemViewTypeModel
 import com.binatestation.android.kickoff.repository.models.NetworkState
 import com.binatestation.android.kickoff.utils.fragments.PagedSwipeListAddSearchFragment
@@ -54,21 +51,13 @@ class UOMListFragment : PagedSwipeListAddSearchFragment<UOMModel>(
                 AdapterUomBinding::class.java
             )
         )
-        viewModel.uoms.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it) {
-                // Workaround for an issue where RecyclerView incorrectly uses the loading / spinner
-                // item added to the end of the list as an anchor during initial load.
-                val layoutManager = (getLayoutManager() as LinearLayoutManager)
-                val position = layoutManager.findFirstCompletelyVisibleItemPosition()
-                if (position != RecyclerView.NO_POSITION) {
-                    getRecyclerView()?.scrollToPosition(position)
-                }
-            }
+        viewModel.uoms.observe(viewLifecycleOwner, {
+            adapter.submitList(it)
         })
-        viewModel.networkState.observe(viewLifecycleOwner, Observer {
-            adapter.setNetworkState(it)
+        viewModel.networkState.observe(viewLifecycleOwner, {
+            setNetworkState(it)
         })
-        viewModel.refreshState.observe(viewLifecycleOwner, Observer {
+        viewModel.refreshState.observe(viewLifecycleOwner, {
             getSwipeRefreshLayout()?.isRefreshing = it == NetworkState.LOADING
         })
     }
