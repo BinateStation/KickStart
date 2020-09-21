@@ -34,5 +34,6 @@
     <string name="post_subtitle">Submitted by %s</string>
     <string name="retry">Retry</string>
     <string name="uoms">UOMs</string>
+    <string name="image_carousel">Image Carousel</string>
 
 </resources>
