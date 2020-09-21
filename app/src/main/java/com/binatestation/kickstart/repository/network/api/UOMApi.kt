@@ -24,9 +24,9 @@ import retrofit2.http.Query
 
 interface UOMApi {
 
-    @GET("https://alphaapi.mytyre.com/api/v1/admin/uoms")
+    @GET("https://devapi.mytyre.com/api/v1/admin/uoms")
     fun getAll(
-        @Header("Authorization") token: String = "Bearer byoTJ5zvYHXlPanslEjKQXRRdaELNK0JAdo48gaw2PQ",
+        @Header("Authorization") token: String = "Bearer voyBHFPl--gG-Sr3SppYp5GI17DTvRE1_ijBKaYKOLE",
         @Query(Constants.GeneralConstants.KEY_PAGE) pageIndex: Int?,
         @Query(Constants.GeneralConstants.KEY_ITEMS) pageSize: Int?
     ): Call<List<UOMModel>>

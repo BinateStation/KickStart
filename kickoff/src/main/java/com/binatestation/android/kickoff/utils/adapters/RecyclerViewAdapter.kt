@@ -20,6 +20,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.binatestation.android.kickoff.R
 import com.binatestation.android.kickoff.repository.models.EmptyStateModel
 import com.binatestation.android.kickoff.repository.models.ItemViewTypeModel
 import com.binatestation.android.kickoff.utils.adapters.holders.BaseViewHolder
@@ -186,7 +187,12 @@ open class RecyclerViewAdapter :
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        viewHolder = EmptyStateViewHolder(parent)
+        viewHolder = EmptyStateViewHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.adapter_empty_state, parent, false
+            )
+        )
         viewHolder.setOnItemClickListener { position, actionView ->
             onClickItem?.let { onClick -> onClick(getItem(position), position, actionView) }
         }
