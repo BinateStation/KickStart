@@ -17,7 +17,6 @@ package com.binatestation.kickstart.ui.main.album
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.binatestation.android.kickoff.repository.models.ItemViewTypeModel
 import com.binatestation.android.kickoff.utils.fragments.ListFragment
@@ -43,7 +42,7 @@ class AlbumFragment : ListFragment() {
                 AdapterAlbumBinding::class.java
             )
         )
-        albumViewModel.albums.observe(viewLifecycleOwner, Observer { it ->
+        albumViewModel.albums.observe(viewLifecycleOwner, { it ->
             it.data?.let {
                 adapter.setTypedData(it)
             }

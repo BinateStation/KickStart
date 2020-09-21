@@ -17,15 +17,22 @@
 
 package com.binatestation.android.kickoff.utils
 
+import android.R
+import android.graphics.Bitmap
 import android.os.Build
 import android.text.Html
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.View
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
+import androidx.annotation.IdRes
+import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.widget.ContentLoadingProgressBar
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.binatestation.android.kickoff.utils.adapters.RecyclerViewAdapter
 
 /**
  * @author RKR #rkrsmail@gmail.com
@@ -96,4 +103,106 @@ fun setText(textView: TextView, text: String?) {
             textView.text = Html.fromHtml(text)
         }
     }
+}
+
+@BindingAdapter("android:src", "path", "bitmap", "circular", requireAll = false)
+fun setImageResource(
+    view: View,
+    resource: Int?,
+    path: String?,
+    bitmap: Bitmap?,
+    circular: Boolean?
+) {
+    resource?.let {
+        if (view is ImageButton)
+            view.setImageResource(resource)
+        if (view is ImageView)
+            view.setImageResource(resource)
+    }
+    path?.let {
+        if (view is ImageView)
+            if (circular == true) {
+                Utils.setCircleProfileImage(view, it)
+            } else {
+                Utils.setImage(view, it)
+            }
+    }
+    bitmap?.let {
+        if (view is ImageView)
+            if (circular == true) {
+                Utils.setCircleProfileImage(view, it)
+            } else {
+                Utils.setImage(view, it)
+            }
+    }
+}
+
+/**
+ * Binding adapter used to highlight the search term in the list
+ *
+ * @param textView [TextView] which have search term
+ * @param query String? The query term
+ */
+@BindingAdapter("query")
+fun searchHighlight(textView: TextView, query: String?) {
+    query?.let {
+        val text = textView.text
+        val wordToSpan: Spannable =
+            SpannableString(textView.text)
+        wordToSpan.setSpan(
+            ForegroundColorSpan(textView.currentTextColor),
+            0,
+            text.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        val start = text.findAnyOf(listOf(query), ignoreCase = true)
+        start?.first?.let {
+            wordToSpan.setSpan(
+                ForegroundColorSpan(textView.highlightColor),
+                it,
+                it + start.second.length,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
+        textView.text = wordToSpan
+    }
+}
+
+@BindingAdapter("recyclerViewAdapter")
+fun setRecyclerViewAdapter(
+    recyclerView: RecyclerView,
+    adapter: RecyclerViewAdapter? = null
+) {
+    recyclerView.adapter = adapter
+}
+
+@BindingAdapter("entries", "itemLayout", "textViewId", requireAll = false)
+fun setAdapterAutoComplete(
+    autoCompleteTextView: AutoCompleteTextView,
+    entries: List<*>?,
+    @LayoutRes itemLayout: Int?,
+    @IdRes textViewId: Int?
+) {
+    val adapter = when {
+        itemLayout == null -> {
+            ArrayAdapter(
+                autoCompleteTextView.context,
+                R.layout.simple_list_item_1,
+                R.id.text1,
+                entries ?: emptyList()
+            )
+        }
+        textViewId == null -> {
+            ArrayAdapter(autoCompleteTextView.context, itemLayout, entries ?: emptyList())
+        }
+        else -> {
+            ArrayAdapter(
+                autoCompleteTextView.context,
+                itemLayout,
+                textViewId,
+                entries ?: emptyList()
+            )
+        }
+    }
+    autoCompleteTextView.setAdapter(adapter)
 }
