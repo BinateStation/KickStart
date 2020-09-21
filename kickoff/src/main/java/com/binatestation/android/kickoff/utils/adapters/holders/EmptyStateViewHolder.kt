@@ -16,9 +16,6 @@
 package com.binatestation.android.kickoff.utils.adapters.holders
 
 import android.graphics.drawable.AnimatedVectorDrawable
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.binatestation.android.kickoff.R
 import com.binatestation.android.kickoff.databinding.AdapterEmptyStateBinding
@@ -31,11 +28,7 @@ import com.binatestation.android.kickoff.repository.models.EmptyStateModel
  */
 
 class EmptyStateViewHolder(
-    viewGroup: ViewGroup,
-    private val adapterEmptyStateBinding: AdapterEmptyStateBinding = DataBindingUtil.inflate(
-        LayoutInflater.from(viewGroup.context),
-        LAYOUT, viewGroup, false
-    )
+    private val adapterEmptyStateBinding: AdapterEmptyStateBinding
 ) : BaseViewHolder(adapterEmptyStateBinding.root) {
 
     override fun bindView(`object`: Any?) {

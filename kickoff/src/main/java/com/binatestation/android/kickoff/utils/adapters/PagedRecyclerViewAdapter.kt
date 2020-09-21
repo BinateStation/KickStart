@@ -22,6 +22,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.binatestation.android.kickoff.R
 import com.binatestation.android.kickoff.repository.models.EmptyStateModel
 import com.binatestation.android.kickoff.repository.models.ItemViewTypeModel
 import com.binatestation.android.kickoff.repository.models.NetworkState
@@ -34,6 +35,7 @@ import com.binatestation.android.kickoff.utils.listeners.ViewBinder
 /**
  * A general paged Recycler view adapter.
  */
+@Suppress("MemberVisibilityCanBePrivate", "unused")
 class PagedRecyclerViewAdapter<DataModelType>(
     comparator: DiffUtil.ItemCallback<DataModelType>
 ) : PagedListAdapter<DataModelType, RecyclerView.ViewHolder>(comparator), ItemClickListener {
@@ -44,9 +46,9 @@ class PagedRecyclerViewAdapter<DataModelType>(
         this.onClickItem = onClickItem
     }
 
+    @Deprecated("Removed from here and added at fragment level")
     private var networkState: NetworkState? = null
 
-    @Suppress("MemberVisibilityCanBePrivate", "unused")
     var showEmptyState: Boolean = true
     var emptyStateModel: EmptyStateModel? = null
     val itemViewTypeModels = ArrayList<ItemViewTypeModel<*, *, *>>()
@@ -79,7 +81,12 @@ class PagedRecyclerViewAdapter<DataModelType>(
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        viewHolder = EmptyStateViewHolder(parent)
+        viewHolder = EmptyStateViewHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.adapter_empty_state, parent, false
+            )
+        )
         viewHolder.setOnItemClickListener { position, actionView ->
             onClickItem?.let { onClick -> onClick(getItemData(position), position, actionView) }
         }
@@ -130,6 +137,7 @@ class PagedRecyclerViewAdapter<DataModelType>(
         return super.getItemCount() + if (hasExtraRow()) 1 else 0
     }
 
+    @Deprecated("Removed from here and added at fragment level")
     fun setNetworkState(newNetworkState: NetworkState?) {
         try {
             val previousState = this.networkState
