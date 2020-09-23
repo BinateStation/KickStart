@@ -2,6 +2,7 @@ package com.binatestation.android.kickoff.utils.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 
 private const val ARG_IMAGE_URLS = "image_urls"
@@ -14,7 +15,7 @@ private const val ARG_IMAGE_URLS = "image_urls"
 open class ImageCarouselFragment : PageSliderWithIndicatorFragment() {
 
     private var imageUrls: ArrayList<String>? = null
-
+    private var scaleType: ImageView.ScaleType = ImageView.ScaleType.CENTER_CROP
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +31,16 @@ open class ImageCarouselFragment : PageSliderWithIndicatorFragment() {
 
     fun setImages(imageUrls: List<String>) {
         imageUrls.forEach {
-            addFragment(ImageFragment.newInstance(it))
+            addFragment(ImageFragment.newInstance(it, scaleType))
         }
+    }
+
+    /**
+     * to change the image scale type of the Image view
+     * @param scaleType ScaleType
+     */
+    fun setScaleType(scaleType: ImageView.ScaleType) {
+        this.scaleType = scaleType
     }
 
     companion object {
