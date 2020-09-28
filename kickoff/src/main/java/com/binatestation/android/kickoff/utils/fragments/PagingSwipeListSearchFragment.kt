@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Last Updated at 8/4/20 8:13 PM.
+ * Last Updated at 19/5/20 10:40 AM.
  */
 
 @file:Suppress("unused")
@@ -26,20 +26,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.binatestation.android.kickoff.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.fragment_swipe_list_add.*
 import kotlinx.android.synthetic.main.fragment_swipe_list_add_search.*
 
 /**
- * A simple [PagedSwipeListAddFragment] subclass. which can be used for [SearchView], [SwipeRefreshLayout] with Add [FloatingActionButton]
+ * A simple [PagingSwipeListAddFragment] subclass. which can be used for [SearchView], [SwipeRefreshLayout] without Add [FloatingActionButton]
  */
-@Deprecated(
-    message = "PagedSwipeListAddSearchFragment is deprecated and has been replaced by PagingSwipeListAddSearchFragment",
-    replaceWith = ReplaceWith(
-        "PagingSwipeListAddSearchFragment<DataModelType>",
-        "com.binatestation.android.kickoff.utils.fragments.PagingSwipeListAddSearchFragment"
-    )
-)
-open class PagedSwipeListAddSearchFragment<DataModelType : Any>(comparator: DiffUtil.ItemCallback<DataModelType>) :
-    PagedSwipeListAddFragment<DataModelType>(comparator) {
+open class PagingSwipeListSearchFragment<DataModelType : Any>(comparator: DiffUtil.ItemCallback<DataModelType>) :
+    PagingSwipeListAddFragment<DataModelType>(comparator) {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,6 +42,11 @@ open class PagedSwipeListAddSearchFragment<DataModelType : Any>(comparator: Diff
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_swipe_list_add_search, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        action_add?.visibility = View.GONE
     }
 
     /**

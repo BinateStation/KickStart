@@ -32,7 +32,14 @@ import kotlinx.android.synthetic.main.fragment_swipe_list_add_search.*
 /**
  * A simple [PagedSwipeListAddFragment] subclass. which can be used for [SearchView], [SwipeRefreshLayout] without Add [FloatingActionButton]
  */
-open class PagedSwipeListSearchFragment<DataModelType>(comparator: DiffUtil.ItemCallback<DataModelType>) :
+@Deprecated(
+    message = "PagedSwipeListSearchFragment is deprecated and has been replaced by PagingSwipeListSearchFragment",
+    replaceWith = ReplaceWith(
+        "PagingSwipeListSearchFragment<DataModelType>",
+        "com.binatestation.android.kickoff.utils.fragments.PagingSwipeListSearchFragment"
+    )
+)
+open class PagedSwipeListSearchFragment<DataModelType : Any>(comparator: DiffUtil.ItemCallback<DataModelType>) :
     PagedSwipeListAddFragment<DataModelType>(comparator) {
 
     override fun onCreateView(

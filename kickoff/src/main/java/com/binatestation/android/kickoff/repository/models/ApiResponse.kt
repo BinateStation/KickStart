@@ -72,7 +72,7 @@ sealed class ApiResponse<T> {
         }
 
         fun <T> create(
-            call: Call<T>,
+            call: Call<T>? = null,
             response: Response<T>,
             errorObjectKey: String? = null
         ): ApiResponse<T> {
@@ -83,7 +83,7 @@ sealed class ApiResponse<T> {
                 } else {
                     ApiSuccessResponse(
                         body = body,
-                        requestId = call.request().header(KEY_REQUEST_ID),
+                        requestId = call?.request()?.header(KEY_REQUEST_ID),
                         linkHeader = response.headers()[KEY_LINK],
                         currentPage = response.headers()[Constants.GeneralConstants.KEY_CURRENT_PAGE],
                         totalPages = response.headers()[Constants.GeneralConstants.KEY_TOTAL_PAGES],
@@ -124,6 +124,8 @@ sealed class ApiResponse<T> {
                 )
             }
         }
+
+
     }
 }
 

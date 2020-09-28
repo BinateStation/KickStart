@@ -22,7 +22,14 @@ import androidx.paging.toLiveData
 import com.binatestation.android.kickoff.repository.models.ApiResponse
 import com.binatestation.android.kickoff.repository.models.PagedResponseModel
 
-abstract class BasePagedRepository<DataModelType> {
+@Deprecated(
+    message = "BasePagedRepository is deprecated and has been replaced by BasePagingRepository",
+    replaceWith = ReplaceWith(
+        "BasePagedRepository<DataModelType>",
+        "com.binatestation.android.kickoff.repository.paging.BasePagingRepository"
+    )
+)
+abstract class BasePagedRepository<DataModelType : Any> {
 
     fun getAll(
         pageIndex: Int,

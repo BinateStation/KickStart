@@ -28,17 +28,10 @@ import kotlinx.android.synthetic.main.fragment_swipe_list.*
 
 
 /**
- * A simple [PagedListFragment] subclass. Which can be use for [SwipeRefreshLayout] with [PagedListFragment]
+ * A simple [PagingDataListFragment] subclass. Which can be use for [SwipeRefreshLayout] with [PagingDataListFragment]
  */
-@Deprecated(
-    message = "PagedSwipeListFragment is deprecated and has been replaced by PagingDataSwipeListFragment",
-    replaceWith = ReplaceWith(
-        "PagingDataSwipeListFragment<DataModelType>",
-        "com.binatestation.android.kickoff.utils.fragments.PagingDataSwipeListFragment"
-    )
-)
-open class PagedSwipeListFragment<DataModelType : Any>(comparator: DiffUtil.ItemCallback<DataModelType>) :
-    PagedListFragment<DataModelType>(comparator) {
+open class PagingDataSwipeListFragment<DataModelType : Any>(comparator: DiffUtil.ItemCallback<DataModelType>) :
+    PagingDataListFragment<DataModelType>(comparator) {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,7 +56,7 @@ open class PagedSwipeListFragment<DataModelType : Any>(comparator: DiffUtil.Item
     }
 
     /**
-     * gets the [SwipeRefreshLayout] instance used in this [PagedSwipeListFragment]
+     * gets the [SwipeRefreshLayout] instance used in this [PagingDataSwipeListFragment]
      * @return SwipeRefreshLayout?
      */
     fun getSwipeRefreshLayout(): SwipeRefreshLayout? = swipe_refresh_layout

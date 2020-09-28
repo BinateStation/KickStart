@@ -24,7 +24,9 @@ import com.binatestation.android.kickoff.databinding.AdapterEmptyStateBinding
 import com.binatestation.android.kickoff.repository.models.EmptyStateModel
 import com.binatestation.android.kickoff.repository.models.NetworkState
 import com.binatestation.android.kickoff.repository.models.enums.Status
+import com.binatestation.android.kickoff.utils.adapters.NetworkLoadStateAdapter
 import com.binatestation.android.kickoff.utils.adapters.PagedRecyclerViewAdapter
+import com.binatestation.android.kickoff.utils.adapters.PagingDataRecyclerViewAdapter
 import com.binatestation.android.kickoff.utils.adapters.holders.EmptyStateViewHolder
 import kotlinx.android.synthetic.main.fragment_list.*
 
@@ -32,16 +34,10 @@ import kotlinx.android.synthetic.main.fragment_list.*
  * A simple [BaseListFragment] subclass. which can be used for recycler view with paging
  * Here we sets [PagedRecyclerViewAdapter] for the [RecyclerView] used in [BaseListFragment]
  */
-@Deprecated(
-    message = "PagedListFragment is deprecated and has been replaced by PagingDataListFragment",
-    replaceWith = ReplaceWith(
-        "PagingDataListFragment<DataModelType>",
-        "com.binatestation.android.kickoff.utils.fragments.PagingDataListFragment"
-    )
-)
-open class PagedListFragment<DataModelType : Any>(private val comparator: DiffUtil.ItemCallback<DataModelType>) :
+
+open class PagingDataListFragment<DataModelType : Any>(private val comparator: DiffUtil.ItemCallback<DataModelType>) :
     BaseListFragment() {
-    private var mAdapter: PagedRecyclerViewAdapter<DataModelType>? = null
+    private var mAdapter: PagingDataRecyclerViewAdapter<DataModelType>? = null
 
     private var networkState: NetworkState? = null
 
@@ -50,16 +46,20 @@ open class PagedListFragment<DataModelType : Any>(private val comparator: DiffUt
     /**
      * get [PagedRecyclerViewAdapter] object used in the [RecyclerView] of [BaseListFragment]
      */
-    override val adapter: PagedRecyclerViewAdapter<DataModelType>
+    override val adapter: PagingDataRecyclerViewAdapter<DataModelType>
         get() {
             if (mAdapter == null) {
-                mAdapter = PagedRecyclerViewAdapter(comparator = comparator)
+                mAdapter = PagingDataRecyclerViewAdapter(comparator = comparator)
             }
             return mAdapter!!
         }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getRecyclerView()?.adapter = adapter.withLoadStateHeaderAndFooter(
+            header = NetworkLoadStateAdapter(),
+            footer = NetworkLoadStateAdapter()
+        )
         val adapterEmptyStateBinding = DataBindingUtil.bind<AdapterEmptyStateBinding>(
             empty_state
         )
