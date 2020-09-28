@@ -15,29 +15,33 @@
 
 package com.binatestation.kickstart.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import com.binatestation.android.kickoff.repository.models.ApiResponse
-import com.binatestation.android.kickoff.repository.paging.BasePagedRepository
+import com.binatestation.android.kickoff.repository.paging.BasePageKeyedRemoteMediator
+import com.binatestation.android.kickoff.repository.paging.BasePagingRepository
+import com.binatestation.kickstart.repository.local.dao.UomDao
 import com.binatestation.kickstart.repository.models.UOMModel
 import com.binatestation.kickstart.repository.network.api.UOMApi
-import retrofit2.Call
-import retrofit2.Response
 
-class UOMRepository(private val uomApi: UOMApi) : BasePagedRepository<UOMModel>() {
+class UOMRepository(private val uomApi: UOMApi, private val uomDao: UomDao) :
+    BasePagingRepository<UOMModel> {
 
-    fun getAll(pageIndex: Int, pageSize: Int) =
-        super.getAll(pageIndex, pageSize) { index, size, apiCallBack ->
-            uomApi.getAll(pageIndex = index, pageSize = size)
-                .enqueue(object : retrofit2.Callback<List<UOMModel>> {
-                    override fun onFailure(call: Call<List<UOMModel>>, throwable: Throwable) {
-                        apiCallBack(ApiResponse.create(throwable))
-                    }
+    override fun getAll(pageSize: Int) = Pager(
+        config = PagingConfig(pageSize),
+        remoteMediator = BasePageKeyedRemoteMediator(
+            getAllSuspend = { pageIndex, size ->
+                ApiResponse.create(
+                    response = uomApi.getAllSuspend(
+                        pageIndex = pageIndex,
+                        pageSize = size
+                    )
+                )
+            },
+            insertData = { data -> uomDao.insertAll(data) }
+        )
+    ) {
+        uomDao.getAllPageSource()
+    }.flow
 
-                    override fun onResponse(
-                        call: Call<List<UOMModel>>,
-                        response: Response<List<UOMModel>>
-                    ) {
-                        apiCallBack(ApiResponse.create(call, response))
-                    }
-                })
-        }
 }

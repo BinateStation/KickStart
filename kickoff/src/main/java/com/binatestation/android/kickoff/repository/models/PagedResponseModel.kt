@@ -18,7 +18,7 @@ package com.binatestation.android.kickoff.repository.models
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
 
-data class PagedResponseModel<DataModelType>(
+data class PagedResponseModel<DataModelType : Any>(
     // the LiveData of paged lists for the UI to observe
     val pagedList: LiveData<PagedList<DataModelType>>,
     // represents the network request status to show to the user
