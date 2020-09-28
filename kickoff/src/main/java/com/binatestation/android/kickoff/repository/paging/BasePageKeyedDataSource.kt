@@ -19,7 +19,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.binatestation.android.kickoff.repository.models.*
 
-class BasePageKeyedDataSource<DataModelType>(
+@Deprecated(
+    message = "BasePageKeyedDataSource is deprecated and has been replaced by BasePagingSource",
+    replaceWith = ReplaceWith(
+        "BasePagingSource<DataModelType>",
+        "com.binatestation.android.kickoff.repository.paging.BasePagingSource"
+    )
+)
+class BasePageKeyedDataSource<DataModelType : Any>(
     private val pageIndex: Int,
     private val pageSize: Int,
     private val getAllCallBack: (pageIndex: Int, pageSize: Int, apiCallBack: (ApiResponse<List<DataModelType>>) -> Unit) -> Unit

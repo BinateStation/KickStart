@@ -19,7 +19,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.binatestation.android.kickoff.repository.models.ApiResponse
 
-class BaseDataSourceFactory<DataModelType>(
+@Deprecated(
+    message = "BaseDataSourceFactory is no more needed"
+)
+class BaseDataSourceFactory<DataModelType : Any>(
     private val pageIndex: Int,
     private val pageSize: Int,
     private val getAllCallBack: (pageIndex: Int, pageSize: Int, apiCallBack: (ApiResponse<List<DataModelType>>) -> Unit) -> Unit

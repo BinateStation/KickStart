@@ -25,18 +25,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_swipe_list_add.*
 
 /**
- * A simple [PagedSwipeListFragment] subclass. which can be used for swipe refresh layout with Add [FloatingActionButton]
+ * A simple [PagingDataSwipeListFragment] subclass. which can be used for swipe refresh layout with Add [FloatingActionButton]
  */
 @Suppress("unused")
-@Deprecated(
-    message = "PagedSwipeListAddFragment is deprecated and has been replaced by PagingSwipeListAddFragment",
-    replaceWith = ReplaceWith(
-        "PagingSwipeListAddFragment<DataModelType>",
-        "com.binatestation.android.kickoff.utils.fragments.PagingSwipeListAddFragment"
-    )
-)
-open class PagedSwipeListAddFragment<DataModelType : Any>(comparator: DiffUtil.ItemCallback<DataModelType>) :
-    PagedSwipeListFragment<DataModelType>(comparator) {
+open class PagingSwipeListAddFragment<DataModelType : Any>(comparator: DiffUtil.ItemCallback<DataModelType>) :
+    PagingDataSwipeListFragment<DataModelType>(comparator) {
 
     override fun onCreateView(
         inflater: LayoutInflater,

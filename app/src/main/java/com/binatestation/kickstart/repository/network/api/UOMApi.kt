@@ -18,6 +18,7 @@ package com.binatestation.kickstart.repository.network.api
 import com.binatestation.android.kickoff.utils.Constants
 import com.binatestation.kickstart.repository.models.UOMModel
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
@@ -26,8 +27,16 @@ interface UOMApi {
 
     @GET("https://devapi.mytyre.com/api/v1/admin/uoms")
     fun getAll(
-        @Header("Authorization") token: String = "Bearer voyBHFPl--gG-Sr3SppYp5GI17DTvRE1_ijBKaYKOLE",
+        @Header("Authorization") token: String = "Bearer pmb2wQM_cIvMhNI7CWR49cTtr3iB9EmON9-zH6bnBkQ",
         @Query(Constants.GeneralConstants.KEY_PAGE) pageIndex: Int?,
         @Query(Constants.GeneralConstants.KEY_ITEMS) pageSize: Int?
     ): Call<List<UOMModel>>
+
+    @GET("https://devapi.mytyre.com/api/v1/admin/uoms")
+    suspend fun getAllSuspend(
+        @Header("Authorization") token: String = "Bearer pmb2wQM_cIvMhNI7CWR49cTtr3iB9EmON9-zH6bnBkQ",
+        @Query(Constants.GeneralConstants.KEY_PAGE) pageIndex: Int?,
+        @Query(Constants.GeneralConstants.KEY_ITEMS) pageSize: Int?
+    ): Response<List<UOMModel>>
+
 }

@@ -17,9 +17,13 @@ package com.binatestation.kickstart.repository.models
 
 
 import androidx.recyclerview.widget.DiffUtil
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "uom")
 data class UOMModel(
+    @PrimaryKey
     var id: Long? = null,
     var name: String? = null,
     @SerializedName("uom_category_id")

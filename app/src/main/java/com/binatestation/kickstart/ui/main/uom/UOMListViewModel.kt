@@ -17,22 +17,16 @@ package com.binatestation.kickstart.ui.main.uom
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.Transformations
 import com.binatestation.kickstart.repository.UOMRepository
+import com.binatestation.kickstart.repository.local.KickStartDb
 import com.binatestation.kickstart.repository.network.RetrofitClientInstance
 import com.binatestation.kickstart.repository.network.api.UOMApi
 
 class UOMListViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = UOMRepository(
-        RetrofitClientInstance.getRetrofitInstance(getApplication()).create(UOMApi::class.java)
+        RetrofitClientInstance.getRetrofitInstance(getApplication()).create(UOMApi::class.java),
+        KickStartDb.getInstance(getApplication()).uomDao()
     )
-    private val repoResult = repository.getAll(1, 20)
-    val uoms = Transformations.switchMap(repoResult) { it.pagedList }
-    val networkState = Transformations.switchMap(repoResult) { it.networkState }
-    val refreshState = Transformations.switchMap(repoResult) { it.refreshState }
-
-    fun refresh() {
-        repoResult.value?.refresh?.invoke()
-    }
+    val uoms = repository.getAll(5)
 
 }
