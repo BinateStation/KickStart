@@ -2,11 +2,12 @@
 
 Add dependency by
 
-```implementation 'com.binatestation.android:kickoff:1.1.10'```
+```implementation 'com.binatestation.android:kickoff:1.2.0'```
 
 This is a library which can be used for avoiding boiler plate code in the RecyclerView
 
 ## What's New
+1. Now we have paging with DB + Network
 1. com.binatestation.android.kickoff.utils.fragments.ImageCarouselFragment
 1. com.binatestation.android.kickoff.utils.fragments.PageSliderWithIndicatorFragment
 1. com.binatestation.android.kickoff.utils.fragments.SwipeListSearchFragment
