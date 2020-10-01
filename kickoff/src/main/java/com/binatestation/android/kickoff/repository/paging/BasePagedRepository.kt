@@ -7,8 +7,7 @@ package com.binatestation.android.kickoff.repository.paging
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
+import androidx.paging.toLiveData
 import com.binatestation.android.kickoff.repository.models.ApiResponse
 import com.binatestation.android.kickoff.repository.models.PagedResponseModel
 
@@ -31,15 +30,9 @@ abstract class BasePagedRepository<DataModelType : Any> {
             BaseDataSourceFactory(pageIndex, pageSize, getAllCallBack)
 
         // We use toLiveData Kotlin extension function here, you could also use LivePagedListBuilder
-        val livePagedList = Pager(
-            PagingConfig(
-                pageSize = pageSize
-            ),
-            null,
-            sourceFactory.asPagingSourceFactory(
-                ArchTaskExecutor.getIOThreadExecutor().asCoroutineDispatcher()
-            )
-        ).liveData
+        val livePagedList = sourceFactory.toLiveData(
+            pageSize = pageSize
+        )
 
         val refreshState = Transformations.switchMap(sourceFactory.sourceLiveData) {
             it.initialLoad
