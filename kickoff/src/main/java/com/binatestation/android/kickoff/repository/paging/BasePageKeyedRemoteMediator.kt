@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
+ */
+
 package com.binatestation.android.kickoff.repository.paging
 
 import androidx.paging.ExperimentalPagingApi
@@ -29,8 +33,9 @@ class BasePageKeyedRemoteMediator<DataModelType : Any>(
 
             pageIndex = when (loadType) {
                 LoadType.REFRESH -> 1
-                LoadType.PREPEND -> if (pageIndex ?: 0 > 1) (pageIndex ?: 0) - 1 else null
-                LoadType.APPEND -> if (pageIndex ?: 0 < totalPages) (pageIndex ?: 0) + 1 else null
+                LoadType.PREPEND -> if ((pageIndex ?: 0) > 1) ((pageIndex ?: 0) - 1) else null
+                LoadType.APPEND -> if ((pageIndex ?: totalPages) < totalPages) ((pageIndex
+                    ?: 0) + 1) else null
             }
 
             if (pageIndex == null) {
