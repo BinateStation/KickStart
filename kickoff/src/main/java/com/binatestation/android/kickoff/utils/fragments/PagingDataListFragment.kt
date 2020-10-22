@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_list.*
 
 /**
  * A simple [BaseListFragment] subclass. which can be used for recycler view with paging
- * Here we sets [PagedRecyclerViewAdapter] for the [RecyclerView] used in [BaseListFragment]
+ * Here we sets [PagingDataRecyclerViewAdapter] for the [RecyclerView] used in [BaseListFragment]
  */
 
 open class PagingDataListFragment<DataModelType : Any>(private val comparator: DiffUtil.ItemCallback<DataModelType>) :
@@ -32,7 +32,7 @@ open class PagingDataListFragment<DataModelType : Any>(private val comparator: D
     private var emptyStateViewHolder: EmptyStateViewHolder? = null
 
     /**
-     * get [PagedRecyclerViewAdapter] object used in the [RecyclerView] of [BaseListFragment]
+     * get [PagingDataRecyclerViewAdapter] object used in the [RecyclerView] of [BaseListFragment]
      */
     override val adapter: PagingDataRecyclerViewAdapter<DataModelType>
         get() {
@@ -83,6 +83,21 @@ open class PagingDataListFragment<DataModelType : Any>(private val comparator: D
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    fun setEmptyState(emptyStateModel: EmptyStateModel?) {
+        try {
+            empty_state?.visibility = emptyStateModel?.let {
+                emptyStateViewHolder?.bindView(it)
+                View.VISIBLE
+            } ?: View.GONE
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun setEmptyStateOnClickListener(onClickListener: View.OnClickListener) {
+        empty_state?.setOnClickListener(onClickListener)
     }
 
     private fun getEmptyStateModelFromNetworkState(): EmptyStateModel {

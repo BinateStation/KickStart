@@ -1,16 +1,5 @@
 /*
  * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Last Updated at 28/8/20 3:49 PM.
  */
 
 apply plugin: 'com.android.application'
@@ -27,8 +16,8 @@ ext {
     appcompat = '1.3.0-alpha02'
     retrofit = '2.9.0'
     lifecycle_version = '2.2.0'
-    room_version = '2.3.0-alpha01'
-    paging_version = "3.0.0-alpha06"
+    room_version = '2.3.0-alpha03'
+    paging_version = '3.0.0-alpha07'
 }
 
 android {
@@ -67,14 +56,14 @@ android {
 
 dependencies {
     // Core components
-    implementation 'com.google.android.material:material:1.3.0-alpha02'
+    implementation 'com.google.android.material:material:1.3.0-alpha03'
     implementation "androidx.appcompat:appcompat:${appcompat}"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // Specific views
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
 
     // Architectural components
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
@@ -87,7 +76,7 @@ dependencies {
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     //Addons
