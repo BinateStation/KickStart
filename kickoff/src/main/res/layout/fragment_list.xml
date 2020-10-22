@@ -9,11 +9,6 @@
     android:layout_height="wrap_content"
     tools:context=".utils.fragments.BaseListFragment">
 
-    <include
-        android:id="@+id/empty_state"
-        layout="@layout/adapter_empty_state"
-        android:visibility="gone" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
@@ -22,5 +17,11 @@
         android:clipToPadding="true"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@android:layout/simple_list_item_1" />
+
+    <include
+        android:id="@+id/empty_state"
+        layout="@layout/adapter_empty_state"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
 </FrameLayout>
