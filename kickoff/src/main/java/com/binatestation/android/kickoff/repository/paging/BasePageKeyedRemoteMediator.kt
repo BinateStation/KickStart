@@ -49,7 +49,7 @@ class BasePageKeyedRemoteMediator<DataModelType : Any>(
             when (data) {
                 is ApiSuccessResponse -> {
                     insertData(data.body)
-                    totalPages = data.totalPages.toIntOrNull() ?: 0
+                    totalPages = data.totalPages?.toIntOrNull() ?: 0
                     endOfPaginationReached = data.body.isEmpty()
                 }
                 is ApiErrorResponse -> {
