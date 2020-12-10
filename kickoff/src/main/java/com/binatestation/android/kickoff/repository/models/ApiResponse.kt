@@ -141,12 +141,12 @@ class ApiNoNetworkResponse<T>(val errorMessage: String) : ApiResponse<T>()
 
 data class ApiSuccessResponse<T>(
     val body: T,
-    val requestId: String,
+    val requestId: String?,
     val links: Map<String, String>,
-    val currentPage: String,
-    val totalPages: String,
-    val pageItems: String,
-    val totalCount: String
+    val currentPage: String?,
+    val totalPages: String?,
+    val pageItems: String?,
+    val totalCount: String?
 
 ) : ApiResponse<T>() {
     constructor(
