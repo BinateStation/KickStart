@@ -2,7 +2,7 @@
 
 Add dependency by
 
-```implementation 'com.binatestation.android:kickoff:1.2.4'```
+```implementation 'com.binatestation.android:kickoff:1.2.5'```
 
 This is a library which can be used for avoiding boiler plate code in the RecyclerView
 
