@@ -4,6 +4,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import kotlinx.android.synthetic.main.fragment_page_slider_with_indicator.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ObsoleteCoroutinesApi
+import kotlinx.coroutines.channels.ticker
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.util.*
 
 private const val ARG_IMAGE_URLS = "image_urls"
 
@@ -16,6 +24,23 @@ open class ImageCarouselFragment : PageSliderWithIndicatorFragment() {
 
     private var imageUrls: ArrayList<String>? = null
     private var scaleType: ImageView.ScaleType = ImageView.ScaleType.CENTER_CROP
+    private var currentPage = 0
+
+    /**
+     * Create ticker channel with required delay
+     */
+    @ObsoleteCoroutinesApi
+    private val tickerChannel = ticker(delayMillis = 3000, initialDelayMillis = 0)
+
+    /**
+     * Create runnable
+     */
+    private val update = Runnable {
+        if (currentPage == getCount()) {
+            currentPage = 0
+        }
+        view_pager.setCurrentItem(currentPage++, true)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,12 +61,35 @@ open class ImageCarouselFragment : PageSliderWithIndicatorFragment() {
     }
 
     /**
+     * Function for start auto scroll
+     */
+    @ObsoleteCoroutinesApi
+    fun startAutoScroll() {
+        lifecycleScope.launch {
+            for (event in tickerChannel) {
+                withContext(Dispatchers.Main) {
+                    update.run()
+                }
+            }
+        }
+    }
+
+    /**
+     * Function for stop auto scroll
+     */
+    @ObsoleteCoroutinesApi
+    fun stopAutoScroll() {
+        tickerChannel.cancel()
+    }
+
+    /**
      * to change the image scale type of the Image view
      * @param scaleType ScaleType
      */
     fun setScaleType(scaleType: ImageView.ScaleType) {
         this.scaleType = scaleType
     }
+
 
     companion object {
         /**

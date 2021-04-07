@@ -56,4 +56,12 @@ abstract class TabLayoutFragment : Fragment() {
     fun addFragment(fragment: Fragment, title: String) {
         mViewPagerAdapter?.let { it.addFrag(fragment, title); it.notifyDataSetChanged() }
     }
+
+    /**
+     * Function to get count of the fragments
+     * @return Int
+     */
+    fun getCount(): Int {
+        return mViewPagerAdapter?.count ?: 0
+    }
 }
