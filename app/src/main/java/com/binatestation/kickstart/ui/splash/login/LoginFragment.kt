@@ -1,17 +1,5 @@
 /*
- * Created By RKR
- * Last Updated at 14/12/19 8:05 PM.
- *
- * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright (c) 2021. Binate Station Private Limited. All rights reserved.
  */
 
 package com.binatestation.kickstart.ui.splash.login
@@ -29,23 +17,24 @@ import com.binatestation.kickstart.R
 import com.binatestation.kickstart.databinding.FragmentLoginBinding
 import com.binatestation.kickstart.ui.main.MainActivity
 import com.binatestation.kickstart.utils.Session
-import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment() {
 
     private lateinit var viewModel: LoginViewModel
-
+    private lateinit var fragmentLoginBinding: FragmentLoginBinding
 
     private val isValidInput: Boolean
         get() {
             if (TextUtils.isEmpty(viewModel.loginModel.get()?.username)) {
-                field_username_layout?.error = getString(R.string.error_invalid_username)
-                field_username_layout?.editText?.requestFocus()
+                fragmentLoginBinding.fieldUsernameLayout.error =
+                    getString(R.string.error_invalid_username)
+                fragmentLoginBinding.fieldUsernameLayout.editText?.requestFocus()
                 return false
             }
             if (TextUtils.isEmpty(viewModel.loginModel.get()?.password)) {
-                field_password_layout?.error = getString(R.string.error_invalid_password)
-                field_password_layout?.editText?.requestFocus()
+                fragmentLoginBinding.fieldPasswordLayout.error =
+                    getString(R.string.error_invalid_password)
+                fragmentLoginBinding.fieldPasswordLayout.editText?.requestFocus()
                 return false
             }
             return true
@@ -60,8 +49,8 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val fragmentLoginBinding = DataBindingUtil.inflate<FragmentLoginBinding>(
+    ): View {
+        fragmentLoginBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_login,
             container,
@@ -73,7 +62,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        action_login.setOnClickListener { actionLogin() }
+        fragmentLoginBinding.actionLogin.setOnClickListener { actionLogin() }
         if (Session.isLoggedIn(requireContext())) {
             navigateToHome()
         }

@@ -1,23 +1,11 @@
 /*
- * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Last Updated at 26/5/20 10:54 PM.
+ * (c) Binate Station Private Limited. All rights reserved.
  */
 
 @file:Suppress("unused")
 
 package com.binatestation.android.kickoff.utils
 
-import android.R
 import android.graphics.Bitmap
 import android.os.Build
 import android.text.Html
@@ -25,9 +13,9 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.view.View
-import android.widget.*
-import androidx.annotation.IdRes
-import androidx.annotation.LayoutRes
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.widget.ContentLoadingProgressBar
 import androidx.databinding.BindingAdapter
@@ -174,35 +162,4 @@ fun setRecyclerViewAdapter(
     adapter: RecyclerViewAdapter? = null
 ) {
     recyclerView.adapter = adapter
-}
-
-@BindingAdapter("entries", "itemLayout", "textViewId", requireAll = false)
-fun setAdapterAutoComplete(
-    autoCompleteTextView: AutoCompleteTextView,
-    entries: List<*>?,
-    @LayoutRes itemLayout: Int?,
-    @IdRes textViewId: Int?
-) {
-    val adapter = when {
-        itemLayout == null -> {
-            ArrayAdapter(
-                autoCompleteTextView.context,
-                R.layout.simple_list_item_1,
-                R.id.text1,
-                entries ?: emptyList()
-            )
-        }
-        textViewId == null -> {
-            ArrayAdapter(autoCompleteTextView.context, itemLayout, entries ?: emptyList())
-        }
-        else -> {
-            ArrayAdapter(
-                autoCompleteTextView.context,
-                itemLayout,
-                textViewId,
-                entries ?: emptyList()
-            )
-        }
-    }
-    autoCompleteTextView.setAdapter(adapter)
 }

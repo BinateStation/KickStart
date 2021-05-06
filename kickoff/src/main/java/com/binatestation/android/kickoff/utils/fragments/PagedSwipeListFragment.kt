@@ -1,16 +1,5 @@
 /*
- * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Last Updated at 8/4/20 8:43 PM.
+ * Copyright (c) 2021. Binate Station Private Limited. All rights reserved.
  */
 
 package com.binatestation.android.kickoff.utils.fragments
@@ -24,8 +13,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.binatestation.android.kickoff.R
 import com.binatestation.android.kickoff.utils.setColorSchemeResources
-import kotlinx.android.synthetic.main.fragment_swipe_list.*
-
 
 /**
  * A simple [PagedListFragment] subclass. Which can be use for [SwipeRefreshLayout] with [PagedListFragment]
@@ -40,6 +27,8 @@ import kotlinx.android.synthetic.main.fragment_swipe_list.*
 open class PagedSwipeListFragment<DataModelType : Any>(comparator: DiffUtil.ItemCallback<DataModelType>) :
     PagedListFragment<DataModelType>(comparator) {
 
+    private var swipeRefreshLayout: SwipeRefreshLayout? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,7 +40,8 @@ open class PagedSwipeListFragment<DataModelType : Any>(comparator: DiffUtil.Item
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        swipe_refresh_layout?.let { setColorSchemeResources(it) }
+        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout)
+        swipeRefreshLayout?.let { setColorSchemeResources(it) }
     }
 
     /**
@@ -59,13 +49,13 @@ open class PagedSwipeListFragment<DataModelType : Any>(comparator: DiffUtil.Item
      * @param onRefresh callback<Unit>
      */
     fun setOnRefreshListener(onRefresh: () -> Unit) {
-        swipe_refresh_layout?.let { it.setOnRefreshListener { onRefresh() } }
+        swipeRefreshLayout?.let { it.setOnRefreshListener { onRefresh() } }
     }
 
     /**
      * gets the [SwipeRefreshLayout] instance used in this [PagedSwipeListFragment]
      * @return SwipeRefreshLayout?
      */
-    fun getSwipeRefreshLayout(): SwipeRefreshLayout? = swipe_refresh_layout
+    fun getSwipeRefreshLayout(): SwipeRefreshLayout? = swipeRefreshLayout
 
 }

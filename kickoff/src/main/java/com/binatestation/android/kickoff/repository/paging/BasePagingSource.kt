@@ -1,6 +1,8 @@
 /*
- * Copyright (c) 2021. Binate Station Private Limited. All rights reserved.
+ * (c) Binate Station Private Limited. All rights reserved.
  */
+
+@file:Suppress("unused")
 
 package com.binatestation.android.kickoff.repository.paging
 
