@@ -1,17 +1,5 @@
 /*
- * Created By RKR
- * Last Updated at 14/12/19 5:32 PM.
- *
- * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright (c) 2021. Binate Station Private Limited. All rights reserved.
  */
 
 package com.binatestation.android.kickoff.utils.fragments
@@ -21,9 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.binatestation.android.kickoff.R
 import com.binatestation.android.kickoff.utils.adapters.ViewPagerAdapter
-import kotlinx.android.synthetic.main.fragment_tab_layout.*
+import com.google.android.material.tabs.TabLayout
 
 /**
  * Created by RKR on 30-08-2018.
@@ -32,6 +21,8 @@ import kotlinx.android.synthetic.main.fragment_tab_layout.*
 abstract class TabLayoutFragment : Fragment() {
 
     private var mViewPagerAdapter: ViewPagerAdapter? = null
+    lateinit var viewPager: ViewPager
+    lateinit var tabLayout: TabLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,13 +34,15 @@ abstract class TabLayoutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewPager = view.findViewById(R.id.view_pager)
+        tabLayout = view.findViewById(R.id.tab_layout)
         intView()
     }
 
     private fun intView() {
-        tab_layout?.setupWithViewPager(view_pager)
+        tabLayout.setupWithViewPager(viewPager)
         mViewPagerAdapter = ViewPagerAdapter(childFragmentManager)
-        view_pager?.adapter = mViewPagerAdapter
+        viewPager.adapter = mViewPagerAdapter
     }
 
     @Suppress("unused")

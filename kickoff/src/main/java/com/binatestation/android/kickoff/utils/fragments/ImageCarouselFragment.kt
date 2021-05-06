@@ -1,3 +1,8 @@
+/*
+ * (c) Binate Station Private Limited. All rights reserved.
+ */
+@file:Suppress("unused")
+
 package com.binatestation.android.kickoff.utils.fragments
 
 import android.os.Bundle
@@ -5,7 +10,6 @@ import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import kotlinx.android.synthetic.main.fragment_page_slider_with_indicator.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.channels.ticker
@@ -39,7 +43,7 @@ open class ImageCarouselFragment : PageSliderWithIndicatorFragment() {
         if (currentPage == getCount()) {
             currentPage = 0
         }
-        view_pager?.setCurrentItem(currentPage++, true)
+        viewPager.setCurrentItem(currentPage++, true)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

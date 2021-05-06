@@ -1,16 +1,5 @@
 /*
- * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Last Updated at 8/4/20 7:52 PM.
+ * Copyright (c) 2021. Binate Station Private Limited. All rights reserved.
  */
 
 package com.binatestation.android.kickoff.utils.fragments
@@ -20,13 +9,13 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.binatestation.android.kickoff.R
 import com.binatestation.android.kickoff.databinding.AdapterEmptyStateBinding
 import com.binatestation.android.kickoff.repository.models.EmptyStateModel
 import com.binatestation.android.kickoff.repository.models.NetworkState
 import com.binatestation.android.kickoff.repository.models.enums.Status
 import com.binatestation.android.kickoff.utils.adapters.PagedRecyclerViewAdapter
 import com.binatestation.android.kickoff.utils.adapters.holders.EmptyStateViewHolder
-import kotlinx.android.synthetic.main.fragment_list.*
 
 /**
  * A simple [BaseListFragment] subclass. which can be used for recycler view with paging
@@ -47,6 +36,8 @@ open class PagedListFragment<DataModelType : Any>(private val comparator: DiffUt
 
     private var emptyStateViewHolder: EmptyStateViewHolder? = null
 
+    private var adapterEmptyStateBinding: AdapterEmptyStateBinding? = null
+
     /**
      * get [PagedRecyclerViewAdapter] object used in the [RecyclerView] of [BaseListFragment]
      */
@@ -60,9 +51,7 @@ open class PagedListFragment<DataModelType : Any>(private val comparator: DiffUt
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapterEmptyStateBinding = DataBindingUtil.bind<AdapterEmptyStateBinding>(
-            empty_state
-        )
+        adapterEmptyStateBinding = DataBindingUtil.bind(view.findViewById(R.id.empty_state))
         adapterEmptyStateBinding?.let { emptyStateViewHolder = EmptyStateViewHolder(it) }
     }
 
@@ -70,9 +59,9 @@ open class PagedListFragment<DataModelType : Any>(private val comparator: DiffUt
         try {
             this.networkState = newNetworkState
             if (this.networkState == NetworkState.LOADED) {
-                empty_state?.visibility = View.GONE
+                adapterEmptyStateBinding?.root?.visibility = View.GONE
             } else {
-                empty_state?.visibility = View.VISIBLE
+                adapterEmptyStateBinding?.root?.visibility = View.VISIBLE
             }
             getEmptyStateModelFromNetworkState().let {
                 emptyStateViewHolder?.bindView(it)

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
+ * Copyright (c) 2021. Binate Station Private Limited. All rights reserved.
  */
 
 package com.binatestation.android.kickoff.utils.fragments
@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.binatestation.android.kickoff.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.fragment_swipe_list_add.*
 
 /**
  * A simple [PagingDataSwipeListFragment] subclass. which can be used for swipe refresh layout with Add [FloatingActionButton]
@@ -39,7 +38,7 @@ open class PagingSwipeListAddFragment<DataModelType : Any>(comparator: DiffUtil.
         )
     )
     fun setOnClickListener(onClick: (view: View?) -> Unit) {
-        action_add?.let { it.setOnClickListener { v -> onClick(v) } }
+        view?.findViewById<View>(R.id.action_add)?.let { it.setOnClickListener { v -> onClick(v) } }
     }
 
     /**
@@ -47,7 +46,7 @@ open class PagingSwipeListAddFragment<DataModelType : Any>(comparator: DiffUtil.
      * @param onClickListener callback<view View?, Unit>
      */
     fun setOnAddClickListener(onClickListener: View.OnClickListener) =
-        action_add?.setOnClickListener(
+        view?.findViewById<View>(R.id.action_add)?.setOnClickListener(
             onClickListener
         )
 }
