@@ -1,6 +1,5 @@
 image: openjdk:8-jdk
 stages:
-  - prepare
   - lint
   - build
   - test
@@ -55,68 +54,78 @@ before_script:
   # Not necessary, but just for surity
   - chmod +x ./gradlew
 
-
-createPropertyFiles:
-  stage: prepare
-  script:
-    - echo "bintray.user=$user" >> local.properties
-    - echo "bintray.apikey=$apikey" >> local.properties
-  artifacts:
-    paths:
-      - local.properties
-    expire_in: 2h
-
 # Basic android and gradle stuff
 # Check linting
 lintDebug:
   interruptible: true
+  except:
+    - master
+    - tags
   stage: lint
-  needs: ["createPropertyFiles"]
   script:
-    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+    - ./gradlew -Pci --console=plain lintDebug -PbuildDir=lint
+
+lintRelease:
+  interruptible: true
+  only:
+    - master
+    - tags
+  stage: lint
+  script:
+    - ./gradlew -Pci --console=plain lintRelease -PbuildDir=lint
 
 # Make Project
 # Debug Build
 assembleDebug:
   interruptible: true
   stage: build
-  needs: ["createPropertyFiles"]
   except:
-    - tags
     - master
+    - tags
   script:
     - ./gradlew assembleDebug
   artifacts:
     paths:
       - app/build/outputs/
+    expire_in: 1 hrs
 
 # Release Build
 assembleRelease:
   interruptible: true
   stage: build
-  needs: ["createPropertyFiles"]
   only:
     - master
+    - tags
   script:
     - ./gradlew assembleRelease
   artifacts:
     paths:
       - app/build/outputs/
 
-
 # Run all tests, if any fails, interrupt the pipeline(fail it)
 debugTests:
   interruptible: true
+  except:
+    - master
+    - tags
   stage: test
-  needs: ["createPropertyFiles"]
   script:
-    - ./gradlew -Pci --console=plain :app:testDebug
+    - ./gradlew -Pci --console=plain testDebug
 
-publish:
+releaseTests:
   interruptible: true
-  stage: publish
-  needs: ["createPropertyFiles"]
+  only:
+    - master
+    - tags
+  stage: test
+  script:
+    - ./gradlew -Pci --console=plain testRelease
+
+deploy:
+  image: gradle:6.7-jdk11
   only:
     - tags
+  stage: publish
   script:
-    - ./gradlew bintrayUpload
+    - 'gradle publish'
+

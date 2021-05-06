@@ -1,22 +1,11 @@
 /*
- * Created By RKR
- * Last Updated at 14/12/19 5:23 PM.
- *
- * Copyright (c) 2019. Binate Station Private Limited. All rights reserved.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright (c) 2021. Binate Station Private Limited. All rights reserved.
  */
 
 package com.binatestation.android.kickoff.utils.fragments.dialogs
 
 
+import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
@@ -28,7 +17,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.binatestation.android.kickoff.R
-import kotlinx.android.synthetic.main.fragment_image_picker.*
 import java.io.IOException
 
 /**
@@ -70,14 +58,17 @@ class ImagePickerFragment : BaseDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        FIP_camera_layout.setOnClickListener { dispatchTakePictureIntent() }
-        FIP_gallery_layout.setOnClickListener { dispatchPickFromGalleryIntent() }
-        FIP_cancel.setOnClickListener { dismiss() }
+        view.findViewById<View>(R.id.FIP_camera_layout)
+            .setOnClickListener { dispatchTakePictureIntent() }
+        view.findViewById<View>(R.id.FIP_gallery_layout)
+            .setOnClickListener { dispatchPickFromGalleryIntent() }
+        view.findViewById<View>(R.id.FIP_cancel).setOnClickListener { dismiss() }
     }
 
     /**
      * function for choosing image from gallery
      */
+    @SuppressLint("QueryPermissionsNeeded")
     private fun dispatchPickFromGalleryIntent() {
         val pickFromGalleryIntent = Intent()
         pickFromGalleryIntent.type = "image/*"
@@ -113,7 +104,7 @@ class ImagePickerFragment : BaseDialogFragment() {
         } else if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK && activity != null) {
             val selectedImage = data!!.data
             try {
-                val photo =
+                @Suppress("DEPRECATION") val photo =
                     MediaStore.Images.Media.getBitmap(activity?.contentResolver, selectedImage)
                 if (mImagePickerListener != null) {
                     mImagePickerListener!!.onImagePicked(photo)

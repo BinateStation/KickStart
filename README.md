@@ -1,8 +1,18 @@
 # KickStart
 
-Add dependency by
+Add dependency by update your module gradle file as like below
 
-```implementation 'com.binatestation.android:kickoff:1.2.5'```
+```
+repositories {
+    maven {
+        url 'https://gitlab.com/api/v4/projects/8748353/packages/maven'
+    }
+}
+
+dependencies {
+  implementation 'com.binatestation.android:kickoff:1.2.6.1'
+}
+```
 
 This is a library which can be used for avoiding boiler plate code in the RecyclerView
 

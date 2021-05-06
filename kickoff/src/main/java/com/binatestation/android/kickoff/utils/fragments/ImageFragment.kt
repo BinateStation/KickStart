@@ -1,3 +1,9 @@
+/*
+ * (c) Binate Station Private Limited. All rights reserved.
+ */
+
+@file:Suppress("unused")
+
 package com.binatestation.android.kickoff.utils.fragments
 
 import android.os.Bundle
@@ -37,7 +43,7 @@ class ImageFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         fragmentImageBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_image,

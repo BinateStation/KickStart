@@ -1,17 +1,8 @@
 /*
- * Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Last Updated at 7/4/20 1:19 PM.
+ * (c) Binate Station Private Limited. All rights reserved.
  */
+
+@file:Suppress("unused")
 
 package com.binatestation.android.kickoff.utils.fragments.dialogs
 
@@ -19,10 +10,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.binatestation.android.kickoff.R
 import com.binatestation.android.kickoff.repository.models.MultiSelectDataModel
 import com.binatestation.android.kickoff.utils.adapters.RecyclerViewAdapter
-import kotlinx.android.synthetic.main.fragment_multi_select.*
 
 /**
  * Created by RKR on 11-09-2018.
@@ -46,8 +37,8 @@ class MultiSelectDialogFragment<T : MultiSelectDataModel> : BaseDialogFragment()
         get() {
             if (mAdapter == null) {
                 mAdapter = RecyclerViewAdapter()
-                mAdapter?.setOnItemClickListener { `object`: Any?, position: Int, actionView: View ->
-                    onClickItem(`object`, position, actionView)
+                mAdapter?.setOnItemClickListener { `object`: Any?, _: Int, _: View ->
+                    onClickItem(`object`)
                 }
             }
             return mAdapter as RecyclerViewAdapter
@@ -91,11 +82,11 @@ class MultiSelectDialogFragment<T : MultiSelectDataModel> : BaseDialogFragment()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        recycler_view?.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
-        recycler_view?.adapter = adapter
-        action_positive.setOnClickListener { actionPositive() }
-        action_negative.setOnClickListener { dismiss() }
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
+        recyclerView?.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        recyclerView?.adapter = adapter
+        view.findViewById<View>(R.id.action_positive).setOnClickListener { actionPositive() }
+        view.findViewById<View>(R.id.action_negative).setOnClickListener { dismiss() }
     }
 
     @Suppress("unused")
@@ -108,7 +99,7 @@ class MultiSelectDialogFragment<T : MultiSelectDataModel> : BaseDialogFragment()
         adapter.setTypedData(data)
     }
 
-    private fun onClickItem(`object`: Any?, position: Int, actionView: View) {
+    private fun onClickItem(`object`: Any?) {
         @Suppress("UNCHECKED_CAST")
         if (!mMultiSelectable) {
             adapter.data?.forEach { if (it is MultiSelectDataModel) it.isSelected = false }
@@ -124,7 +115,6 @@ class MultiSelectDialogFragment<T : MultiSelectDataModel> : BaseDialogFragment()
     }
 
     companion object {
-        const val TAG = "MultiSelectDialogFragme"
 
         private const val KEY_REQUEST_CODE = "REQUEST_CODE"
 
