@@ -43,7 +43,7 @@ open class ImageCarouselFragment : PageSliderWithIndicatorFragment() {
         if (currentPage == getCount()) {
             currentPage = 0
         }
-        viewPager.setCurrentItem(currentPage++, true)
+        viewPager?.setCurrentItem(currentPage++, true)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
