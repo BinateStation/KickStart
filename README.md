@@ -4,13 +4,21 @@ Add dependency by update your module gradle file as like below
 
 ```
 repositories {
-    maven {
-        url 'https://gitlab.com/api/v4/projects/8748353/packages/maven'
-    }
+     maven {
+                url 'https://gitlab.com/api/v4/projects/8748353/packages/maven'
+                name "GitLab"
+                credentials(HttpHeaderCredentials) {
+                    name = 'Private-Token'
+                    value = gitLabPrivateToken
+                }
+                authentication {
+                    header(HttpHeaderAuthentication)
+                }
+     }
 }
 
 dependencies {
-  implementation 'com.binatestation.android:kickoff:1.2.6.1'
+  implementation 'com.binatestation.android:kickoff:1.2.7'
 }
 ```
 

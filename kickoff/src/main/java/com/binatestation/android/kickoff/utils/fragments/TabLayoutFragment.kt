@@ -2,6 +2,8 @@
  * Copyright (c) 2021. Binate Station Private Limited. All rights reserved.
  */
 
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package com.binatestation.android.kickoff.utils.fragments
 
 import android.os.Bundle
@@ -21,8 +23,8 @@ import com.google.android.material.tabs.TabLayout
 abstract class TabLayoutFragment : Fragment() {
 
     private var mViewPagerAdapter: ViewPagerAdapter? = null
-    lateinit var viewPager: ViewPager
-    lateinit var tabLayout: TabLayout
+    var viewPager: ViewPager? = null
+    var tabLayout: TabLayout? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,9 +42,9 @@ abstract class TabLayoutFragment : Fragment() {
     }
 
     private fun intView() {
-        tabLayout.setupWithViewPager(viewPager)
+        tabLayout?.setupWithViewPager(viewPager)
         mViewPagerAdapter = ViewPagerAdapter(childFragmentManager)
-        viewPager.adapter = mViewPagerAdapter
+        viewPager?.adapter = mViewPagerAdapter
     }
 
     @Suppress("unused")
