@@ -8,7 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.*
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.binatestation.android.kickoff.R
 import com.binatestation.android.kickoff.utils.listeners.ItemClickListener
 
@@ -17,7 +21,7 @@ import com.binatestation.android.kickoff.utils.listeners.ItemClickListener
  */
 abstract class BaseListFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
+    private var recyclerView: RecyclerView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +35,7 @@ abstract class BaseListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.recycler_view)
-        recyclerView.adapter = adapter
+        recyclerView?.adapter = adapter
     }
 
     /**
@@ -39,7 +43,7 @@ abstract class BaseListFragment : Fragment() {
      * @param layoutManager LayoutManager, you can use [LinearLayoutManager], [GridLayoutManager], [StaggeredGridLayoutManager]
      */
     fun setLayoutManager(layoutManager: RecyclerView.LayoutManager) {
-        recyclerView.layoutManager = layoutManager
+        recyclerView?.layoutManager = layoutManager
     }
 
     /**
@@ -48,14 +52,14 @@ abstract class BaseListFragment : Fragment() {
      */
     @Suppress("MemberVisibilityCanBePrivate")
     fun getLayoutManager(): RecyclerView.LayoutManager? {
-        return recyclerView.layoutManager
+        return recyclerView?.layoutManager
     }
 
     /**
      * gets the [RecyclerView] instance used in this [BaseListFragment]
      * @return RecyclerView?
      */
-    fun getRecyclerView(): RecyclerView = recyclerView
+    fun getRecyclerView(): RecyclerView? = recyclerView
 
     /**
      * sets the [RecyclerView] item click callback function
@@ -75,9 +79,9 @@ abstract class BaseListFragment : Fragment() {
     fun setDividerItemDecoration() {
         val layoutManager = getLayoutManager()
         if (layoutManager is LinearLayoutManager) {
-            recyclerView.addItemDecoration(
+            recyclerView?.addItemDecoration(
                 DividerItemDecoration(
-                    recyclerView.context,
+                    recyclerView?.context,
                     layoutManager.orientation
                 )
             )
