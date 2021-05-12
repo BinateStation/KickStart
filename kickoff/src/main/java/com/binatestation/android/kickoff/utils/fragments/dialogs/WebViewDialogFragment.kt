@@ -10,7 +10,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.*
+import android.webkit.WebResourceError
+import android.webkit.WebResourceRequest
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.core.widget.ContentLoadingProgressBar
 import com.binatestation.android.kickoff.R
 
@@ -21,8 +25,8 @@ open class WebViewDialogFragment : BaseDialogFragment() {
 
     private var url: String? = null
     private var mTitle: String? = null
-    private lateinit var webView: WebView
-    private lateinit var progressBar: ContentLoadingProgressBar
+    private var webView: WebView? = null
+    private var progressBar: ContentLoadingProgressBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,24 +48,24 @@ open class WebViewDialogFragment : BaseDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         webView = view.findViewById(R.id.web_view)
         progressBar = view.findViewById(R.id.progress_bar)
-        webView.settings.javaScriptEnabled = true        // enable javascript just test
-        webView.settings.setAppCacheEnabled(true)
-        webView.settings.setAppCachePath(context?.cacheDir?.path)
-        webView.settings.cacheMode = WebSettings.LOAD_DEFAULT
+        webView?.settings?.javaScriptEnabled = true        // enable javascript just test
+        webView?.settings?.setAppCacheEnabled(true)
+        webView?.settings?.setAppCachePath(context?.cacheDir?.path)
+        webView?.settings?.cacheMode = WebSettings.LOAD_DEFAULT
 
-        webView.webViewClient = object : WebViewClient() {
+        webView?.webViewClient = object : WebViewClient() {
             override fun onReceivedError(
                 view: WebView,
                 request: WebResourceRequest,
                 error: WebResourceError
             ) {
                 super.onReceivedError(view, request, error)
-                progressBar.hide()
+                progressBar?.hide()
             }
 
             override fun onPageFinished(view: WebView, url: String) {
                 super.onPageFinished(view, url)
-                progressBar.hide()
+                progressBar?.hide()
             }
         }
 
@@ -84,10 +88,8 @@ open class WebViewDialogFragment : BaseDialogFragment() {
      * loads the web url
      */
     private fun loadUrl() {
-        if (!TextUtils.isEmpty(url)) {
-            url?.let {
-                webView.loadUrl(it)
-            }
+        url?.takeIf { it.isNotEmpty() }?.apply {
+            webView?.loadUrl(this)
         }
     }
 
