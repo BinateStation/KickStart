@@ -53,19 +53,19 @@ open class PagingDataListFragment<DataModelType : Any>(private val comparator: D
     }
 
     fun withLoadStateHeader() {
-        getRecyclerView().adapter = adapter.withLoadStateHeader(
+        getRecyclerView()?.adapter = adapter.withLoadStateHeader(
             header = NetworkLoadStateAdapter()
         )
     }
 
     fun withLoadStateFooter() {
-        getRecyclerView().adapter = adapter.withLoadStateFooter(
+        getRecyclerView()?.adapter = adapter.withLoadStateFooter(
             footer = NetworkLoadStateAdapter()
         )
     }
 
     fun withLoadStateHeaderAndFooter() {
-        getRecyclerView().adapter = adapter.withLoadStateHeaderAndFooter(
+        getRecyclerView()?.adapter = adapter.withLoadStateHeaderAndFooter(
             header = NetworkLoadStateAdapter(),
             footer = NetworkLoadStateAdapter()
         )
