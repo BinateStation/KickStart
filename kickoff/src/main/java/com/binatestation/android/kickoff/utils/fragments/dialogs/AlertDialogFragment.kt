@@ -70,7 +70,7 @@ class AlertDialogFragment : BaseDialogFragment() {
             window?.requestFeature(Window.FEATURE_NO_TITLE)
             dialog
         } else {
-            with(AlertDialog.Builder(context!!)) {
+            with(AlertDialog.Builder(requireContext())) {
                 setTitle(mTitle); @Suppress("DEPRECATION")
             setMessage(Html.fromHtml(mMessage)); setPositiveButton(
                 mPositiveButtonText,
