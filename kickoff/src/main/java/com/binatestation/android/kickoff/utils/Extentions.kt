@@ -125,8 +125,13 @@ fun FragmentActivity.showProgressWheel() {
  * hide progress wheel
  */
 @Suppress("unused")
-fun hideProgressWheel() {
-    ProgressDialogFragment.instance?.dismiss()
+fun FragmentActivity.hideProgressWheel() {
+    val fragment = supportFragmentManager.findFragmentByTag(ProgressDialogFragment.TAG)
+    fragment?.let {
+        if (fragment is ProgressDialogFragment) {
+            fragment.dismiss()
+        }
+    }
 }
 
 @Suppress("unused")
@@ -251,6 +256,17 @@ fun Fragment.showProgressWheel() {
     if (fragmentActivity is AppCompatActivity) {
         val baseActivity = fragmentActivity as AppCompatActivity?
         baseActivity?.showProgressWheel()
+    }
+}
+
+/**
+ * hide progress wheel
+ */
+@Suppress("unused")
+fun Fragment.hideProgressWheel() {
+    val fragmentActivity = activity
+    if (fragmentActivity is FragmentActivity) {
+        fragmentActivity.hideProgressWheel()
     }
 }
 
