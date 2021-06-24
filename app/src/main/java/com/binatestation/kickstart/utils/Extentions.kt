@@ -122,14 +122,6 @@ fun FragmentActivity.showProgressWheel() {
     ProgressDialogFragment.instance?.show(supportFragmentManager, ProgressDialogFragment.TAG)
 }
 
-/**
- * hide progress wheel
- */
-@Suppress("unused")
-fun hideProgressWheel() {
-    ProgressDialogFragment.instance?.dismiss()
-}
-
 @Suppress("unused")
         /**
          * show progress
