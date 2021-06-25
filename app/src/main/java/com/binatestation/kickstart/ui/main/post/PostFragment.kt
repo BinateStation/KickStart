@@ -17,7 +17,6 @@ package com.binatestation.kickstart.ui.main.post
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.binatestation.android.kickoff.repository.models.ItemViewTypeModel
 import com.binatestation.android.kickoff.utils.fragments.ListFragment
@@ -44,7 +43,7 @@ class PostFragment : ListFragment() {
                 AdapterPostBinding::class.java
             )
         )
-        postViewModel.posts.observe(viewLifecycleOwner, Observer { it ->
+        postViewModel.posts.observe(viewLifecycleOwner, { it ->
             it.data?.let {
                 adapter.setTypedData(it)
             }

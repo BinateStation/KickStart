@@ -7,13 +7,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.*
 import com.binatestation.android.kickoff.R
+import com.binatestation.android.kickoff.databinding.FragmentListBinding
+import com.binatestation.android.kickoff.repository.models.EmptyStateModel
 import com.binatestation.android.kickoff.utils.listeners.ItemClickListener
 
 /**
@@ -22,6 +21,8 @@ import com.binatestation.android.kickoff.utils.listeners.ItemClickListener
 abstract class BaseListFragment : Fragment() {
 
     private var recyclerView: RecyclerView? = null
+    lateinit var fragmentListBinding: FragmentListBinding
+    var emptyStateModel: EmptyStateModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +30,15 @@ abstract class BaseListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list, container, false)
+        fragmentListBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_list,
+            container,
+            false
+        )
+        fragmentListBinding.lifecycleOwner = this
+        fragmentListBinding.emptyStateModel = emptyStateModel
+        return fragmentListBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
