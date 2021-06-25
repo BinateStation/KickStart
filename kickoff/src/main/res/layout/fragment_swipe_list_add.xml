@@ -2,25 +2,38 @@
   ~ Copyright (c) 2021. Binate Station Private Limited. All rights reserved.
   -->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <include layout="@layout/fragment_swipe_list" />
+    <data>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/action_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:contentDescription="@string/add_image"
-        app:backgroundTint="?attr/colorAccent"
-        app:fabSize="auto"
-        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
-        app:srcCompat="@drawable/ic_add_black_24dp"
-        app:tint="@android:color/white" />
+        <variable
+            name="emptyStateModel"
+            type="com.binatestation.android.kickoff.repository.models.EmptyStateModel" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            layout="@layout/fragment_swipe_list"
+            app:emptyStateModel="@{emptyStateModel}" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:contentDescription="@string/add_image"
+            app:backgroundTint="?attr/colorAccent"
+            app:fabSize="auto"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+            app:srcCompat="@drawable/ic_add_black_24dp"
+            app:tint="@android:color/white" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
 

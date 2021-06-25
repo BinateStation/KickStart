@@ -14,22 +14,35 @@
   ~ limitations under the License.
   -->
 
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view"
+    <data>
+
+        <variable
+            name="emptyStateModel"
+            type="com.binatestation.android.kickoff.repository.models.EmptyStateModel" />
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:iconifiedByDefault="false"
-        app:queryHint="@string/search" />
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iconifiedByDefault="false"
+            app:queryHint="@string/search" />
 
 
-    <include layout="@layout/fragment_swipe_list_add" />
+        <include
+            layout="@layout/fragment_swipe_list_add"
+            app:emptyStateModel="@{emptyStateModel}" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
 

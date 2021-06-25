@@ -2,26 +2,39 @@
   ~ Copyright (c) 2020. Binate Station Private Limited. All rights reserved.
   -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".utils.fragments.BaseListFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <data>
+
+        <variable
+            name="emptyStateModel"
+            type="com.binatestation.android.kickoff.repository.models.EmptyStateModel" />
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipChildren="true"
-        android:clipToPadding="true"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@android:layout/simple_list_item_1" />
+        android:orientation="vertical"
+        tools:context=".utils.fragments.BaseListFragment">
 
-    <include
-        android:id="@+id/empty_state"
-        layout="@layout/adapter_empty_state"
-        android:visibility="gone"
-        tools:visibility="visible" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="true"
+            android:clipToPadding="true"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@android:layout/simple_list_item_1" />
 
-</FrameLayout>
+        <include
+            android:id="@+id/empty_state"
+            layout="@layout/adapter_empty_state"
+            android:visibility="gone"
+            app:model="@{emptyStateModel}"
+            tools:visibility="visible" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
