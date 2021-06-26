@@ -16,20 +16,42 @@
 package com.binatestation.kickstart.ui.main.album
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.binatestation.android.kickoff.repository.models.ItemViewTypeModel
 import com.binatestation.android.kickoff.utils.fragments.ListFragment
+import com.binatestation.kickstart.R
 import com.binatestation.kickstart.databinding.AdapterAlbumBinding
+import com.binatestation.kickstart.databinding.FragmentAlbumBinding
 import com.binatestation.kickstart.repository.models.AlbumModel
 
 class AlbumFragment : ListFragment() {
 
     private lateinit var albumViewModel: AlbumViewModel
+    private lateinit var fragmentAlbumBinding: FragmentAlbumBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         albumViewModel = ViewModelProvider(this)[AlbumViewModel::class.java]
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        fragmentAlbumBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_album,
+            container,
+            false
+        )
+        fragmentAlbumBinding.lifecycleOwner = this
+        fragmentAlbumBinding.imgRes = R.drawable.ic_camera_alt_black_24dp
+        return fragmentAlbumBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

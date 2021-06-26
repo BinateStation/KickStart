@@ -14,13 +14,27 @@
   ~ limitations under the License.
   -->
 
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipe_refresh_layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".utils.fragments.SwipeListFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include layout="@layout/fragment_list" />
+    <data>
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <variable
+            name="emptyStateModel"
+            type="com.binatestation.android.kickoff.repository.models.EmptyStateModel" />
+
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".utils.fragments.SwipeListFragment">
+
+        <include
+            layout="@layout/fragment_list"
+            app:emptyStateModel="@{emptyStateModel}" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

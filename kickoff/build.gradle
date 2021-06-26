@@ -10,6 +10,7 @@ plugins {
     id 'maven-publish'
 }
 
+def tag = System.getenv("CI_COMMIT_TAG")
 def artifactId = 'kickoff'
 def groupId = 'com.binatestation.android'
 
@@ -72,11 +73,23 @@ dependencies {
 project.afterEvaluate {
     publishing {
         publications {
+            def libVersion = android.defaultConfig.versionName
+            def currentBranch = System.getenv("CI_COMMIT_REF_SLUG")
+            def defaultBranch = System.getenv("CI_DEFAULT_BRANCH")
+            if (tag == null) {
+                if (currentBranch == defaultBranch) {
+                    libVersion = android.defaultConfig.versionName + "-SNAPSHOT"
+                } else {
+                    libVersion = android.defaultConfig.versionName + "-" + currentBranch + "-SNAPSHOT"
+                }
+            } else {
+                libVersion = android.defaultConfig.versionName
+            }
             library(MavenPublication) {
                 setGroupId groupId
                 setArtifactId artifactId
-                version android.defaultConfig.versionName
-
+                version libVersion
+                println('TAG: ' + tag + ' version: ' + libVersion + ' Current Branch: ' + currentBranch + ' Default Branch: ' + defaultBranch)
                 artifact bundleReleaseAar
             }
         }

@@ -58,9 +58,9 @@ before_script:
 # Check linting
 lintDebug:
   interruptible: true
-  except:
-    - master
-    - tags
+  only:
+    - merge_requests
+    - develop
   stage: lint
   script:
     - ./gradlew -Pci --console=plain lintDebug -PbuildDir=lint
@@ -68,7 +68,6 @@ lintDebug:
 lintRelease:
   interruptible: true
   only:
-    - master
     - tags
   stage: lint
   script:
@@ -79,9 +78,9 @@ lintRelease:
 assembleDebug:
   interruptible: true
   stage: build
-  except:
-    - master
-    - tags
+  only:
+    - merge_requests
+    - develop
   script:
     - ./gradlew assembleDebug
   artifacts:
@@ -94,7 +93,6 @@ assembleRelease:
   interruptible: true
   stage: build
   only:
-    - master
     - tags
   script:
     - ./gradlew assembleRelease
@@ -105,9 +103,9 @@ assembleRelease:
 # Run all tests, if any fails, interrupt the pipeline(fail it)
 debugTests:
   interruptible: true
-  except:
-    - master
-    - tags
+  only:
+    - merge_requests
+    - develop
   stage: test
   script:
     - ./gradlew -Pci --console=plain testDebug
@@ -115,7 +113,6 @@ debugTests:
 releaseTests:
   interruptible: true
   only:
-    - master
     - tags
   stage: test
   script:
@@ -127,6 +124,18 @@ deploy:
     - tags
   environment:
     name: Production
+    url: https://gitlab.com/BinateStation/kickstart/-/packages
+  stage: publish
+  script:
+    - 'gradle publish'
+
+deploySnapshot:
+  image: gradle:6.7-jdk11
+  only:
+    - merge_requests
+    - develop
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
     url: https://gitlab.com/BinateStation/kickstart/-/packages
   stage: publish
   script:
