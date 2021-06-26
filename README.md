@@ -18,13 +18,15 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.binatestation.android:kickoff:1.2.10'
+  implementation 'com.binatestation.android:kickoff:1.2.11'
 }
 ```
 
 This is a library which can be used for avoiding boiler plate code in the RecyclerView
 
 ## What's New
+1. DataBinding issue fixes
+1. Progress Dialog context issue fixes
 1. Now we have paging with DB + Network
 1. com.binatestation.android.kickoff.utils.fragments.ImageCarouselFragment
 1. com.binatestation.android.kickoff.utils.fragments.PageSliderWithIndicatorFragment
