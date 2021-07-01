@@ -14,7 +14,7 @@
 
     </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -36,5 +36,5 @@
             app:model="@{emptyStateModel}"
             tools:visibility="visible" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </FrameLayout>
 </layout>
