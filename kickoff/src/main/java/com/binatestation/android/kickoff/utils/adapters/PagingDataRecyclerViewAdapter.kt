@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.binatestation.android.kickoff.R
 import com.binatestation.android.kickoff.repository.models.ItemViewTypeModel
+import com.binatestation.android.kickoff.utils.Constants
 import com.binatestation.android.kickoff.utils.adapters.holders.BaseViewHolder
 import com.binatestation.android.kickoff.utils.adapters.holders.EmptyStateViewHolder
 import com.binatestation.android.kickoff.utils.listeners.ItemClickListener
@@ -67,7 +68,8 @@ class PagingDataRecyclerViewAdapter<DataModelType : Any>(
                 )
             ) as BaseViewHolder?
             viewHolder?.setOnItemClickListener { position, actionView ->
-                onClickItem?.let { onClick -> onClick(getItem(position), position, actionView) }
+                if(position != RecyclerView.NO_POSITION)
+                    onClickItem?.let { onClick -> onClick(getItem(position), position, actionView) }
             }
             viewHolder?.let { return it }
         } catch (e: Exception) {
