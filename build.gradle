@@ -6,7 +6,7 @@
 
 buildscript {
     ext.kick_off_library_version = '1.2.13'
-    ext.kotlin_version = '1.5.20'
+    ext.kotlin_version = '1.5.21'
     ext.nav_version = '2.3.5'
     repositories {
         google()
