@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.binatestation.android:kickoff:1.2.13'
+  implementation 'com.binatestation.android:kickoff:1.2.14'
 }
 ```
 
