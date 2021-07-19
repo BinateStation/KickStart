@@ -14,7 +14,7 @@ ext {
     retrofit = '2.9.0'
     lifecycle_version = '2.3.1'
     room_version = '2.4.0-alpha03'
-    paging_version = '3.1.0-alpha01'
+    paging_version = '3.1.0-alpha02'
 }
 
 android {
@@ -48,7 +48,7 @@ android {
 
 dependencies {
     // Core components
-    implementation 'com.google.android.material:material:1.4.0-rc01'
+    implementation 'com.google.android.material:material:1.5.0-alpha01'
     implementation "androidx.appcompat:appcompat:${appcompat}"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
