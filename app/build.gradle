@@ -13,8 +13,8 @@ ext {
     appcompat = '1.4.0-alpha03'
     retrofit = '2.9.0'
     lifecycle_version = '2.3.1'
-    room_version = '2.4.0-alpha04'
-    paging_version = '3.1.0-alpha03'
+    room_version = '2.4.0-alpha03'
+    paging_version = '3.1.0-alpha02'
 }
 
 android {
@@ -48,13 +48,13 @@ android {
 
 dependencies {
     // Core components
-    implementation 'com.google.android.material:material:1.5.0-alpha03'
+    implementation 'com.google.android.material:material:1.5.0-alpha01'
     implementation "androidx.appcompat:appcompat:${appcompat}"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // Specific views
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.preference:preference-ktx:1.1.1'
 
     // Architectural components
