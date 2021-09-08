@@ -22,5 +22,9 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
+    - name: lintDebug
+      run:  ./gradlew -Pci --console=plain lintDebug -PbuildDir=lint
+    - name: assembleDebug
+      run: ./gradlew assembleDebug
+    - name: debugTests
+      run: ./gradlew -Pci --console=plain testDebug
