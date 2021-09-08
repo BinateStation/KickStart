@@ -35,7 +35,7 @@
         tools:targetApi="n">
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/AppTheme.Light.NoActionBar.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
