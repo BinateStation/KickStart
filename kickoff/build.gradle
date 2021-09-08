@@ -115,13 +115,11 @@ project.afterEvaluate {
         }
         publications {
             def libVersion = android.defaultConfig.versionName
-            gpr(MavenPublication) {
+            library(MavenPublication) {
                 setGroupId groupId
                 setArtifactId artifactId
                 version libVersion
-                artifact("$buildDir/outputs/aar/${artifactId}-release.aar")
-
-                from components.release
+                artifact bundleReleaseAar
             }
         }
     }
