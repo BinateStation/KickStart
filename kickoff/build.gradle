@@ -70,37 +70,56 @@ dependencies {
 
 project.afterEvaluate {
     publishing {
+//        publications {
+//            def libVersion = android.defaultConfig.versionName
+//            def currentBranch = System.getenv("CI_COMMIT_REF_SLUG")
+//            def defaultBranch = System.getenv("CI_DEFAULT_BRANCH")
+//            if (tag == null) {
+//                if (currentBranch == defaultBranch) {
+//                    libVersion = android.defaultConfig.versionName + "-SNAPSHOT"
+//                } else {
+//                    libVersion = android.defaultConfig.versionName + "-" + currentBranch + "-SNAPSHOT"
+//                }
+//            } else {
+//                libVersion = android.defaultConfig.versionName
+//            }
+//            library(MavenPublication) {
+//                setGroupId groupId
+//                setArtifactId artifactId
+//                version libVersion
+//                artifact bundleReleaseAar
+//            }
+//        }
+//        repositories {
+//            maven {
+//                url "https://gitlab.com/api/v4/projects/8748353/packages/maven"
+//                name "GitLab"
+//                credentials(HttpHeaderCredentials) {
+//                    name = 'Job-Token'
+//                    value = System.getenv("CI_JOB_TOKEN")
+//                }
+//                authentication {
+//                    header(HttpHeaderAuthentication)
+//                }
+//            }
+//        }
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/BinateStation/KickStart")
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                    password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+                }
+            }
+        }
         publications {
             def libVersion = android.defaultConfig.versionName
-            def currentBranch = System.getenv("CI_COMMIT_REF_SLUG")
-            def defaultBranch = System.getenv("CI_DEFAULT_BRANCH")
-            if (tag == null) {
-                if (currentBranch == defaultBranch) {
-                    libVersion = android.defaultConfig.versionName + "-SNAPSHOT"
-                } else {
-                    libVersion = android.defaultConfig.versionName + "-" + currentBranch + "-SNAPSHOT"
-                }
-            } else {
-                libVersion = android.defaultConfig.versionName
-            }
-            library(MavenPublication) {
+            gpr(MavenPublication) {
                 setGroupId groupId
                 setArtifactId artifactId
                 version libVersion
                 artifact bundleReleaseAar
-            }
-        }
-        repositories {
-            maven {
-                url "https://gitlab.com/api/v4/projects/8748353/packages/maven"
-                name "GitLab"
-                credentials(HttpHeaderCredentials) {
-                    name = 'Job-Token'
-                    value = System.getenv("CI_JOB_TOKEN")
-                }
-                authentication {
-                    header(HttpHeaderAuthentication)
-                }
             }
         }
     }
