@@ -28,3 +28,5 @@ jobs:
       run: ./gradlew assembleDebug
     - name: debugTests
       run: ./gradlew -Pci --console=plain testDebug
+    - name: deploy
+      run: gradle publish
