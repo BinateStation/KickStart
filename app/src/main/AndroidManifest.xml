@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Created By RKR
   ~ Last Updated at 14/12/19 7:30 PM.
   ~
@@ -36,6 +35,7 @@
         tools:targetApi="n">
         <activity
             android:name=".ui.splash.SplashActivity"
+            android:exported="true"
             android:theme="@style/AppTheme.Light.NoActionBar.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

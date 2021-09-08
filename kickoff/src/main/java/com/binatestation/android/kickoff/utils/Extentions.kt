@@ -118,7 +118,13 @@ fun FragmentActivity.showAlert(jsonObject: JSONObject): AlertDialogFragment {
  * show progress wheel
  */
 fun FragmentActivity.showProgressWheel() {
-    ProgressDialogFragment.instance?.show(supportFragmentManager, ProgressDialogFragment.TAG)
+    val progressDialogFragment =
+        ProgressDialogFragment.newInstance()
+    try {
+        progressDialogFragment.show(supportFragmentManager, ProgressDialogFragment.TAG)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
 }
 
 /**
