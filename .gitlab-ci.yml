@@ -119,6 +119,7 @@ releaseTests:
     - ./gradlew -Pci --console=plain testRelease
 
 deploy:
+  image: gradle:7.0.2-jdk11
   only:
     - tags
   environment:
@@ -129,6 +130,7 @@ deploy:
     - 'gradle publish'
 
 deploySnapshot:
+  image: gradle:7.0.2-jdk11
   only:
     - merge_requests
     - develop
