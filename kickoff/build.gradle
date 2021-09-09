@@ -68,6 +68,11 @@ dependencies {
 
 }
 
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+
 project.afterEvaluate {
     publishing {
 //        publications {
@@ -108,19 +113,22 @@ project.afterEvaluate {
                 name = "GitHubPackages"
                 url = uri("https://maven.pkg.github.com/BinateStation/KickStart")
                 credentials {
-                    username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                    password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+                    username = System.getenv("GPR_USER")
+                    password = System.getenv("GPR_KEY")
                 }
             }
         }
         publications {
             def libVersion = android.defaultConfig.versionName
-            library(MavenPublication) {
+             maven(MavenPublication) {
                 setGroupId groupId
                 setArtifactId artifactId
                 version libVersion
-                artifact bundleReleaseAar
+                from components.release
+                artifact androidSourcesJar
             }
         }
     }
 }
+
+publish.dependsOn assemble
