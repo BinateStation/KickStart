@@ -114,16 +114,16 @@ project.afterEvaluate {
             }
         }
         publications {
-            println("Is Gitlab : "+System.getenv("GITLAB_CI"))
-            println("Is GitHub : "+System.getenv("CI"))
+            println("Is Gitlab : " + System.getenv("GITLAB_CI"))
+            println("Is GitHub : " + System.getenv("CI"))
 
-            def libVersion = 1.2.14.1
+            def libVersion = "1.2.14.1"
             library(MavenPublication) {
-               setGroupId groupId
-               setArtifactId artifactId
-               version libVersion
-               artifact bundleReleaseAar
-               }
+                setGroupId groupId
+                setArtifactId artifactId
+                version libVersion
+                artifact bundleReleaseAar
+            }
         }
     }
 }
