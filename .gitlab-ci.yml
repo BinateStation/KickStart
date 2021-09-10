@@ -1,9 +1,9 @@
 image: openjdk:11-jdk
 stages:
-#  - lint
-  #  - build
-  #  - test
-  #  - publish
+  - lint
+  - build
+  - test
+  - publish
   - release
 
 variables:
@@ -61,7 +61,7 @@ variables:
 lintDebug:
   interruptible: true
   only:
-    - merge_requests
+    # - merge_requests
     - develop
   stage: lint
   extends:
@@ -85,7 +85,7 @@ assembleDebug:
   interruptible: true
   stage: build
   only:
-    - merge_requests
+    # - merge_requests
     - develop
   extends:
     - .prepare_step
@@ -114,7 +114,7 @@ assembleRelease:
 debugTests:
   interruptible: true
   only:
-    - merge_requests
+    # - merge_requests
     - develop
   stage: test
   extends:
@@ -148,7 +148,7 @@ deploy:
 deploySnapshot:
   image: gradle:7.0.2-jdk11
   only:
-    - merge_requests
+    # - merge_requests
     - develop
   environment:
     name: review/$CI_COMMIT_REF_NAME
