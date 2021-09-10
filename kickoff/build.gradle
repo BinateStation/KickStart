@@ -119,6 +119,9 @@ project.afterEvaluate {
             }
         }
         publications {
+            println("Is Gitlab : "+System.getenv("GITLAB_CI"))
+            println("Is GitHub : "+System.getenv("CI"))
+
             def libVersion = android.defaultConfig.versionName
              maven(MavenPublication) {
                 setGroupId groupId
