@@ -71,7 +71,7 @@ dependencies {
 project.afterEvaluate {
    publishing {
         publications {
-            def libVersion = kick_off_library_version
+            def libVersion = "1.2.14.2"
             def isGitlab = System.getenv("GITLAB_CI") != null
             if (isGitlab) {
                 def currentBranch = System.getenv("CI_COMMIT_REF_SLUG")
