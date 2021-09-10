@@ -69,10 +69,10 @@ dependencies {
 }
 
 project.afterEvaluate {
-   publishing {
+    publishing {
+        def isGitlab = System.getenv("GITLAB_CI") != null
         publications {
-            def libVersion = "1.2.14.2"
-            def isGitlab = System.getenv("GITLAB_CI") != null
+            def libVersion = "1.2.14.3"
             if (isGitlab) {
                 def currentBranch = System.getenv("CI_COMMIT_REF_SLUG")
                 def defaultBranch = System.getenv("CI_DEFAULT_BRANCH")
@@ -94,23 +94,26 @@ project.afterEvaluate {
             }
         }
         repositories {
-            maven {
-                url "https://gitlab.com/api/v4/projects/8748353/packages/maven"
-                name "GitLab"
-                credentials(HttpHeaderCredentials) {
-                    name = 'Job-Token'
-                    value = System.getenv("CI_JOB_TOKEN")
+            if (isGitlab) {
+                maven {
+                    url "https://gitlab.com/api/v4/projects/8748353/packages/maven"
+                    name "GitLab"
+                    credentials(HttpHeaderCredentials) {
+                        name = 'Job-Token'
+                        value = System.getenv("CI_JOB_TOKEN")
+                    }
+                    authentication {
+                        header(HttpHeaderAuthentication)
+                    }
                 }
-                authentication {
-                    header(HttpHeaderAuthentication)
-                }
-            }
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/BinateStation/KickStart")
-                credentials {
-                    username = System.getenv("GPR_USER")
-                    password = System.getenv("GPR_KEY")
+            } else {
+                maven {
+                    name = "GitHubPackages"
+                    url = uri("https://maven.pkg.github.com/BinateStation/KickStart")
+                    credentials {
+                        username = System.getenv("GPR_USER")
+                        password = System.getenv("GPR_KEY")
+                    }
                 }
             }
         }
