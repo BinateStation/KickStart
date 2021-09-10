@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.binatestation.android:kickoff:1.2.14'
+  implementation 'com.binatestation.android:kickoff:1.2.15'
 }
 ```
 
@@ -155,6 +155,3 @@ class UOMRepository(private val uomApi: UOMApi) : BasePagedRepository<UOMModel>(
         // .....
 }
 ```
-
-
-
