@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.binatestation.android:kickoff:1.2.15.5'
+  implementation 'com.binatestation.android:kickoff:1.2.15.6'
 }
 ```
 
