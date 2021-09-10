@@ -69,41 +69,42 @@ dependencies {
 }
 
 project.afterEvaluate {
-    publishing {
-//        publications {
-//            def libVersion = android.defaultConfig.versionName
-//            def currentBranch = System.getenv("CI_COMMIT_REF_SLUG")
-//            def defaultBranch = System.getenv("CI_DEFAULT_BRANCH")
-//            if (tag == null) {
-//                if (currentBranch == defaultBranch) {
-//                    libVersion = android.defaultConfig.versionName + "-SNAPSHOT"
-//                } else {
-//                    libVersion = android.defaultConfig.versionName + "-" + currentBranch + "-SNAPSHOT"
-//                }
-//            } else {
-//                libVersion = android.defaultConfig.versionName
-//            }
-//            library(MavenPublication) {
-//                setGroupId groupId
-//                setArtifactId artifactId
-//                version libVersion
-//                artifact bundleReleaseAar
-//            }
-//        }
-//        repositories {
-//            maven {
-//                url "https://gitlab.com/api/v4/projects/8748353/packages/maven"
-//                name "GitLab"
-//                credentials(HttpHeaderCredentials) {
-//                    name = 'Job-Token'
-//                    value = System.getenv("CI_JOB_TOKEN")
-//                }
-//                authentication {
-//                    header(HttpHeaderAuthentication)
-//                }
-//            }
-//        }
+   publishing {
+        publications {
+            def libVersion = kick_off_library_version
+            def isGitlab = System.getenv("GITLAB_CI") != null
+            if (isGitlab) {
+                def currentBranch = System.getenv("CI_COMMIT_REF_SLUG")
+                def defaultBranch = System.getenv("CI_DEFAULT_BRANCH")
+                if (tag == null) {
+                    if (currentBranch == defaultBranch) {
+                        libVersion = kick_off_library_version + "-SNAPSHOT"
+                    } else {
+                        libVersion = kick_off_library_version + "-" + currentBranch + "-SNAPSHOT"
+                    }
+                } else {
+                    libVersion = kick_off_library_version
+                }
+            }
+            library(MavenPublication) {
+                setGroupId groupId
+                setArtifactId artifactId
+                version libVersion
+                artifact bundleReleaseAar
+            }
+        }
         repositories {
+            maven {
+                url "https://gitlab.com/api/v4/projects/8748353/packages/maven"
+                name "GitLab"
+                credentials(HttpHeaderCredentials) {
+                    name = 'Job-Token'
+                    value = System.getenv("CI_JOB_TOKEN")
+                }
+                authentication {
+                    header(HttpHeaderAuthentication)
+                }
+            }
             maven {
                 name = "GitHubPackages"
                 url = uri("https://maven.pkg.github.com/BinateStation/KickStart")
@@ -111,18 +112,6 @@ project.afterEvaluate {
                     username = System.getenv("GPR_USER")
                     password = System.getenv("GPR_KEY")
                 }
-            }
-        }
-        publications {
-            println("Is Gitlab : " + System.getenv("GITLAB_CI"))
-            println("Is GitHub : " + System.getenv("CI"))
-
-            def libVersion = "1.2.14.1"
-            library(MavenPublication) {
-                setGroupId groupId
-                setArtifactId artifactId
-                version libVersion
-                artifact bundleReleaseAar
             }
         }
     }
