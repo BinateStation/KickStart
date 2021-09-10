@@ -1,9 +1,9 @@
 image: openjdk:11-jdk
 stages:
-  - lint
-  - build
-  - test
-  - publish
+#  - lint
+  #  - build
+  #  - test
+  #  - publish
   - release
 
 variables:
@@ -161,8 +161,8 @@ deploySnapshot:
 
 release:
   image: registry.gitlab.com/gitlab-org/release-cli:latest
-  only:
-    - tags
+  #  only:
+  #    - tags
   environment:
     name: Production
     url: https://gitlab.com/BinateStation/kickstart/-/packages
