@@ -4,27 +4,31 @@ Add dependency by update your module gradle file as like below
 
 ```
 repositories {
-     maven {
-                url 'https://gitlab.com/api/v4/projects/8748353/packages/maven'
-                name "GitLab"
-                credentials(HttpHeaderCredentials) {
-                    name = 'Private-Token'
-                    value = gitLabPrivateToken
-                }
-                authentication {
-                    header(HttpHeaderAuthentication)
-                }
-     }
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/BinateStation/KickStart")
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+            password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+        }
+    }
 }
 
 dependencies {
-  implementation 'com.binatestation.android:kickoff:1.2.15'
+  implementation 'com.binatestation.android:kickoff:1.2.15.1'
 }
 ```
+
+You can user your github user id or username as username and you can create a private access token
+from your profile specific to read package registry.
+
+
+------------------------------------------------------------------------------------------
 
 This is a library which can be used for avoiding boiler plate code in the RecyclerView
 
 ## What's New
+
 1. DataBinding issue fixes
 1. Progress Dialog context issue fixes
 1. Now we have paging with DB + Network
