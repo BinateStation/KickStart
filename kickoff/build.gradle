@@ -70,18 +70,21 @@ dependencies {
 
 project.afterEvaluate {
     publishing {
+        def isGitlab = System.getenv("GITLAB_CI") != null
         publications {
-            def libVersion = android.defaultConfig.versionName
-            def currentBranch = System.getenv("CI_COMMIT_REF_SLUG")
-            def defaultBranch = System.getenv("CI_DEFAULT_BRANCH")
-            if (tag == null) {
-                if (currentBranch == defaultBranch) {
-                    libVersion = android.defaultConfig.versionName + "-SNAPSHOT"
+            def libVersion = kick_off_library_version
+            if (isGitlab) {
+                def currentBranch = System.getenv("CI_COMMIT_REF_SLUG")
+                def defaultBranch = System.getenv("CI_DEFAULT_BRANCH")
+                if (tag == null) {
+                    if (currentBranch == defaultBranch) {
+                        libVersion = kick_off_library_version + "-SNAPSHOT"
+                    } else {
+                        libVersion = kick_off_library_version + "-" + currentBranch + "-SNAPSHOT"
+                    }
                 } else {
-                    libVersion = android.defaultConfig.versionName + "-" + currentBranch + "-SNAPSHOT"
+                    libVersion = kick_off_library_version
                 }
-            } else {
-                libVersion = android.defaultConfig.versionName
             }
             library(MavenPublication) {
                 setGroupId groupId
@@ -91,15 +94,26 @@ project.afterEvaluate {
             }
         }
         repositories {
-            maven {
-                url "https://gitlab.com/api/v4/projects/8748353/packages/maven"
-                name "GitLab"
-                credentials(HttpHeaderCredentials) {
-                    name = 'Job-Token'
-                    value = System.getenv("CI_JOB_TOKEN")
+            if (isGitlab) {
+                maven {
+                    url "https://gitlab.com/api/v4/projects/8748353/packages/maven"
+                    name "GitLab"
+                    credentials(HttpHeaderCredentials) {
+                        name = 'Job-Token'
+                        value = System.getenv("CI_JOB_TOKEN")
+                    }
+                    authentication {
+                        header(HttpHeaderAuthentication)
+                    }
                 }
-                authentication {
-                    header(HttpHeaderAuthentication)
+            } else {
+                maven {
+                    name = "GitHubPackages"
+                    url = uri("https://maven.pkg.github.com/BinateStation/KickStart")
+                    credentials {
+                        username = System.getenv("GPR_USER")
+                        password = System.getenv("GPR_KEY")
+                    }
                 }
             }
         }
