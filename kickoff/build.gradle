@@ -72,6 +72,8 @@ project.afterEvaluate {
     publishing {
         publications {
             def libVersion = kick_off_library_version
+            println("Is Gitlab : "+System.getenv("GITLAB_CI"))
+            println("Is GitHub : "+System.getenv("CI"))
             def currentBranch = System.getenv("CI_COMMIT_REF_SLUG")
             def defaultBranch = System.getenv("CI_DEFAULT_BRANCH")
             if (tag == null) {
