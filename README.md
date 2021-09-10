@@ -15,12 +15,12 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.binatestation.android:kickoff:1.2.15.1'
+  implementation 'com.binatestation.android:kickoff:1.2.15.2'
 }
 ```
 
-You can user your github user id or username as username and you can create a private access token
-from your profile specific to read package registry.
+You can use your github user id or username as username and you can create a private access token
+from your profile, specific to read package registry.
 
 
 ------------------------------------------------------------------------------------------
