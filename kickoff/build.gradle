@@ -68,11 +68,6 @@ dependencies {
 
 }
 
-task androidSourcesJar(type: Jar) {
-    archiveClassifier.set('sources')
-    from android.sourceSets.main.java.srcDirs
-}
-
 project.afterEvaluate {
     publishing {
 //        publications {
@@ -122,14 +117,13 @@ project.afterEvaluate {
             println("Is Gitlab : "+System.getenv("GITLAB_CI"))
             println("Is GitHub : "+System.getenv("CI"))
 
-            def libVersion = android.defaultConfig.versionName
-             maven(MavenPublication) {
-                setGroupId groupId
-                setArtifactId artifactId
-                version kick_off_library_version
-                from components.release
-                artifact androidSourcesJar
-            }
+            def libVersion = 1.2.14.1
+            library(MavenPublication) {
+               setGroupId groupId
+               setArtifactId artifactId
+               version libVersion
+               artifact bundleReleaseAar
+               }
         }
     }
 }
