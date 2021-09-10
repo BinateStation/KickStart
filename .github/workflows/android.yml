@@ -2,9 +2,8 @@ name: Android CI
 
 on:
   push:
-    branches: [ develop ]
-  pull_request:
-    branches: [ develop ]
+    tags:  
+      - '*'
 
 jobs:
   build:
@@ -22,12 +21,12 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-#     - name: lintDebug
-#       run:  ./gradlew -Pci --console=plain lintDebug -PbuildDir=lint
-    - name: assembleDebug
-      run: ./gradlew assembleDebug
-#     - name: debugTests
-#       run: ./gradlew -Pci --console=plain testDebug
+    - name: lint
+      run:  ./gradlew -Pci --console=plain lintRelease -PbuildDir=lint
+    - name: assembleRelease
+      run: ./gradlew assembleRelease
+    - name: releaseTests
+      run: ./gradlew -Pci --console=plain testRelease
     - name: deploy
       run: gradle publish
       env:
