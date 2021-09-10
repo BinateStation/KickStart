@@ -19,8 +19,8 @@ dependencies {
 }
 ```
 
-You can user your github user id or username as username and you can create a private access token
-from your profile specific to read package registry.
+You can use your github user id or username as username and you can create a private access token
+from your profile, specific to read package registry.
 
 
 ------------------------------------------------------------------------------------------
