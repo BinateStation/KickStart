@@ -10,18 +10,18 @@ variables:
 
   # ANDROID_COMPILE_SDK is the version of Android you're compiling with.
   # It should match compileSdkVersion.
-  ANDROID_COMPILE_SDK: "30"
+  ANDROID_COMPILE_SDK: "31"
 
   # ANDROID_BUILD_TOOLS is the version of the Android build tools you are using.
   # It should match buildToolsVersion.
-  ANDROID_BUILD_TOOLS: "30.0.3"
+  ANDROID_BUILD_TOOLS: "31.0.0"
 
   # It's what version of the command line tools we're going to download from the official site.
   # Official Site-> https://developer.android.com/studio/index.html
   # There, look down below at the cli tools only, sdk tools package is of format:
   #        commandlinetools-os_type-ANDROID_SDK_TOOLS_latest.zip
   # when the script was last modified for latest compileSdkVersion, it was which is written down below
-  ANDROID_SDK_TOOLS: "7302050"
+  ANDROID_SDK_TOOLS: "7583922"
 
 # Packages installation before running script
 .prepare_step:
@@ -87,6 +87,8 @@ assembleDebug:
   only:
     - merge_requests
     - develop
+  needs:
+    - job: lintDebug
   extends:
     - .prepare_step
   script:
@@ -102,6 +104,8 @@ assembleRelease:
   stage: build
   only:
     - tags
+  needs:
+    - job: lintRelease
   extends:
     - .prepare_step
   script:
@@ -117,6 +121,9 @@ debugTests:
     - merge_requests
     - develop
   stage: test
+  needs:
+    - job: assembleDebug
+      artifacts: true
   extends:
     - .prepare_step
   script:
@@ -127,6 +134,9 @@ releaseTests:
   only:
     - tags
   stage: test
+  needs:
+    - job: assembleRelease
+      artifacts: true
   extends:
     - .prepare_step
   script:
@@ -140,6 +150,9 @@ deploy:
     name: Production
     url: https://gitlab.com/BinateStation/kickstart/-/packages
   stage: publish
+  needs:
+    - job: assembleRelease
+      artifacts: true
   extends:
     - .prepare_step
   script:
@@ -154,6 +167,9 @@ deploySnapshot:
     name: review/$CI_COMMIT_REF_NAME
     url: https://gitlab.com/BinateStation/kickstart/-/packages
   stage: publish
+  needs:
+    - job: assembleDebug
+      artifacts: true
   extends:
     - .prepare_step
   script:
@@ -168,4 +184,4 @@ release:
     url: https://gitlab.com/BinateStation/kickstart/-/packages
   stage: release
   script:
-    - release-cli create --name "Release $CI_COMMIT_TAG" --tag-name $CI_COMMIT_TAG
+    - release-cli create --name $CI_COMMIT_TAG --tag-name $CI_COMMIT_TAG
