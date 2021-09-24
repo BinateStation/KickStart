@@ -14,9 +14,11 @@
  */
 
 @file:Suppress("unused")
+@file:Keep
 
 package com.binatestation.android.kickoff.utils
 
+import androidx.annotation.Keep
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

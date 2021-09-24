@@ -1,0 +1,12 @@
+<!--
+  ~ (c) Binate Station Private Limited. All rights reserved.
+  -->
+
+<resources>
+    <declare-styleable name="SearchableSpinner">
+        <attr name="hint" format="string" />
+        <attr name="searchHint" format="string" />
+        <attr name="multiSelectable" format="boolean" />
+        <attr name="showDoneButton" format="boolean" />
+    </declare-styleable>
+</resources>

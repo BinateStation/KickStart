@@ -12,21 +12,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.binatestation.android.kickoff.R
-import com.binatestation.android.kickoff.repository.models.MultiSelectDataModel
+import com.binatestation.android.kickoff.repository.models.Selectable
 import com.binatestation.android.kickoff.utils.adapters.RecyclerViewAdapter
 
 /**
  * Created by RKR on 11-09-2018.
  * MultiSelectDialogFragment.
  */
-class MultiSelectDialogFragment<T : MultiSelectDataModel> : BaseDialogFragment() {
+open class MultiSelectDialogFragment<T : Selectable> : BaseDialogFragment() {
+
     private var mRequestCode: Int = 0
     private var mMultiSelectable = true
-    private var mSelectedItem: T? = null
+    private var mSelectedItem: Selectable? = null
 
     private var mAdapter: RecyclerViewAdapter? = null
 
-    private lateinit var mListener: (ArrayList<T>) -> (Unit)
+    private lateinit var mListener: (List<Selectable>?) -> (Unit)
 
     /**
      * gets the adapter
@@ -45,26 +46,13 @@ class MultiSelectDialogFragment<T : MultiSelectDataModel> : BaseDialogFragment()
         }
 
     @Suppress("UNCHECKED_CAST")
-    private val selectedItems: ArrayList<T>
+    private val selectedItems: List<Selectable>?
         get() {
-            val selectedObjects = ArrayList<T>()
-            if (mMultiSelectable) {
-                addItems(adapter.data as ArrayList<T>, selectedObjects)
-            } else {
-                if (mSelectedItem is T) {
-                    val selectedItem = mSelectedItem as T
-                    selectedObjects.add(selectedItem)
-                }
-            }
-            return selectedObjects
+            return if (mMultiSelectable) {
+                adapter.data?.filterIsInstance(Selectable::class.java)
+                    ?.filter { it.selected == true }
+            } else mSelectedItem?.let { listOf(it) }
         }
-
-    private fun addItems(data: ArrayList<T>, selectedObjects: ArrayList<T>) {
-        for (`object` in data) {
-            if (`object`.isSelected)
-                selectedObjects.add(`object`)
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,8 +73,8 @@ class MultiSelectDialogFragment<T : MultiSelectDataModel> : BaseDialogFragment()
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView?.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         recyclerView?.adapter = adapter
-        view.findViewById<View>(R.id.action_positive).setOnClickListener { actionPositive() }
-        view.findViewById<View>(R.id.action_negative).setOnClickListener { dismiss() }
+        view.findViewById<View>(R.id.action_positive)?.setOnClickListener { actionPositive() }
+        view.findViewById<View>(R.id.action_negative)?.setOnClickListener { dismiss() }
     }
 
     @Suppress("unused")
@@ -95,16 +83,27 @@ class MultiSelectDialogFragment<T : MultiSelectDataModel> : BaseDialogFragment()
     }
 
     @Suppress("unused")
-    fun setData(data: List<T>?) {
-        adapter.setTypedData(data)
+    fun setData(data: List<Selectable>?) {
+        adapter.setTypedData(`data`?.takeIf { it.isNotEmpty() }?.apply {
+            val mutableData = this as MutableList
+            val selectedItems = selectedItems
+            selectedItems?.forEach {
+                if (mutableData.contains(it)) {
+                    val index = mutableData.indexOf(it)
+                    mutableData[index].selected = it.selected
+                } else {
+                    mutableData.add(0, it)
+                }
+            }
+        })
     }
 
     private fun onClickItem(`object`: Any?) {
-        @Suppress("UNCHECKED_CAST")
         if (!mMultiSelectable) {
-            adapter.data?.forEach { if (it is MultiSelectDataModel) it.isSelected = false }
-            mSelectedItem = `object` as T
-            `object`.isSelected = true
+            adapter.data?.filterIsInstance(Selectable::class.java)
+                ?.find { it.selected == true }?.selected = false
+            mSelectedItem = `object` as Selectable
+            `object`.selected = true
             actionPositive()
         }
     }
@@ -114,13 +113,17 @@ class MultiSelectDialogFragment<T : MultiSelectDataModel> : BaseDialogFragment()
         dismiss()
     }
 
+    fun setListener(listener: (List<Selectable>?) -> (Unit)) {
+        mListener = listener
+    }
+
     companion object {
 
         private const val KEY_REQUEST_CODE = "REQUEST_CODE"
 
-        fun <T : MultiSelectDataModel> newInstance(
+        fun <T : Selectable> newInstance(
             requestCode: Int,
-            listener: (ArrayList<T>) -> (Unit)
+            listener: (List<Selectable>?) -> (Unit)
         ): MultiSelectDialogFragment<T> {
 
             val args = Bundle()
@@ -132,4 +135,5 @@ class MultiSelectDialogFragment<T : MultiSelectDataModel> : BaseDialogFragment()
             return fragment
         }
     }
+
 }

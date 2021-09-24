@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ (c) Binate Station Private Limited. All rights reserved.
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.binatestation.android.kickoff.repository.models.SearchableSpinnerDropdownItemModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="@={model.selected}"
+                android:paddingHorizontal="@dimen/activity_horizontal_margin"
+                android:paddingVertical="@dimen/activity_vertical_margin"
+                android:text="@{model.label}"
+                android:textAppearance="?textAppearanceSubtitle1"
+                android:visibility="gone"
+                app:goneUnless="@{model.multiSelect}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Job id : 1"
+                tools:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/activity_horizontal_margin"
+                android:paddingVertical="@dimen/activity_vertical_margin"
+                android:text="@{model.label}"
+                android:textAppearance="?textAppearanceSubtitle1"
+                android:visibility="gone"
+                app:goneUnless="@{!model.multiSelect}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Job id : 1"
+                tools:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

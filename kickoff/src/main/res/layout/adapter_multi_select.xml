@@ -21,7 +21,7 @@
 
         <variable
             name="model"
-            type="com.binatestation.android.kickoff.repository.models.MultiSelectDataModel" />
+            type="com.binatestation.android.kickoff.repository.models.Selectable" />
     </data>
 
     <CheckBox
