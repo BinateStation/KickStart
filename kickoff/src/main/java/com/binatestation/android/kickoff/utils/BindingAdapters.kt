@@ -3,6 +3,7 @@
  */
 
 @file:Suppress("unused")
+@file:Keep
 
 package com.binatestation.android.kickoff.utils
 
@@ -16,11 +17,14 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.Keep
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.widget.ContentLoadingProgressBar
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.binatestation.android.kickoff.repository.models.Selectable
 import com.binatestation.android.kickoff.utils.adapters.RecyclerViewAdapter
+import com.binatestation.android.kickoff.view.searchable.spinner.SearchableSpinner
 
 /**
  * @author RKR #rkrsmail@gmail.com
@@ -162,4 +166,30 @@ fun setRecyclerViewAdapter(
     adapter: RecyclerViewAdapter? = null
 ) {
     recyclerView.adapter = adapter
+}
+
+@BindingAdapter("onSelectItemListener")
+fun setOnSelectItemListener(
+    searchableSpinner: SearchableSpinner,
+    onSelectItemListener: ((Selectable?) -> Unit)?
+) {
+    searchableSpinner.onSelectItem = onSelectItemListener
+}
+
+@BindingAdapter("onSelectMultipleItemsListener")
+fun setOnSelectMultipleItemsListener(
+    searchableSpinner: SearchableSpinner,
+    onSelectMultipleItems: ((List<Selectable>?) -> Unit)?
+) {
+    searchableSpinner.onSelectMultipleItems = onSelectMultipleItems
+}
+
+@BindingAdapter("resetSelection")
+fun setResetSelectionListener(
+    searchableSpinner: SearchableSpinner,
+    onSelectItemListener: (function: () -> Unit) -> Unit
+) {
+    onSelectItemListener {
+        searchableSpinner.resetSelection()
+    }
 }

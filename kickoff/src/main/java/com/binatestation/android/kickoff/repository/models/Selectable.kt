@@ -18,8 +18,11 @@ package com.binatestation.android.kickoff.repository.models
 
 /**
  * Created by RKR on 11-09-2018.
- * MultiSelectDataModel.
+ * Selectable.
  */
-interface MultiSelectDataModel {
-    var isSelected: Boolean
+interface Selectable {
+    val id: Long?
+    var selected: Boolean?
+
+    fun getLabel(): String?
 }
