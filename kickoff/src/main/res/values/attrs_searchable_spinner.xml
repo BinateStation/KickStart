@@ -8,5 +8,6 @@
         <attr name="searchHint" format="string" />
         <attr name="multiSelectable" format="boolean" />
         <attr name="showDoneButton" format="boolean" />
+        <attr name="outlined" format="boolean" />
     </declare-styleable>
 </resources>
