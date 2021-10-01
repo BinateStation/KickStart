@@ -241,4 +241,9 @@ class SearchableSpinner : ConstraintLayout {
         } else selectedItem?.let { listOf(it) }
     }
 
+    override fun setVisibility(visibility: Int) {
+        super.setVisibility(visibility)
+        intViews()
+    }
+
 }
