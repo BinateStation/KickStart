@@ -121,7 +121,8 @@ fun FragmentActivity.showAlert(jsonObject: JSONObject): AlertDialogFragment {
  */
 fun FragmentActivity.showProgressWheel() {
     val progressDialogFragment =
-        ProgressDialogFragment.newInstance()
+        supportFragmentManager.fragments.filterIsInstance(ProgressDialogFragment::class.java)
+            .firstOrNull() ?: ProgressDialogFragment.newInstance()
     try {
         progressDialogFragment.show(supportFragmentManager, ProgressDialogFragment.TAG)
     } catch (e: Exception) {
@@ -134,12 +135,9 @@ fun FragmentActivity.showProgressWheel() {
  */
 @Suppress("unused")
 fun FragmentActivity.hideProgressWheel() {
-    val fragment = supportFragmentManager.findFragmentByTag(ProgressDialogFragment.TAG)
-    fragment?.let {
-        if (fragment is ProgressDialogFragment) {
-            fragment.dismiss()
-        }
-    }
+    val fragments =
+        supportFragmentManager.fragments.filterIsInstance(ProgressDialogFragment::class.java)
+    fragments.forEach { it.dismiss() }
 }
 
 @Suppress("unused")
@@ -261,8 +259,8 @@ fun Fragment.setTitle(title: String) {
 @Suppress("unused")
 fun Fragment.showProgressWheel() {
     val fragmentActivity = activity
-    if (fragmentActivity is AppCompatActivity) {
-        val baseActivity = fragmentActivity as AppCompatActivity?
+    if (fragmentActivity is FragmentActivity) {
+        val baseActivity = fragmentActivity as FragmentActivity?
         baseActivity?.showProgressWheel()
     }
 }
