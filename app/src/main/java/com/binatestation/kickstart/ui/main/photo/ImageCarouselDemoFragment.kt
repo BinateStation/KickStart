@@ -19,7 +19,7 @@ class ImageCarouselDemoFragment : ImageCarouselFragment() {
         photoViewModel = ViewModelProvider(this)[PhotoViewModel::class.java]
     }
 
-    @ObsoleteCoroutinesApi
+    @OptIn(ObsoleteCoroutinesApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         photoViewModel.photos.observe(viewLifecycleOwner, { it ->
