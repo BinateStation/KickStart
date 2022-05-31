@@ -13,14 +13,14 @@ buildscript {
         version_code = 1
         version_name = kick_off_library_version
 
-        kotlin_version = '1.5.31'
+        kotlin_version = '1.6.21'
 
-        appcompat = '1.4.0-alpha03'
+        appcompat = '1.6.0-alpha04'
 
-        paging_version = '3.0.1'
-        nav_version = '2.3.5'
-        lifecycle_version = '2.3.1'
-        room_version = '2.4.0-alpha04'
+        paging_version = '3.1.1'
+        nav_version = '2.4.2'
+        lifecycle_version = '2.4.1'
+        room_version = '2.5.0-alpha01'
 
         retrofit = '2.9.0'
     }
@@ -29,7 +29,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.2'
+        classpath 'com.android.tools.build:gradle:7.2.1'
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // Check for v3.1.2 or higher
