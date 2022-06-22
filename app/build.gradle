@@ -41,7 +41,7 @@ android {
 dependencies {
     implementation project(path: ':kickoff')
     // Core components
-    implementation 'com.google.android.material:material:1.7.0-alpha01'
+    implementation 'com.google.android.material:material:1.7.0-alpha02'
     implementation "androidx.appcompat:appcompat:${appcompat}"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
@@ -58,7 +58,7 @@ dependencies {
     // Saved state module for ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
     // Jetpack Compose Integration for ViewModel
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0-rc01'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0-rc02'
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     // optional - helpers for implementing LifecycleOwner in a Service
     implementation "androidx.lifecycle:lifecycle-service:$lifecycle_version"
@@ -75,10 +75,10 @@ dependencies {
     //Addons
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0'
 
     // Network
     implementation "com.squareup.retrofit2:retrofit:${retrofit}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit}"
-    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.7'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.9'
 }
