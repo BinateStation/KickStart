@@ -39,10 +39,10 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'com.google.android.material:material:1.7.0-alpha01'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'com.google.android.material:material:1.7.0-alpha02'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3'
 
     // Specific views
     implementation 'androidx.cardview:cardview:1.0.0'
@@ -57,7 +57,7 @@ dependencies {
     // Network
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.7'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.9'
 
 
 }
