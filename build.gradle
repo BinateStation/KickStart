@@ -6,7 +6,7 @@
 
 buildscript {
     ext {
-        kick_off_library_version = '1.3.0'
+        kick_off_library_version = '1.3.1'
         target_sdk_version = 33
         compile_sdk_version = 33
         min_sdk_version = 21
