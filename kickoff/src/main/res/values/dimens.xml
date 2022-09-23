@@ -28,4 +28,7 @@
          https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">240dp</dimen>
 
+    <dimen name="outlined_spinner_padding">12dp</dimen>
+    <dimen name="outlined_spinner_radius">4dp</dimen>
+
 </resources>

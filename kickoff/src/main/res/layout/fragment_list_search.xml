@@ -15,22 +15,32 @@
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
-            name="model"
-            type="com.binatestation.android.kickoff.repository.models.Selectable" />
+            name="emptyStateModel"
+            type="com.binatestation.android.kickoff.repository.models.EmptyStateModel" />
+
     </data>
 
-    <CheckBox
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:checked="@={model.selected}"
-        android:padding="@dimen/activity_vertical_margin"
-        android:text="@{model.toString()}"
-        tools:text="@tools:sample/first_names">
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
-    </CheckBox>
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iconifiedByDefault="false"
+            app:queryHint="@string/search" />
+
+        <include
+            layout="@layout/fragment_list"
+            app:emptyStateModel="@{emptyStateModel}" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

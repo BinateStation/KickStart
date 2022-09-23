@@ -9,22 +9,14 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
 }
 
-ext {
-    appcompat = '1.4.0-alpha03'
-    retrofit = '2.9.0'
-    lifecycle_version = '2.3.1'
-    room_version = '2.4.0-alpha04'
-    paging_version = '3.1.0-alpha03'
-}
-
 android {
-    compileSdkVersion 30
+    compileSdkVersion compile_sdk_version
     defaultConfig {
         applicationId "com.binatestation.kickstart"
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "${kick_off_library_version}"
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
+        versionCode version_code
+        versionName version_name
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BASE_URL", '"https://jsonplaceholder.typicode.com/"'
     }
@@ -44,18 +36,20 @@ android {
     buildFeatures {
         dataBinding true
     }
+    namespace 'com.binatestation.kickstart'
 }
 
 dependencies {
+    implementation project(path: ':kickoff')
     // Core components
-    implementation 'com.google.android.material:material:1.5.0-alpha02'
+    implementation 'com.google.android.material:material:1.8.0-alpha01'
     implementation "androidx.appcompat:appcompat:${appcompat}"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // Specific views
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
-    implementation 'androidx.preference:preference-ktx:1.1.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.preference:preference-ktx:1.2.0'
 
     // Architectural components
     // ViewModel
@@ -65,12 +59,10 @@ dependencies {
     // Saved state module for ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
     // Jetpack Compose Integration for ViewModel
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-alpha02'
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     // optional - helpers for implementing LifecycleOwner in a Service
     implementation "androidx.lifecycle:lifecycle-service:$lifecycle_version"
-    // optional - ProcessLifecycleOwner provides a lifecycle for the whole application process
-    implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
     // optional - ReactiveStreams support for LiveData
     implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
@@ -79,18 +71,15 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-paging:$room_version"
 
     //Addons
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.3.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0'
 
     // Network
     implementation "com.squareup.retrofit2:retrofit:${retrofit}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit}"
-    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
-
-    // debug
-    debugImplementation 'im.dino:dbinspector:4.0.0@aar'
-    implementation project(path: ':kickoff')
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.9'
 }

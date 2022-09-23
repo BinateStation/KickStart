@@ -45,4 +45,5 @@
     <string name="version">Version</string>
     <string name="search">Search</string>
     <string name="bullet_point">●</string>
+    <string name="done">Done</string>
 </resources>

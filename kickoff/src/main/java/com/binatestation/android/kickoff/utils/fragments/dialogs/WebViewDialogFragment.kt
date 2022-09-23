@@ -10,11 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebResourceError
-import android.webkit.WebResourceRequest
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import androidx.core.widget.ContentLoadingProgressBar
 import com.binatestation.android.kickoff.R
 
@@ -27,6 +23,21 @@ open class WebViewDialogFragment : BaseDialogFragment() {
     private var mTitle: String? = null
     private var webView: WebView? = null
     private var progressBar: ContentLoadingProgressBar? = null
+    private var webViewClient: WebViewClient = object : WebViewClient() {
+        override fun onReceivedError(
+            view: WebView,
+            request: WebResourceRequest,
+            error: WebResourceError
+        ) {
+            super.onReceivedError(view, request, error)
+            hideProgress()
+        }
+
+        override fun onPageFinished(view: WebView, url: String) {
+            super.onPageFinished(view, url)
+            hideProgress()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,33 +53,14 @@ open class WebViewDialogFragment : BaseDialogFragment() {
         return inflater.inflate(R.layout.fragment_web_view_dialog, container, false)
     }
 
-    @Suppress("DEPRECATION")
     @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         webView = view.findViewById(R.id.web_view)
         progressBar = view.findViewById(R.id.progress_bar)
         webView?.settings?.javaScriptEnabled = true        // enable javascript just test
-        webView?.settings?.setAppCacheEnabled(true)
-        webView?.settings?.setAppCachePath(context?.cacheDir?.path)
         webView?.settings?.cacheMode = WebSettings.LOAD_DEFAULT
-
-        webView?.webViewClient = object : WebViewClient() {
-            override fun onReceivedError(
-                view: WebView,
-                request: WebResourceRequest,
-                error: WebResourceError
-            ) {
-                super.onReceivedError(view, request, error)
-                progressBar?.hide()
-            }
-
-            override fun onPageFinished(view: WebView, url: String) {
-                super.onPageFinished(view, url)
-                progressBar?.hide()
-            }
-        }
-
+        setWebViewClient(webViewClient)
         loadUrl()
     }
 
@@ -111,6 +103,25 @@ open class WebViewDialogFragment : BaseDialogFragment() {
      */
     fun setTitle(title: String) {
         mTitle = title
+    }
+
+    /**
+     * sets custom web view client. If we are using this custom client then hide the
+     * progress dialog is your choice.
+     *
+     * @param webViewClient Custom web view client
+     */
+    @Suppress("MemberVisibilityCanBePrivate")
+    fun setWebViewClient(webViewClient: WebViewClient) {
+        this.webViewClient = webViewClient
+        webView?.webViewClient = this.webViewClient
+    }
+
+    /**
+     * Hide the content loading progress
+     */
+    fun hideProgress() {
+        progressBar?.hide()
     }
 
     companion object {
