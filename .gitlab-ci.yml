@@ -10,11 +10,11 @@ variables:
 
   # ANDROID_COMPILE_SDK is the version of Android you're compiling with.
   # It should match compileSdkVersion.
-  ANDROID_COMPILE_SDK: "32"
+  ANDROID_COMPILE_SDK: "33"
 
   # ANDROID_BUILD_TOOLS is the version of the Android build tools you are using.
   # It should match buildToolsVersion.
-  ANDROID_BUILD_TOOLS: "32.0.0"
+  ANDROID_BUILD_TOOLS: "33.0.0"
 
   # It's what version of the command line tools we're going to download from the official site.
   # Official Site-> https://developer.android.com/studio/index.html
@@ -143,7 +143,7 @@ releaseTests:
     - ./gradlew -Pci --console=plain testRelease
 
 deploy:
-  image: gradle:7.3.3-jdk11
+  image: gradle:7.5.1-jdk11
   only:
     - tags
   environment:
@@ -159,7 +159,7 @@ deploy:
     - 'gradle publish'
 
 deploySnapshot:
-  image: gradle:7.3.3-jdk11
+  image: gradle:7.5.1-jdk11
   only:
     - merge_requests
     - develop

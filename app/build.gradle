@@ -36,12 +36,13 @@ android {
     buildFeatures {
         dataBinding true
     }
+    namespace 'com.binatestation.kickstart'
 }
 
 dependencies {
     implementation project(path: ':kickoff')
     // Core components
-    implementation 'com.google.android.material:material:1.7.0-alpha02'
+    implementation 'com.google.android.material:material:1.8.0-alpha01'
     implementation "androidx.appcompat:appcompat:${appcompat}"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
@@ -58,7 +59,7 @@ dependencies {
     // Saved state module for ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
     // Jetpack Compose Integration for ViewModel
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0-rc02'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-alpha02'
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     // optional - helpers for implementing LifecycleOwner in a Service
     implementation "androidx.lifecycle:lifecycle-service:$lifecycle_version"
