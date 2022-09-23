@@ -87,6 +87,7 @@ class ImagePickerFragment : BaseDialogFragment() {
         startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.d(

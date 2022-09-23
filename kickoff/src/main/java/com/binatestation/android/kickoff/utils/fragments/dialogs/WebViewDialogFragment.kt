@@ -53,15 +53,12 @@ open class WebViewDialogFragment : BaseDialogFragment() {
         return inflater.inflate(R.layout.fragment_web_view_dialog, container, false)
     }
 
-    @Suppress("DEPRECATION")
     @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         webView = view.findViewById(R.id.web_view)
         progressBar = view.findViewById(R.id.progress_bar)
         webView?.settings?.javaScriptEnabled = true        // enable javascript just test
-        webView?.settings?.setAppCacheEnabled(true)
-        webView?.settings?.setAppCachePath(context?.cacheDir?.path)
         webView?.settings?.cacheMode = WebSettings.LOAD_DEFAULT
         setWebViewClient(webViewClient)
         loadUrl()
