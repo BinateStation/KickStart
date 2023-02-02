@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.binatestation.android:kickoff:1.3.0'
+  implementation 'com.binatestation.android:kickoff:1.3.1'
 }
 ```
 
@@ -30,17 +30,18 @@ This is a library which can be used for avoiding boiler plate code in the Recycl
 ## What's New
 
 1. DataBinding issue fixes
-1. Progress Dialog context issue fixes
-1. Now we have paging with DB + Network
-1. com.binatestation.android.kickoff.utils.fragments.ImageCarouselFragment
-1. com.binatestation.android.kickoff.utils.fragments.PageSliderWithIndicatorFragment
-1. com.binatestation.android.kickoff.utils.fragments.SwipeListSearchFragment
-1. com.binatestation.android.kickoff.utils.fragments.PagedSwipeListSearchFragment
-1. Now you can customize EmptyStateModel in PagedRecyclerViewAdapter 
-1. Network State EmptyStateModel in PagedRecyclerViewAdapter 
-1. Html Support in Empty State Text View
-1. Error Object key in get callback
-1. WebviewDialogFragment is now open. you can extend it
+2. Progress Dialog context issue fixes
+3. Now we have paging with DB + Network
+4. com.binatestation.android.kickoff.utils.fragments.ImageCarouselFragment
+5. com.binatestation.android.kickoff.utils.fragments.PageSliderWithIndicatorFragment
+6. com.binatestation.android.kickoff.utils.fragments.SwipeListSearchFragment
+7. com.binatestation.android.kickoff.utils.fragments.PagedSwipeListSearchFragment
+8. Now you can customize EmptyStateModel in PagedRecyclerViewAdapter 
+9. Network State EmptyStateModel in PagedRecyclerViewAdapter 
+10. Html Support in Empty State Text View
+11. Error Object key in get callback
+12. WebviewDialogFragment is now open. you can extend it
+13. Now you can set click listener for child recycler view adapter too.
 
 ## Prerequisite
 
@@ -67,6 +68,22 @@ you can use this by just Extending the Fragments listed bellow
 
 ## Example Snippets
 
+## Set click listener for child recycler view
+
+```
+class AlbumViewHolder(
+    private val adapterAlbumBinding: AdapterAlbumBinding
+) : BaseViewHolder(adapterAlbumBinding.root) { 
+    // .......
+    private val childRecyclerViewAdapter = RecyclerViewAdapter()
+    // .......
+
+    override fun getChildAdapter(): RecyclerViewAdapter? {
+        return childRecyclerViewAdapter
+    }
+// .......
+}
+```
 
 ### RecyclerView without Paging
 

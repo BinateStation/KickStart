@@ -6,6 +6,7 @@ package com.binatestation.android.kickoff.utils.adapters.holders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.binatestation.android.kickoff.utils.adapters.RecyclerViewAdapter
 import com.binatestation.android.kickoff.utils.listeners.ViewBinder
 
 
@@ -24,8 +25,23 @@ abstract class BaseViewHolder constructor(
         this.onClickItem = onClickItem
     }
 
+    fun setOnItemClickListenerForChild(onClickItem: ((`object`: Any?, position: Int, actionView: View) -> Unit)) {
+        getChildAdapter()?.setOnItemClickListener(onClickItem)
+    }
+
+    open fun getChildAdapter(): RecyclerViewAdapter? {
+        return null
+    }
+
     init {
-        itemView.setOnClickListener { onClickItem?.let { onClick -> onClick(bindingAdapterPosition, it) } }
+        itemView.setOnClickListener {
+            onClickItem?.let { onClick ->
+                onClick(
+                    bindingAdapterPosition,
+                    it
+                )
+            }
+        }
     }
 
     @Suppress("unused")
