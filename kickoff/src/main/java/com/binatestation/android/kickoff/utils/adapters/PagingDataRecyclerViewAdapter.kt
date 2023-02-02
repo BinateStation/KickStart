@@ -67,6 +67,7 @@ class PagingDataRecyclerViewAdapter<DataModelType : Any>(
                     itemViewType.layoutId, parent, false
                 )
             ) as BaseViewHolder?
+            onClickItem?.let { viewHolder?.setOnItemClickListenerForChild(it) }
             viewHolder?.setOnItemClickListener { position, actionView ->
                 if(position != RecyclerView.NO_POSITION)
                     onClickItem?.let { onClick -> onClick(getItem(position), position, actionView) }
