@@ -17,8 +17,8 @@
 package com.binatestation.android.kickoff.repository.models
 
 data class ItemViewTypeModel<T, VH, VDB>(
-    var clsType: Class<T>? = null,
-    var viewHolder: Class<VH>? = null,
-    var layoutId: Int = 0,
-    var viewDataBindingType: Class<VDB>? = null
+    val clsType: Class<T>? = null,
+    val viewHolder: Class<VH>? = null,
+    val layoutId: Int = 0,
+    val viewDataBindingType: Class<VDB>? = null
 )

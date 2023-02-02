@@ -169,6 +169,7 @@ open class RecyclerViewAdapter :
                     itemViewType.layoutId, parent, false
                 )
             ) as BaseViewHolder?
+            onClickItem?.let { viewHolder?.setOnItemClickListenerForChild(it) }
             viewHolder?.setOnItemClickListener { position, actionView ->
                 onClickItem?.let { onClick -> onClick(getItem(position), position, actionView) }
             }
